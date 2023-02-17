@@ -145,15 +145,16 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.GroupBox(background="#222222", **DECORATIONS_L),
-                widget.Prompt(background="#444444", **DECORATIONS_L),
-                widget.WindowName(),
+                widget.GroupBox(background="#313244", **DECORATIONS_L),
+                widget.Prompt(background="#e64553", **DECORATIONS_L),
+                widget.WindowName(background="#45475a"),
                 widget.Systray(**DECORATIONS_R),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p", **DECORATIONS_R),
                 widget.QuickExit(**DECORATIONS_L),
             ],
             32,
-            margin=4
+            margin=4,
+            background="#1e1e2e",
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
