@@ -42,13 +42,27 @@ def autostart():
 DECORATIONS_R = {
     "decorations": [
         PowerLineDecoration(path="arrow_right")
-    ]
+    ],
+    "foreground": "#585b70", 
+    "font": "Iosevka Medium",
+    "fontsize": 14,
 }
 
 DECORATIONS_L = {
     "decorations": [
         PowerLineDecoration(path="arrow_left")
-    ]
+    ],
+    "foreground": "#585b70",
+    "font": "Iosevka Medium",
+    "fontsize": 14,
+}
+
+DECORATIONS_LR = {
+    "decorations": [
+        PowerLineDecoration(path="arrow_left"),
+        PowerLineDecoration(path="arrow_right")
+    ],
+    "foreground": "#cdd6f4",
 }
 
 keys = [
@@ -89,7 +103,8 @@ keys = [
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "space", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "space", lazy.spawn("rofi -show drun")),
+    Key([mod, "control"], "r", lazy.spawncmd()),    
 ]
 
 groups = [Group(i) for i in "12345"]
@@ -135,7 +150,7 @@ layouts = [
 ]
 
 widget_defaults = {
-        "font": "Iosevka NF",
+        "font": "Iosevka Medium",
         "fontsize": 14,
         "padding": 4,
 }
@@ -145,25 +160,31 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.GroupBox(background="#313244", **DECORATIONS_L),
-                widget.Prompt(background="#e64553", **DECORATIONS_L),
-                widget.WindowName(background="#45475a"),
-                widget.Systray(**DECORATIONS_R),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p", **DECORATIONS_R),
-                widget.QuickExit(**DECORATIONS_L),
+                widget.GroupBox(background="#f38ba8", highlight_method="border", this_current_screen_border="#94e2d5", other_screen_border="a6adc8", disable_drag=True, **DECORATIONS_L),
+                widget.Prompt(background="#eba0ac", **DECORATIONS_L),
+                widget.TaskList(background="#45475a",highlight_method="block", border="#313244", **DECORATIONS_LR),
+                widget.Systray(background="#fab387", **DECORATIONS_R),
+                widget.PulseVolume(background="#94e2d5", fmt="  {}", **DECORATIONS_R),
+                widget.Clock(background="#74c7ec", format="  %a %d %B, %Y", **DECORATIONS_R),
+                widget.Clock(background="#89b4fa", format="  %H:%M:%S", foreground="#45475a", font="Iosevka Medium"),
             ],
             32,
-            margin=4,
+            margin=4, 
             background="#1e1e2e",
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
         bottom=bar.Bar(
             [
-                widget.CurrentLayout(),
+                widget.CurrentLayout(background="89dceb", **DECORATIONS_L),
+                widget.Spacer(background="45475a", **DECORATIONS_LR),
+                widget.Memory(format="  {MemUsed:.0f}{mm}", background="#f2cdcd", **DECORATIONS_R),
+                widget.CPU(format="  {load_percent}%", background="#f5c2e7", **DECORATIONS_R),
+                widget.ThermalSensor(format=' {temp}{unit}', font="Iosevka Medium", background="#eba0ac", foreground="45475a"),
             ],
             32,
-            margin=4
+            margin=4,
+            background="#1e1e2e"
         )
     ),
 ]
@@ -202,12 +223,3 @@ auto_minimize = True
 
 # When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None
-
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
