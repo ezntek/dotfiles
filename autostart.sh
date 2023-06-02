@@ -1,6 +1,3 @@
 #!/bin/sh
-picom -bf 
+picom -b 
 ~/.screenlayout/layout.sh
-pipewire &
-pipewire-pulse &
-wireplumber &

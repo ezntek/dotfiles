@@ -26,7 +26,7 @@
 
 from libqtile import bar, layout
 from qtile_extras import widget
-from qtile_extras.widget.decorations import RectDecoration, PowerLineDecoration
+from qtile_extras.widget.decorations import * 
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile import hook
@@ -73,27 +73,28 @@ def window_to_prev_screen(qtile, switch_group=False, switch_screen=True):
 
 DECORATIONS_R = {
     "decorations": [
-        PowerLineDecoration(path="arrow_right")
+        RectDecoration(colour="#1e1e2e", radius=16, filled=True, padding=3),    
     ],
-    "foreground": "#585b70", 
-    "font": "Iosevka Medium",
-    "fontsize": 14,
+    "foreground": "#cdd6f4", 
+    "font": "Iosevka Dlig SS20",
+    "fontsize": 15,
 }
 
 DECORATIONS_L = {
     "decorations": [
-        PowerLineDecoration(path="arrow_left")
+        RectDecoration(colour="#1e1e2e", line_width=3, radius=16, filled=True, padding=3),    
+    #    BorderDecoration(border_width=2, colour="#313244", padding=3),
     ],
-    "foreground": "#585b70",
-    "font": "Iosevka Medium",
-    "fontsize": 14,
+    "foreground": "#cdd4f4",
+    "font": "Iosevka Dlig SS20",
+    "fontsize": 15,
 }
 
 DECORATIONS_LR = {
     "decorations": [
-        PowerLineDecoration(path="arrow_left"),
-        PowerLineDecoration(path="arrow_right")
-    ],
+    
+        RectDecoration(colour="#1e1e2e", radius=16, filled=True, padding=3),    
+     ],
     "foreground": "#cdd6f4",
 }
 alt="mod1"
@@ -148,7 +149,8 @@ keys = [
     Key([mod, "control"], "s", lazy.spawn("mate-screenshot"))
 ]
 
-groups = [Group(i) for i in "12345"]
+groups = [
+    Group(i) for i in "12345"]
 
 for i in groups:
     keys.extend(
@@ -187,10 +189,10 @@ floating_layout = layout.Floating(
     ],
     border_focus = "#bac2de",
     border_normal="#45475a",
-    border_width=3
+    border_width=0
 )
 layouts = [
-    layout.Columns(border_focus = "#bac2de", border_normal="#45475a", border_width=3, margin=6),
+    layout.Columns(border_focus = "#bac2de", border_normal="#45475a",margin=6, border_width=0),
     floating_layout,
     layout.Max(),
     # Try more layouts by unleashing below layouts.
@@ -207,9 +209,9 @@ layouts = [
 ]
 
 widget_defaults = {
-        "font": "Iosevka Medium",
-        "fontsize": 14,
-        "padding": 4,
+        "font": "Iosevka Dlig SS20",
+        "fontsize": 15,
+        "padding": 3,
 }
 extension_defaults = widget_defaults.copy()
 
@@ -217,49 +219,48 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.GroupBox(background="#f38ba8", highlight_method="border", this_current_screen_border="#94e2d5", other_screen_border="a6adc8", disable_drag=True, **DECORATIONS_L),
-                widget.Prompt(background="#eba0ac", **DECORATIONS_L),
-                widget.TaskList(background="#45475a",highlight_method="block", border="#313244", **DECORATIONS_LR),
-                widget.Systray(background="#fab387", **DECORATIONS_R),
-                widget.PulseVolume(background="#94e2d5", fmt="  {} ", **DECORATIONS_R),
-                widget.Clock(background="#74c7ec", format="  %a %d %B, %Y", **DECORATIONS_R),
-                widget.Clock(background="#89b4fa", format="  %H:%M:%S", foreground="#45475a", font="Iosevka Medium"),
+                widget.GroupBox(urgent_border="f38ba8", inactive="#6c7086", fmt="{}", highlight_method="block", padding=2, margin_x=10, margin_y=3,this_screen_border="#585b70", this_current_screen_border="#585b70", other_screen_border="#45475a", other_current_screen_border="#45475a", disable_drag=True, **DECORATIONS_L),
+                widget.Prompt(**DECORATIONS_L),
+                widget.TaskList(highlight_method="block", border="#313244", margin_x=10, margin_y=6, padding=4, icon_size=29, **DECORATIONS_LR),
+                widget.Systray(**DECORATIONS_R),
+                widget.PulseVolume(fmt="   {} ", margin=3, **DECORATIONS_R),
+                widget.Clock(format="   %a %d %B, %Y ", **DECORATIONS_R),
+                widget.Clock(format="   %H:%M:%S ", **DECORATIONS_R),
             ],
-            32,
+            40,
             margin=6, 
-            background="#1e1e2e",
+            background="#00000000",
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
         bottom=bar.Bar(
             [
-                widget.CurrentLayout(background="89dceb", **DECORATIONS_L),
-                widget.Spacer(background="45475a", **DECORATIONS_LR),
-                widget.Visualiser(cava_path="/usr/bin/cava", background="#f5e0dc", **DECORATIONS_R),
-                widget.Memory(format="  {MemUsed:.0f}{mm}", background="#f2cdcd", **DECORATIONS_R),
-                widget.CPU(format="  {load_percent}%", background="#f5c2e7", **DECORATIONS_R),
-                widget.ThermalSensor(format=' {temp}{unit}', font="Iosevka Medium", background="#eba0ac", foreground="45475a"),
+                widget.CurrentLayout(fmt=" {} ", **DECORATIONS_L),
+                widget.Spacer(**DECORATIONS_LR),
+                widget.Memory(format="   {MemUsed:.0f}{mm} ", **DECORATIONS_R),
+                widget.CPU(format="   {load_percent}% ", **DECORATIONS_R),
+                widget.ThermalSensor(format='  {temp}{unit} ', **DECORATIONS_R),
             ],
-            32,
+            40,
             margin=6,
-            background="#1e1e2e"
+            background="#1e1e2e00"
         ),
-        wallpaper="~/Pictures/mountain_middle.png",
+        wallpaper="~/Downloads/nix-snowflake-dark.png",
         wallpaper_mode="fill"
     ),
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayout(background="eba0ac", **DECORATIONS_L),
-                widget.Clock(background="cba6f7", format="  %H:%M:%S", **DECORATIONS_L),
-                widget.TaskList(background="45475a", highlight_method="block", border="313244", **DECORATIONS_LR),
-                widget.PulseVolume(background="#f5c2e7", fmt="  {} ", foreground="#45475a", font="Iosevka Medium")
+                widget.CurrentLayout(fmt=" {} ", **DECORATIONS_L),
+                #widget.Clock(format="   %H:%M:%S ", **DECORATIONS_L),
+                widget.TaskList(highlight_method="block", border="#313244", margin=6, padding=4, icon_size=29, **DECORATIONS_LR),
+                widget.PulseVolume(fmt="   {} ", **DECORATIONS_R)
             ],
-            32,
+            40,
             margin=6,
-            background="#45475a"
+            background="#00000000"
         ),
-        wallpaper="~/Pictures/the_valley.png",
+        wallpaper="~/Downloads/nix-snowflake-dark.png",
         wallpaper_mode="fill"
     )
 ]
