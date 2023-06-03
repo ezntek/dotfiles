@@ -25,6 +25,7 @@ top_bar_main_screen = bar.Bar(
         widget.TaskList(
             highlight_method="block",
             border="#313244",
+            urgent_border="f38ba8",
             margin_x=10,
             margin_y=6,
             padding=4,
@@ -86,6 +87,7 @@ top_bar_other_screen = bar.Bar(
         ),
         widget.TaskList(
             highlight_method="block",
+            urgent_border="#f38ba8",
             border="#313244",
             margin_x=10,
             margin_y=6,

@@ -1,0 +1,18 @@
+[global]
+frame_color = "#74C7EC"
+separator_color= frame
+font = "Iosevka Dlig SS20 15"
+corner_radius = 12
+
+[urgency_low]
+background = "#1E1E2E"
+foreground = "#CDD6F4"
+
+[urgency_normal]
+background = "#1E1E2E"
+foreground = "#CDD6F4"
+
+[urgency_critical]
+background = "#1E1E2E"
+foreground = "#CDD6F4"
+frame_color = "#FAB387"
