@@ -16,9 +16,9 @@
     pkgs.libsForQt5.qt5ct pkgs.ripgrep pkgs.dunst pkgs.gnome.gnome-software pkgs.xdg-user-dirs pkgs.btop pkgs.unzip pkgs.fontforge pkgs.htop pkgs.pavucontrol pkgs.librewolf pkgs.kitty pkgs.git pkgs.rofi
     pkgs.tree pkgs.libnotify pkgs.scrot pkgs.lxappearance pkgs.arandr
     # more gui utils
-    pkgs.xfce.thunar pkgs.xfce.parole pkgs.mate.atril pkgs.mate.eom pkgs.mate.pluma
+    pkgs.xfce.thunar pkgs.xfce.parole pkgs.gimp pkgs.mate.atril pkgs.mate.eom pkgs.mate.pluma
     # misc
-    pkgs.cava pkgs.afetch pkgs.macchina pkgs.lightlocker pkgs.xfce.xfce4-screenshooter pkgs.picom-jonaburg pkgs.qogir-icon-theme pkgs.papirus-icon-theme pkgs.plasma5Packages.kdeconnect-kde
+    pkgs.python311Packages.virtualenv pkgs.cava pkgs.afetch pkgs.macchina pkgs.lightlocker pkgs.xfce.xfce4-screenshooter pkgs.picom-jonaburg pkgs.qogir-icon-theme pkgs.papirus-icon-theme pkgs.plasma5Packages.kdeconnect-kde
     # libs
     pkgs.libyaml
   ];
