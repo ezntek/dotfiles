@@ -8,12 +8,11 @@ top_bar_main_screen = bar.Bar(
         widget.GroupBox(
             urgent_border="f38ba8",
             inactive="#6c7086",
-            highlight_method="block",
             padding=2,
             margin_x=10,
             margin_y=3,
-            this_screen_border="#585b70",
-            this_current_screen_border="#585b70",
+            this_screen_border="#74c7ec",
+            this_current_screen_border="#74c7ec",
             other_screen_border="#45475a",
             other_current_screen_border="#45475a",
             disable_drag=True,
@@ -32,6 +31,16 @@ top_bar_main_screen = bar.Bar(
             icon_size=29,
             **DECORATIONS_LR
         ),
+        #widget.StatusNotifier(
+        #    icon_size=20,
+        #    icon_theme="Papirus-dark",
+        #    padding=10,
+        #    menu_font="Rubik",
+        #    menu_fontsize=12,
+        #    menu_background="1e1e2e",
+        #    highlight_colour="74c7ec",
+        #    **DECORATIONS_R,
+        #),
         widget.PulseVolume(
             fmt="   {} ",
             cardid=99,
