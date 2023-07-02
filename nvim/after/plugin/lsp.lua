@@ -16,6 +16,7 @@ lsp.ensure_installed {
     'pyright',
     'rust_analyzer',
     'lua_ls',
+    'nil_ls',
 }
 
 local cmp = require 'cmp'
