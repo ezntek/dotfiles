@@ -47,12 +47,12 @@ screens = [
     Screen(
         top=top_bar_main_screen,
         bottom=bottom_bar_main_screen,
-        wallpaper="~/Downloads/nix-snowflake-dark-better-mocha.png",
+        wallpaper="~/Downloads/mountains-purple.png",
         wallpaper_mode="fill"
     ),
     Screen(
         top=top_bar_other_screen,
-        wallpaper="~/Downloads/nix-snowflake-dark-better-mocha.png",
+        wallpaper="~/Downloads/mountains-purple.png",
         wallpaper_mode="fill"
     )
 ]

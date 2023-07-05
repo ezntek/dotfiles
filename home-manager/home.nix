@@ -5,33 +5,26 @@
   home.username = "ezntek";
   home.homeDirectory = "/home/ezntek";
 
-  home.packages = [
+  home.packages = with pkgs; [
     # coding
-    pkgs.rustc pkgs.cargo pkgs.exa pkgs.bat pkgs.rust-analyzer pkgs.python311Packages.poetry-core
+    python3Full nodejs_20 rustc cargo exa bat rust-analyzer python311Packages.poetry-core
     # fonts
-    pkgs.noto-fonts pkgs.noto-fonts-cjk pkgs.noto-fonts-emoji pkgs.fira-code pkgs.fira-code-symbols
+    noto-fonts noto-fonts-cjk noto-fonts-emoji fira-code fira-code-symbols
     # life
-    pkgs.libreoffice-fresh
+    libreoffice-fresh whatsapp-for-linux
     # utils
-    pkgs.libsForQt5.qt5ct pkgs.ripgrep pkgs.dunst pkgs.gnome.gnome-software pkgs.xdg-user-dirs pkgs.btop pkgs.unzip pkgs.fontforge pkgs.htop pkgs.pavucontrol pkgs.librewolf pkgs.kitty pkgs.git pkgs.rofi
-    pkgs.tree pkgs.libnotify pkgs.scrot pkgs.lxappearance pkgs.arandr
+    libsForQt5.qt5ct ripgrep dunst gnome.gnome-software xdg-user-dirs btop unzip fontforge htop pavucontrol librewolf kitty git rofi
+    tree libnotify scrot lxappearance arandr
     # more gui utils
-    pkgs.xfce.thunar pkgs.xfce.parole pkgs.networkmanagerapplet pkgs.gimp pkgs.mate.atril pkgs.mate.eom pkgs.mate.pluma
+    xfce.thunar xfce.parole networkmanagerapplet gimp mate.atril mate.eom mate.pluma
     # misc
-    pkgs.python311Packages.virtualenv pkgs.cava pkgs.afetch pkgs.macchina pkgs.lightlocker pkgs.xfce.xfce4-screenshooter pkgs.picom-jonaburg pkgs.qogir-icon-theme pkgs.papirus-icon-theme pkgs.plasma5Packages.kdeconnect-kde
+    python311Packages.virtualenv cava afetch macchina lightlocker xfce.xfce4-screenshooter picom-jonaburg qogir-icon-theme papirus-icon-theme plasma5Packages.kdeconnect-kde
     # libs
-    pkgs.libyaml
+    libyaml
+    # vscode
+    vscode
   ];
   qt.platformTheme = "qt5ct";
-
-  # vscode
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscode;
-    #package = pkgs.vscode.fhsWithPackages (ps: with ps; [
-    #  rustup zlib openssl.dev pkg-config libyaml gcc
-    #]);
-  };
 
   # rofi
   programs.rofi = {
@@ -55,11 +48,11 @@
 		"*" = {
 		    bg-col = mkLiteral "#1e1e2e";
 		    bg-col-light = mkLiteral "#1e1e2e";
-		    border-col = mkLiteral "#74c7ec";
+		    border-col = mkLiteral "#cba6f7";
 		    selected-col = mkLiteral "#1e1e2e";
-		    blue = mkLiteral "#74c7ec";
+		    blue = mkLiteral "#cba6f7";
 		    fg-col = mkLiteral "#cdd6f4";
-		    fg-col-2 = mkLiteral "#74c7ec";
+		    fg-col-2 = mkLiteral "#cba6f7";
 		    grey = mkLiteral "#6c7086";
 
 		    width = 600;

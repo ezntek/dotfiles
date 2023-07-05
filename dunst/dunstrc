@@ -1,5 +1,5 @@
 [global]
-frame_color = "#74C7EC"
+frame_color = "#cba6f7"
 separator_color= frame
 font = "Iosevka Dlig SS20 15"
 corner_radius = 12

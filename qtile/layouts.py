@@ -12,13 +12,13 @@ floating_layout = layout.Floating(
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
     ],
-    border_focus = "#74c7ec",
+    border_focus = "#cba6f7",
     border_normal="#313244",
     border_width=3
 )
 
 layouts = [
-    layout.Columns(border_focus = "#74c7ec", border_normal="#313244",margin=6, border_width=3),
+    layout.Columns(border_focus = "#cba6f7", border_normal="#313244",margin=6, border_width=3),
     floating_layout,
     layout.Max(),
     # Try more layouts by unleashing below layouts.
