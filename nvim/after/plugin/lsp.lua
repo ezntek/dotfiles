@@ -58,13 +58,10 @@ lsp.on_attach(lsp_on_attatch)
 -- format on save
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
--- rust stuff
-vim.cmd.compiler "cargo"
+-- rust..?
+lsp.skip_server_setup({ 'rust-analyzer' })
 
-lsp.skip_server_setup({ 'rust_analyzer' })
 lsp.setup()
-
--- inlay hints
 
 rust_tools.setup({
     server = {

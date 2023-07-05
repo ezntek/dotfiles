@@ -27,8 +27,6 @@
 from libqtile import bar, layout
 from qtile_extras import widget
 from libqtile.config import Click, Drag, Screen
-import datetime
-import os
 
 from bars import *        # (DECORATIONS ARE IN HERE), qtile_extras.widget.decorations.*
 from layouts import *     # libqtile.config.Match
@@ -36,8 +34,8 @@ from keys import *        # (GROUPS ARE IN HERE); utils, libqtile.lazy, libqtile
 from bars import *        # libqtile.bar, qtile_extras.*
 
 widget_defaults = {
-        "font": "Iosevka Dlig SS20",
-        "fontsize": 15,
+        "font": "JetBrainsMono Nerd Font",
+        "fontsize": 13,
         "padding": 3,
 }
 
@@ -47,12 +45,12 @@ screens = [
     Screen(
         top=top_bar_main_screen,
         bottom=bottom_bar_main_screen,
-        wallpaper="~/Downloads/mountains-purple.png",
+        wallpaper="~/Downloads/mocha.jpg",
         wallpaper_mode="fill"
     ),
     Screen(
         top=top_bar_other_screen,
-        wallpaper="~/Downloads/mountains-purple.png",
+        wallpaper="~/Downloads/mocha.jpg",
         wallpaper_mode="fill"
     )
 ]

@@ -56,7 +56,7 @@ top_bar_main_screen = bar.Bar(
             **DECORATIONS_R
         ),
     ],
-    40, # height
+    38, # height
     margin=6, 
     background="#00000000",
     # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
@@ -83,7 +83,7 @@ bottom_bar_main_screen = bar.Bar(
             **DECORATIONS_R
         ),
     ],
-    40,
+    38,
     margin=6,
     background="#1e1e2e00"
 )
@@ -117,7 +117,7 @@ top_bar_other_screen = bar.Bar(
             icon_theme="Papirus-dark"
         ),
     ],
-    40,
+    38,
     margin=6,
     background="#00000000"
 )
