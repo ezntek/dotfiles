@@ -1,8 +1,7 @@
-local lsp = require "lsp-zero"
 local lsp_config = require 'lspconfig'
 local rust_tools = require 'rust-tools'
 
-lsp.preset {
+local lsp = require("lsp-zero").preset {
     suggest_lsp_servers = false,
     sign_icons = {
         error = '',
@@ -13,8 +12,8 @@ lsp.preset {
 }
 
 lsp.ensure_installed {
-    'pyright',
     'rust_analyzer',
+    'pyright',
     'lua_ls',
     'nil_ls',
 }
@@ -56,7 +55,18 @@ end
 lsp.on_attach(lsp_on_attatch)
 
 -- format on save
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
+lsp.format_on_save({
+    format_opts = {
+        async = false,
+        timeout_ms = 10000,
+    },
+    servers = {
+        ['lua_ls'] = {'lua'},
+        ['rust_analyzer'] = {'rust'},
+        ['pyright'] = {'python'},
+        ['nil_ls'] = {'nix'},
+    }
+})
 
 -- rust..?
 lsp.skip_server_setup({ 'rust-analyzer' })

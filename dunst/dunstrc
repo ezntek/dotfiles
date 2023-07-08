@@ -1,7 +1,7 @@
 [global]
 frame_color = "#cba6f7"
 separator_color= frame
-font = "Iosevka Dlig SS20 15"
+font = "JetBrainsMono Nerd Font 15"
 corner_radius = 12
 
 [urgency_low]

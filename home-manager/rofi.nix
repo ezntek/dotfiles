@@ -14,7 +14,7 @@
         grey = mkLiteral "#6c7086";
 
         width = 600;
-        font = "Iosevka Dlig SS20 14";
+        font = "JetBrainsMono Nerd Font 12";
       };
 
       "#element-text" = {

@@ -13,8 +13,8 @@
     libreoffice-fresh whatsapp-for-linux
     
     # utils
-    libsForQt5.qt5ct dunst gnome.gnome-software xdg-user-dirs btop unzip fontforge htop
-    pavucontrol librewolf kitty git rofi libnotify scrot lxappearance arandr
+    libsForQt5.qt5ct du-dust dunst gnome.gnome-software xdg-user-dirs btop unzip fontforge htop
+    pavucontrol librewolf kitty xfce.xfce4-terminal git rofi libnotify scrot lxappearance arandr
     
     # more gui utils
     xfce.thunar xfce.parole networkmanagerapplet gimp mate.atril mate.eom mate.pluma

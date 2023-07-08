@@ -37,7 +37,7 @@ top_bar_main_screen = bar.Bar(
         #    padding=10,
         #    menu_font="Rubik",
         #    menu_fontsize=12,
-        #    menu_background="1e1e2e",
+        #    menu_background="11111e",
         #    highlight_colour="cba6f7",
         #    **DECORATIONS_R,
         #),
@@ -85,7 +85,7 @@ bottom_bar_main_screen = bar.Bar(
     ],
     38,
     margin=6,
-    background="#1e1e2e00"
+    background="#11111e00"
 )
 
 top_bar_other_screen = bar.Bar(
