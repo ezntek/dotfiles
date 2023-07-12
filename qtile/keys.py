@@ -5,7 +5,7 @@ from libqtile.config import Group, Key
 
 mod = "mod4"
 alt = "mod1"
-terminal = "kitty"
+terminal = "qterminal -e /usr/bin/zsh"
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -40,25 +40,31 @@ keys = [
         desc="Toggle between split and unsplit sides of stack",
     ),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    Key([mod, "control"], "Return", lazy.spawn("xfce4-terminal")),
+    
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    
+    # Rofi
+    Key([mod], "tab", lazy.spawn("rofi -show window")),
     Key([mod], "space", lazy.spawn("rofi -show drun")),
-    Key([mod, "control"], "r", lazy.spawncmd()), 
+    Key([mod, "control"], "space", lazy.spawn("rofi -show emoji")),
+    Key([mod, "control"], "r", lazy.spawn("rofi -show run")), 
 
     # Multiple Monitors
     Key(["control", "shift"], "n", lazy.next_screen()),
     Key(["control", "shift"], "e", lazy.prev_screen()),
     Key(["control", alt], "n", lazy.function(window_to_next_screen)),
     Key(["control", alt], "e", lazy.function(window_to_prev_screen)),
-    #screenshots
+
+    # Screenshots
     Key([mod, "shift"], "s", lazy.spawn("xfce4-screenshooter -r -s Nextcloud/Pictures/screenshots")),
     Key([mod, "control"], "s", lazy.spawn("xfce4-screenshooter -f -s Nextcloud/Pictures/screenshots")),
-    # poweroff
-    Key([mod, "control"], "q", lazy.spawn("rofi -show p -modi p:'~/.local/bin/rofi-power-menu --symbols-font \"Iosevka Dlig SS20\"' -font \"Iosevka Dlig SS20 16\" -theme custom"))
+    
+    # Power Menu
+    Key([mod, "control"], "q", lazy.spawn("rofi -show p -modi p:'~/.local/bin/rofi-power-menu --symbols-font \"Font Awesome 6 Free\"' -font \"JetBrainsMono Nerd Font 14\" -theme catppuccin-mocha"))
 ]
 
 # groups becasue keys
