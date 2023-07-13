@@ -1,0 +1,19 @@
+configuration{
+    modi: "run,drun,emoji,window";
+    icon-theme: "Papirus-dark";
+    show-icons: true;
+    terminal: "qterminal";
+    drun-display-format: "{icon} {name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    display-drun: "  Apps ";
+    display-run: "  Run ";
+    display-window: "  Window ";
+    display-Network: "  Network ";
+    display-emoji: "  Emoji";
+    sidebar-mode: true;
+}
+
+@theme "catppuccin-mocha"
+
