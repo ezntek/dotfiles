@@ -7,9 +7,10 @@ export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 
-ibus-daemon &
-light-locker &
+dinit &
+dex -a &
+/home/ezntek/.local/bin/volctl &
 systemctl --user import-environment PATH
 systemctl --user restart xdg-desktop-portal
+picom --experimental &
 ~/.screenlayout/layout.sh
-picom -b --animations --animation-window-mass 0.5 --animation-for-open-window zoom --animation-stiffness 350 &

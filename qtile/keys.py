@@ -5,7 +5,7 @@ from libqtile.config import Group, Key
 
 mod = "mod4"
 alt = "mod1"
-terminal = "qterminal -e /usr/bin/zsh"
+terminal = "kitty"
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -64,7 +64,15 @@ keys = [
     Key([mod, "control"], "s", lazy.spawn("xfce4-screenshooter -f -s Nextcloud/Pictures/screenshots")),
     
     # Power Menu
-    Key([mod, "control"], "q", lazy.spawn("rofi -show p -modi p:'~/.local/bin/rofi-power-menu --symbols-font \"Font Awesome 6 Free\"' -font \"JetBrainsMono Nerd Font 14\" -theme catppuccin-mocha"))
+    Key([mod, "control"], "q", lazy.spawn("rofi -show p -modi p:'~/.local/bin/rofi-power-menu --symbols-font \"Font Awesome 6 Free\"' -font \"JetBrainsMono Nerd Font 14\" -theme catppuccin-mocha")),
+
+    # fullscreen
+    Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle Fullscreen"),
+    Key([mod, "control"], "f", lazy.window.toggle_floating(), desc="Toggle Floating"),
+    
+    # some apps
+    Key([mod, "control"], "Return", lazy.spawn("caja")),
+    Key([mod, "shift"], "Return", lazy.spawn("firefox")),
 ]
 
 # groups becasue keys
