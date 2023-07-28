@@ -65,6 +65,9 @@ local function plugins(use)
         }
     }
 
+    -- formatting
+    -- use 'sbdchd/neoformat'
+
     -- airline
     use {
         "vim-airline/vim-airline",
@@ -100,9 +103,6 @@ local function plugins(use)
 
     -- packer itself
     use 'wbthomason/packer.nvim'
-
-    -- ron
-    use 'ron-rs/ron.vim'
 end
 
 return require('packer').startup(plugins)

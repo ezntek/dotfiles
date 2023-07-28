@@ -16,6 +16,8 @@ lsp.ensure_installed {
     'pyright',
     'lua_ls',
     'nil_ls',
+    'clangd',
+    'zls',
 }
 
 local cmp = require 'cmp'
@@ -61,10 +63,12 @@ lsp.format_on_save({
         timeout_ms = 10000,
     },
     servers = {
-        ['lua_ls'] = {'lua'},
-        ['rust_analyzer'] = {'rust'},
-        ['pyright'] = {'python'},
-        ['nil_ls'] = {'nix'},
+        ['lua_ls'] = { 'lua' },
+        ['rust_analyzer'] = { 'rust' },
+        ['pyright'] = { 'python' },
+        ['nil_ls'] = { 'nix' },
+        ['clangd'] = { 'c', 'cpp' },
+        ['zls'] = { 'zig' }
     }
 })
 

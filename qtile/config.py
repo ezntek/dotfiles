@@ -45,12 +45,12 @@ screens = [
     Screen(
         top=top_bar_main_screen,
         bottom=bottom_bar_main_screen,
-        wallpaper='/home/ezntek/Pictures/mocha-lake.png',
+        wallpaper='~/Pictures/artix-iceberg-dark.png',
         wallpaper_mode="fill"
     ),
     Screen(
         top=top_bar_other_screen,
-        wallpaper="~/Pictures/mocha-lake.png",
+        wallpaper="~/Pictures/artix-iceberg-dark.png",
         wallpaper_mode="fill"
     )
 ]

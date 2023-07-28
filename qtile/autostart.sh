@@ -9,6 +9,7 @@ export QT_IM_MODULE=ibus
 
 dinit &
 dex -a &
+kdeconnect-indicator &
 /home/ezntek/.local/bin/volctl &
 systemctl --user import-environment PATH
 systemctl --user restart xdg-desktop-portal

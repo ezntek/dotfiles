@@ -19,8 +19,7 @@ floating_layout = layout.Floating(
 
 layouts = [
     layout.Columns(border_focus = "#cba6f7", border_normal="#313244",margin=6, border_width=3),
-    floating_layout,
-    layout.Max(),
+    #layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -31,5 +30,6 @@ layouts = [
     # layout.Tile(),
     # layout.TreeTab(),
     # layout.VerticalTile(),
-    # layout.Zoomy(),
+    layout.Zoomy(margin=6, columnwidth=250),
+    floating_layout,
 ]

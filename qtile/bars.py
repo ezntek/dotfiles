@@ -45,7 +45,7 @@ top_bar_main_screen = bar.Bar(
         ),
         widget.PulseVolume(
             fmt="    {}  ",
-            cardid=99,
+            device='Built-in Audio Analog Stereo',
             margin=3,
             **DECORATIONS_R
         ), 
@@ -112,6 +112,7 @@ top_bar_other_screen = bar.Bar(
         ),
         widget.PulseVolume(
             fmt="    {}  ",
+            device='Built-in Audio Analog Stereo',
             **DECORATIONS_R
         ),
         widget.Clock(
