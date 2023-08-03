@@ -1,7 +1,7 @@
 [global]
 frame_color = "#cba6f7"
 separator_color= frame
-font = "JetBrainsMono Nerd Font 15"
+font = "Apple Color Emoji 10, JetBrainsMono Nerd Font 15"
 corner_radius = 12
 
 [urgency_low]
