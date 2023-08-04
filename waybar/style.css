@@ -57,17 +57,20 @@ button:hover {
 }
 
 #workspaces button:hover {
-    background: @crust;
+    background: @surface0;
 }
 
 #workspaces button.focused {
-    background-color: @mauve;
+    color: @mauve;
 }
 
 #workspaces button.urgent {
-    background: @red;
+    color: @red;
 }
 
+#workspaces button.persistent {
+    color: @surface2;
+}
 #mode {
     background-color: #64727D;
     border-bottom: 3px solid #ffffff;
@@ -83,7 +86,6 @@ button:hover {
 #pulseaudio,
 #wireplumber,
 #custom-media,
-#tray,
 #mode,
 #idle_inhibitor,
 #scratchpad,
@@ -94,7 +96,7 @@ button:hover {
     color: @text
 }
 #workspaces {
-    padding: 0 2;
+    padding: 0 6;
     background-color: @mantle;
     border-radius: 15;
 }
@@ -213,6 +215,11 @@ label:focus {
 }
 
 #tray {
+    padding: 0 12;
+    background-color: @mantle;
+}
+
+#tray menu {
     background-color: @mantle;
 }
 

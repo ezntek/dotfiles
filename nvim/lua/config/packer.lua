@@ -67,6 +67,7 @@ local function plugins(use)
 
     -- formatting
     -- use 'sbdchd/neoformat'
+    use 'averms/black-nvim'
 
     -- airline
     use {

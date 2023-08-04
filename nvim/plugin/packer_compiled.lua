@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/home/ezntek/.local/share/nvim/site/pack/packer/start/barbar.nvim",
     url = "https://github.com/romgrk/barbar.nvim"
   },
+  ["black-nvim"] = {
+    loaded = true,
+    path = "/home/ezntek/.local/share/nvim/site/pack/packer/start/black-nvim",
+    url = "https://github.com/averms/black-nvim"
+  },
   catppuccin = {
     loaded = true,
     path = "/home/ezntek/.local/share/nvim/site/pack/packer/start/catppuccin",

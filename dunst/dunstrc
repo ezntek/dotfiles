@@ -1,4 +1,6 @@
 [global]
+monitor = 1
+offset = 8x38
 frame_color = "#cba6f7"
 separator_color= frame
 font = "Apple Color Emoji 10, JetBrainsMono Nerd Font 15"
