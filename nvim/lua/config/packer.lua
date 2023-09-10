@@ -67,8 +67,7 @@ local function plugins(use)
 
     -- formatting
     -- use 'sbdchd/neoformat'
-    use 'averms/black-nvim'
-
+    -- use 'averms/black-nvim'
     -- airline
     use {
         "vim-airline/vim-airline",
@@ -101,6 +100,15 @@ local function plugins(use)
         "folke/todo-comments.nvim",
         requires = { "folke/trouble.nvim" }
     }
+    -- pdfs
+    use 'makerj/vim-pdf'
+
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = "cd app && npm install",
+        setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+        ft = { "markdown" },
+    })
 
     -- packer itself
     use 'wbthomason/packer.nvim'

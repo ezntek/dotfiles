@@ -12,11 +12,11 @@ local lsp = require("lsp-zero").preset {
 }
 
 lsp.ensure_installed {
-    'rust_analyzer',
+    --    'rust_analyzer',
     'pyright',
     'lua_ls',
-    'nil_ls',
     'clangd',
+    'tsserver',
     'zls',
 }
 
@@ -67,9 +67,9 @@ lsp.format_on_save({
         ['rust_analyzer'] = { 'rust' },
         ['pyright'] = { 'python' },
         ['black'] = { 'python' },
-        ['nil_ls'] = { 'nix' },
         ['clangd'] = { 'c', 'cpp' },
-        ['zls'] = { 'zig' }
+        ['zls'] = { 'zig' },
+        ['tsserver'] = { 'js', 'jsx', 'ts', 'tsx' },
     }
 })
 
