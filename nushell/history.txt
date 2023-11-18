@@ -1,0 +1,305 @@
+clear
+ls
+(ls)[5]
+(ls)
+(ls).0
+(ls).0.name
+for
+for i in 1..5 { print "hi" }
+clear
+fastfetch
+ls
+for text in ["arst", "artt"] { print text }
+for text in ["arst", "artt"] { print $text }
+ls
+nvim patch.nu
+ls
+ls | get name
+./patch.nu
+nu
+ls
+~/.cargo/bin/nu ./patch.nu
+doas nvim /etc/shells
+doas ln -s /home/ezntek/.cargo/bin/nu /usr/local/bin/
+exit
+nu
+nvim /etc/shells
+doas nvim /etc/shells
+nvim ~/.config/nushell/config.nu
+nvim ~/.config/nushell/env.nu
+cd ~
+ls
+cd Sources/
+ls
+eza
+nvim ~/.config/nushell/env.nu
+ls
+mkdir -p ~/.local/share/fonts
+mkdir ~/.local/share/fonts
+ls
+ls | find
+ls | find Ligalex
+ls | find Ligalex | get name
+cp (ls | find Ligalex | get name) ~/.local/share/fonts/
+cp (ls | find Ligalex | get name | str join " ")  ~/.local/share/fonts/
+cp ((ls | find Ligalex) | get name | str join " ")  ~/.local/share/fonts/
+cp (ls | find Ligalex | get name | str join " ")  ~/.local/share/fonts/
+ls | find Ligalex | get name | str join " "
+cp $(ls | find Ligalex | get name | str join " ")  ~/.local/share/fonts/
+cp Ligalex*  ~/.local/share/fonts/
+ls
+nvim ~/.fonts.conf
+ls
+exit
+exit
+fastfetch
+ls
+cd Sources/
+ls
+git clone https://github.com/ezntek/dotfilse
+git clone https://github.com/ezntek/dotfiles
+cd dotfiles/
+ls
+cp -r nvim ~/.config/
+rm -rvf ~/.config/nvim/
+cd ..
+mv dotfiles ~/.config/dotfiles
+cd ~/.config/dotfiles/
+ls
+cd ..
+ln -s dotfiles/nvim ./
+nvim
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\<\n> ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+nvim
+nvim 
+nvim ~/.config/dotfiles/nvim/after/
+dnf search fontawesome
+doas dnf install fontawesome-fonts-all
+nvim
+nvim ~/.config/dotfiles/nvim/after/plugin/lsp.lua
+exit
+nvim
+reboot
+cd Downloads
+ls
+cd arkpartTeSOzY/
+ls
+cd out
+ls
+rm -rvf ~/.local/share/fonts/
+cp * ~/.local/share/
+fc-cache -f -v
+exit
+cd ~/.local/share/
+ls
+mkdir fonts
+cd fonts
+cp ~/Downloads/arkpartTeSOzY/out/LigalexMonoNerdFont-* ./
+fc-cache -f -v
+nvim
+reboot
+sudo tee -a /etc/yum.repos.d/vscodium.repo << 'EOF'<\n>[gitlab.com_paulcarroty_vscodium_repo]<\n>name=gitlab.com_paulcarroty_vscodium_repo<\n>baseurl=https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/<\n>enabled=1<\n>gpgcheck=1<\n>repo_gpgcheck=1<\n>gpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg<\n>metadata_expire=1h<\n>EOF<\n>
+bash
+doas dnf upgrade
+doas dnf install vscodium
+doas dnf install codium
+gcc
+clang
+gcc
+cc
+ccc
+cxx
+c++
+clang-17-c++
+clang++-17
+clang++
+clear
+fastfeptch
+fastfetch
+mkdir ~/.cache/starship<\n>starship init nu | save -f ~/.cache/starship/init.nu<\n>
+$nu.config-path
+nvim ~/.config/nushell/config.nu
+nvim ~/.config/nvim/after/plugin/treesitter.lua
+nvim ~/.config/nushell/config.nu
+nvim ~/.config/nvim/after/plugin/treesitter.lua
+nvim ~/.config/nushell/config.nu
+nvim ~/.config/nvim/after/plugin/treesitter.lua
+nvim ~/.config/nushell/config.nu
+exit
+ls
+clear
+mkdir -p ~/.config && touch ~/.config/starship.toml
+mkdir -p ~/.config ; touch ~/.config/starship.toml
+mkdir  ~/.config ; touch ~/.config/starship.toml
+nvim ~/.config/starship.toml
+fastfetch
+nvim ~/.config/starship.toml
+cd Sources/
+git clone https://github.com/ezntek/beancode
+git clone https://github.com/ezntek/beanmaths
+cd beanmaths/
+ls
+exit
+nu
+exit
+clear
+exit
+cd ~
+clear
+ls
+cd Desktop/
+ls
+cd ..
+cd Sources/
+ls
+cd beancode/
+cd ..
+cd beanmaths/
+ls
+cd client
+ls
+dnf install kitty
+doas dnf install kitty
+kitty
+kitt
+dnf search recursive
+dnf search recursive-mono
+dnf search recursivemono
+dnf search recursive | grep font
+clear
+ls
+cd Downloads/
+ls
+unzig ArrowType-Recursive-1.085.zip
+unzip ArrowType-Recursive-1.085.zip
+cd Arr
+cd ArrowType-Recursive-1.085/
+ls
+ccd Recursive_DEsktop
+cd Recursive_Desktop
+ls
+cp Recursive_VF_1.085.ttf ~/.local/share/fonts/
+fc-cache -f -v
+nvim ~/.config/kitty/
+exit
+nvim ~/.config/starship.toml
+exit
+cd Downloads/
+ls
+cd ArrowType-Recursive-1.085/
+ls
+cd Recursive_Code/
+ls
+cp -r * ~/.local/share/fonts/
+fastfetch
+fastfetchexit
+exit
+nvim ~/.config/kitty/kitty.conf
+exit
+nvim ~/Sources/beancode
+dnf install noto-color-emoji noto-cjk
+sudo dnf install noto-color-emoji noto-cjk
+dnf search noto
+doas dnf install google-noto-color-emoji-fonts google-noto-cjk-fonts
+fc-cache -f -v
+nvim
+ls
+cd CascadiaCode/
+ls
+cp CaskaydiaCoveNerdFont* ~/.local/share/fonts/
+fc-cache -f -v
+exit
+sudo dnf install starship
+dnf search starship
+clear
+cd Sources/
+ls
+cd apps
+ls
+cd ..
+cd beancode/
+ls
+ls | grep .git
+ls -a 
+ls | grep .git
+nvim ~/.config/nushell/config.nu
+nvim ~/.config/nushell/env.nu
+exi
+exit
+ls
+clear
+clar
+clear
+clar
+cd ..
+ls
+cd apps
+ls
+cd ,,
+cd beancode/
+cd ..
+cd beanco
+cd beancode
+fastfetch
+cd ..
+cler
+clear
+cd beanmaths
+ls
+cd client
+ls
+clear
+fastfetch
+cd ..
+cd server
+cd ..
+ls
+cd ..
+ls
+clear
+ssh
+kitty -kitten ssh
+exit
+kitty
+kitty --help
+kitty +kitten ssh
+nvim ~/.config/nushell/env.nu
+exit
+nu
+nvim ~/.config/nushell/env.nu
+cargo install ripgrep
+grep
+rg
+nvim ~/.config/nushell/env.nu
+exit
+clear;fastfetch
+dnf install papirus-icons
+doas dnf install papirus-icon-theme qogir-icon-theme
+doas dnf install papirus-icon-theme 
+exit
+exit
+xwininf
+xwininfo
+dnf install xwininfo
+doas dnf install xwininfo
+xwininfo
+mkdir ~/.local/share/applications
+cp /usr/share/applications/codium.desktop ~/.local/share/applications/codium-wayland.desktop
+codium --ozone-platform=wayland
+xwininfo
+nvim ~/.local/share/applications/codium-wayland.desktop
+ls
+rm -rvf CascadiaCode/
+ls
+cd .config
+ls
+bash
+exit
+cd ~/.config/dotfiles/
+nvim ~/.config/starship.toml
+cd ~/.config/dotfiles/
+nvim ~/.config/starship.toml
+git add .
+nvim ~/.config/starship.toml
+clear

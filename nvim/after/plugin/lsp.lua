@@ -13,11 +13,11 @@ local lsp = require("lsp-zero").preset {
 
 lsp.ensure_installed {
     --    'rust_analyzer',
-    'pyright',
+    --    'pyright',
     'lua_ls',
-    'clangd',
-    'tsserver',
-    'zls',
+    --    'clangd',
+    --    'tsserver',
+    --    'zls',
 }
 
 local cmp = require 'cmp'

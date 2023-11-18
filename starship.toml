@@ -1,0 +1,40 @@
+format = '''
+[┌](white)$time$git_branch$git_status$rust$c$python$zig$package
+└[$directory](bold blue)$character
+'''
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Replace the '❯' symbol in the prompt with '➜'
+[character] # The name of the module we are configuring is 'character'
+success_symbol = '[>>](bold white)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+error_symbol = '[>>](bold red)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+
+[time]
+style = "cyan"
+disabled = false
+time_format = '%T'
+format = '[\[](bold white)[$time]($style)[\]](bold white)'
+
+[git_branch]
+style = 'green'
+format = '[\[](bold white)on [$symbol$branch(:$remote_branch)]($style)'
+
+[git_status]
+up_to_date = ''
+style = 'yellow'
+modified = '*'
+format = ' ([\($all_status$ahead_behind\)]($style))[\]](bold white)'
+
+[package]
+disabled = false
+format = '[\[](bold white)[$symbol$version]($style)[\]](bold white)'
+
+[rust]
+format = '[\[](bold white)[$symbol($version)]($style)[\]](bold white)'
+
+[python]
+format = '[\[](bold white)[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)[\]](bold white)'
