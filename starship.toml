@@ -1,3 +1,4 @@
+command_timeout = 1750
 format = '''
 [┌](white)$time$git_branch$git_status$rust$c$python$zig$package
 └[$directory](bold blue)$character
@@ -7,6 +8,12 @@ format = '''
 
 # Inserts a blank line between shell prompts
 add_newline = true
+
+palette = 'catppuccin'
+
+[palettes.catppuccin]
+orange = '#f5a97f'
+sapphire = '#7dc4e4'
 
 # Replace the '❯' symbol in the prompt with '➜'
 [character] # The name of the module we are configuring is 'character'
@@ -37,4 +44,13 @@ format = '[\[](bold white)[$symbol$version]($style)[\]](bold white)'
 format = '[\[](bold white)[$symbol($version)]($style)[\]](bold white)'
 
 [python]
+style = 'sapphire bold'
 format = '[\[](bold white)[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)[\]](bold white)'
+
+[c]
+style = 'blue bold'
+format = '[\[](bold white)[$symbol($version(-$name))]($style)[\]](bold white)'
+
+[zig]
+style = 'orange bold'
+format = '[\[](bold white)[$symbol($version)]($style)[\]](bold white)'
