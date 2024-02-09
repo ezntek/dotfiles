@@ -25,6 +25,9 @@ if [ -x "$(command -v nitrogen)" ]; then
     nitrogen --restore
 fi
 
+~/.config/polybar/start.sh
+
+picom &
 
 #index=0
 #monitors="$(polybar -m | sed s/:.*//)"

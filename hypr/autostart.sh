@@ -1,4 +1,4 @@
 #!/bin/sh
 
-dinit &
-dex -a &
+waybar &
+dunst &

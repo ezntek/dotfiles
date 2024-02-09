@@ -1,1 +1,219 @@
-/home/ezntek/.config/waybar/config
+[{
+    "output": "DP-3",
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 8, // Gaps between modules (4px)
+    "margin-left": 8,
+    "margin-right": 8,
+    "margin-bottom": 0,
+    "margin-top": 8,
+    // Choose the order of the modules
+    "modules-left": ["hyprland/workspaces","hyprland/window"],
+    "modules-center": [],
+    "modules-right": ["tray", "pulseaudio#out", "pulseaudio#in", "clock", "clock#time"],
+    // Modules configuration
+    // "sway/workspaces": {
+    //     "disable-scroll": true,
+    //     "all-outputs": true,
+    //     "warp-on-scroll": false,
+    //     "format": "{name}: {icon}",
+    //     "format-icons": {
+    //         "1": "",
+    //         "2": "",
+    //         "3": "",
+    //         "4": "",
+    //         "5": "",
+    //         "urgent": "",
+    //         "focused": "",
+    //         "default": ""
+    //     }
+    // },
+    "hyprland/workspaces": {
+        "persistent_workspaces": {
+            "*": 5,
+        },
+    },
+    "tray": {
+        "show-passive-items": true,
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        "interval": 600,
+        // "timezone": "America/New_York",
+        "format": "{: %A, %B %d %Y}",
+    },
+    "clock#time": {
+        "interval": 1,
+        // "timezone": "America/New_York",
+        "format": "{: %H:%M:%S}",
+    },
+    "pulseaudio#out": {
+        // "scroll-step": 1, // %, can be a fcoat
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth-muted": "  Muted",
+        "format-muted": "  Muted",
+        "format-icons": {
+            "headphone": " ",
+            "hands-free": "HF  ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": "  ",
+            "default": [" ", " ", " "]
+        },
+        "on-click": "pavucontrol"
+    },
+    "pulseaudio#in": {
+        // "scroll-step": 1, // %, can be a fcoat
+        "format": "{format_source}",
+        "format-bluetooth": "{format_source}",
+        "format-bluetooth-muted": "{format_source}",
+        "format-muted": "{format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": " ",
+        "on-click": "pavucontrol"
+    },
+},
+{
+    "output": "DP-3",
+    // "layer": "top", // Waybar at top layer
+    "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 8, // Gaps between modules (4px)
+    "margin-left": 8,
+    "margin-right": 8,
+    "margin-top": 0,
+    "margin-bottom": 8,
+    // Choose the order of the modules
+    "modules-left": ["network"],
+    "modules-center": [],
+    "modules-right": ["cpu", "memory", "temperature#cpu", "temperature#gpu"],
+    // Modules configuration
+    // "sway/workspaces": {
+    //     "disable-scroll": true,
+    //     "all-outputs": true,
+    //     "warp-on-scroll": false,
+    //     "format": "{name}: {icon}",
+    //     "format-icons": {
+    //         "1": "",
+    //         "2": "",
+    //         "3": "",
+    //         "4": "",
+    //         "5": "",
+    //         "urgent": "",
+    //         "focused": "",
+    //         "default": ""
+    //     }
+    // },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "cpu": {
+        "interval": 1,
+        "format": "  {usage}%",
+        "tooltip": false
+    },
+    "memory": {
+
+        "interval": 1,
+        "format": "  {}%"
+    },
+    "temperature#cpu": {
+        
+        "interval": 1,
+        "thermal-zone": 1,
+        "hwmon-path": "/sys/devices/virtual/thermal/thermal_zone1/hwmon3/temp1_input",
+        "critical-threshold": 90,
+        "format-critical": "CPU {icon}{temperatureC}°C",
+        "format": "CPU {icon}{temperatureC}°C",
+        "format-icons": [" ", " ", " "]
+    },
+    "temperature#gpu": {
+        
+        "interval": 1,
+        "thermal-zone": 0,
+        "hwmon-path": "/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/hwmon/hwmon2/temp2_input",
+        "critical-threshold": 75,
+        "format": "GPU {icon}{temperatureC}°C",
+        "format-critical": "GPU {icon}{temperatureC}°C",
+        "format-icons": [" ", " ", " "]
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "  {essid} ({signalStrength}%) ",
+        "format-ethernet": "  {ipaddr}/{cidr}",
+        "tooltip-format": "  {ifname} via {gwaddr}",
+        "format-linked": "  {ifname} (No IP)",
+        "format-disconnected": "⚠ Disconnected",
+        //"format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+},
+{
+    "output": "HDMI-A-2",
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 8, // Gaps between modules (4px)
+    "margin-left": 8,
+    "margin-right": 8,
+    "margin-bottom": 0,
+    "margin-top": 8,
+    // Choose the order of the modules
+    "modules-left": ["hyprland/workspaces","hyprland/window"],
+    "modules-center": [],
+    "modules-right": ["pulseaudio#out","clock#time"],
+    // Modules configuration
+    // "sway/workspaces": {
+    //     "disable-scroll": true,
+    //     "all-outputs": true,
+    //     "warp-on-scroll": false,
+    //     "format": "{name}: {icon}",
+    //     "format-icons": {
+    //         "1": "",
+    //         "2": "",
+    //         "3": "",
+    //         "4": "",
+    //         "5": "",
+    //         "urgent": "",
+    //         "focused": "",
+    //         "default": ""
+    //     }
+    // },
+    "hyprland/workspaces": {
+        "persistent_workspaces": {
+            "*": 4,
+        }
+    },
+    "clock#time": {
+        "interval": 1,
+        // "timezone": "America/New_York",
+        "format": "{: %H:%M:%S}",
+    },
+    "pulseaudio#out": {
+        // "scroll-step": 1, // %, can be a fcoat
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth-muted": "  Muted",
+        "format-muted": "  Muted",
+        "format-icons": {
+            "headphone": " ",
+            "hands-free": "HF  ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": "  ",
+            "default": [" ", " ", " "]
+        },
+        "on-click": "pavucontrol"
+    },
+}]

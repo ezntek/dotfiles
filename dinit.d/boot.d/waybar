@@ -1,1 +1,3 @@
-../waybar
+type = process
+restart = true
+command = /usr/bin/waybar

@@ -263,3 +263,10 @@ directory = "/home/ezntek/.config/leftwm/themes/custom"
 version = "0.0.0"
 leftwm_versions = "*"
 current = true
+
+[[repos.themes]]
+name = "catppuccin_macchiato"
+directory = "/home/ezntek/.config/leftwm/themes/catppuccin_macchiato"
+version = "0.0.0"
+leftwm_versions = "*"
+current = false
