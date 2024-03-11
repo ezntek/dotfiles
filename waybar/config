@@ -1,6 +1,6 @@
 [{
-    "output": "DP-3",
-    // "layer": "top", // Waybar at top layer
+    "output": "eDP-1",
+     "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
@@ -79,7 +79,7 @@
     },
 },
 {
-    "output": "DP-3",
+    "output": "eDP-1",
     // "layer": "top", // Waybar at top layer
     "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 30, // Waybar height (to be removed for auto height)
@@ -90,9 +90,9 @@
     "margin-top": 0,
     "margin-bottom": 8,
     // Choose the order of the modules
-    "modules-left": ["network"],
+    "modules-left": ["network", "backlight"],
     "modules-center": [],
-    "modules-right": ["cpu", "memory", "temperature#cpu", "temperature#gpu"],
+    "modules-right": ["battery#internal", "battery#external", "cpu", "memory"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -110,6 +110,9 @@
     //         "default": ""
     //     }
     // },
+    "backlight": {
+	"format": " {percent}%"
+    },
     "tray": {
         // "icon-size": 21,
         "spacing": 10
@@ -144,8 +147,15 @@
         "format-critical": "GPU {icon}{temperatureC}°C",
         "format-icons": [" ", " ", " "]
     },
-    "battery#bat2": {
-        "bat": "BAT2"
+    "battery#internal": {
+        "bat": "BAT0",
+	"format-time": "{H}h{m}m",
+	"format": "IN   {capacity}% {time} REM",
+    },
+    "battery#external": {
+        "bat": "BAT1",
+	"format-time": "{H}h{m}m",
+	"format": "EX   {capacity}%, {time} REM",
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
@@ -155,65 +165,5 @@
         "format-linked": "  {ifname} (No IP)",
         "format-disconnected": "⚠ Disconnected",
         //"format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
-},
-{
-    "output": "HDMI-A-2",
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 8, // Gaps between modules (4px)
-    "margin-left": 8,
-    "margin-right": 8,
-    "margin-bottom": 0,
-    "margin-top": 8,
-    // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces","hyprland/window"],
-    "modules-center": [],
-    "modules-right": ["pulseaudio#out","clock#time"],
-    // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "warp-on-scroll": false,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
-    "hyprland/workspaces": {
-        "persistent_workspaces": {
-            "*": 4,
-        }
-    },
-    "clock#time": {
-        "interval": 1,
-        // "timezone": "America/New_York",
-        "format": "{: %H:%M:%S}",
-    },
-    "pulseaudio#out": {
-        // "scroll-step": 1, // %, can be a fcoat
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "{volume}% {icon}",
-        "format-bluetooth-muted": "  Muted",
-        "format-muted": "  Muted",
-        "format-icons": {
-            "headphone": " ",
-            "hands-free": "HF  ",
-            "headset": " ",
-            "phone": " ",
-            "portable": " ",
-            "car": "  ",
-            "default": [" ", " ", " "]
-        },
-        "on-click": "pavucontrol"
     },
 }]

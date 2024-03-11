@@ -1,8 +1,8 @@
-@import "mocha.css";
+@import "macchiato.css";
 
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome,  JetBrainsMono Nerd Font;
+    font-family: JetBrainsMono Nerd Font, "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 6 Solid";
     font-size: 14px;
     background-color: transparent;
     border-radius: 15;
@@ -61,7 +61,7 @@ button:hover {
 }
 
 #workspaces button.focused {
-    color: @mauve;
+    color: @saphpire;
 }
 
 #workspaces button.urgent {
@@ -119,26 +119,26 @@ button:hover {
 
 #battery {
     background-color: @mantle;
-    color: #000000;
+    color: @text;
 }
 
 #battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
+    color: @mantle;
+    background-color: #a6da95;
 }
 
 @keyframes blink {
     to {
-        background-color: #ffffff;
-        color: #000000;
+        background-color: @mantle;
+        color: #ed8796;
     }
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
+    background-color: #ed8796;
+    color: @mantle;
     animation-name: blink;
-    animation-duration: 0.5s;
+    animation-duration: 1s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -179,7 +179,7 @@ label:focus {
 }
 
 #pulseaudio.muted {
-    background-color: #90b1b1;
+    background-color: #8bd5ca;
     color: #2a5c45;
 }
 
@@ -229,7 +229,7 @@ label:focus {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+    background-color: #ed8796;
 }
 
 #idle_inhibitor {
