@@ -1,9 +1,8 @@
 #!/bin/sh
 
+dinit &
 hyprpm reload &
-waybar &
-dunst &
-gentoo-pipewire-launcher &
+nextcloud &
 #/usr/local/libexec/xdg-desktop-portal -v -r &
 #/usr/local/libexec/xdg-desktop-portal-hyprland -l DEBUG &
 
