@@ -1,7 +1,7 @@
 [{
-    "output": "DP-3",
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "output": "DP-1",
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
     "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 8, // Gaps between modules (4px)
@@ -79,7 +79,7 @@
     },
 },
 {
-    "output": "DP-3",
+    "output": "DP-1",
     // "layer": "top", // Waybar at top layer
     "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 30, // Waybar height (to be removed for auto height)
@@ -128,7 +128,7 @@
         
         "interval": 1,
         "thermal-zone": 1,
-        "hwmon-path": "/sys/devices/virtual/thermal/thermal_zone1/hwmon3/temp1_input",
+        "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon6/temp1_input",
         "critical-threshold": 90,
         "format-critical": "CPU {icon}{temperatureC}°C",
         "format": "CPU {icon}{temperatureC}°C",
@@ -138,7 +138,7 @@
         
         "interval": 1,
         "thermal-zone": 0,
-        "hwmon-path": "/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/hwmon/hwmon2/temp2_input",
+        "hwmon-path": "/sys/devices/pci0000:00/0000:00:1b.4/0000:04:00.0/0000:05:00.0/0000:06:00.0/hwmon/hwmon2/temp1_input",
         "critical-threshold": 75,
         "format": "GPU {icon}{temperatureC}°C",
         "format-critical": "GPU {icon}{temperatureC}°C",
@@ -148,7 +148,7 @@
         "bat": "BAT2"
     },
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "interface": "eth*", // (Optional) To force the use of this interface
         "format-wifi": "  {essid} ({signalStrength}%) ",
         "format-ethernet": "  {ipaddr}/{cidr}",
         "tooltip-format": "  {ifname} via {gwaddr}",
@@ -158,7 +158,7 @@
     },
 },
 {
-    "output": "HDMI-A-2",
+    "output": "HDMI-A-1",
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 30, // Waybar height (to be removed for auto height)
@@ -170,6 +170,7 @@
     "margin-top": 8,
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces","hyprland/window"],
+
     "modules-center": [],
     "modules-right": ["pulseaudio#out","clock#time"],
     // Modules configuration
