@@ -4,11 +4,11 @@
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 24, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 5, // Gaps between modules (4px)
-    "margin-left": 5,
-    "margin-right": 5,
+    "spacing": 8, // Gaps between modules (4px)
+    "margin-left": 8,
+    "margin-right": 8,
     "margin-bottom": 0,
-    "margin-top": 5,
+    "margin-top": 8,
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces","hyprland/window"],
     "modules-center": [],
@@ -84,15 +84,15 @@
     "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 24, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 5, // Gaps between modules (4px)
-    "margin-left": 5,
-    "margin-right": 5,
+    "spacing": 8, // Gaps between modules (4px)
+    "margin-left": 8,
+    "margin-right": 8,
     "margin-top": 0,
-    "margin-bottom": 5,
+    "margin-bottom": 8,
     // Choose the order of the modules
     "modules-left": ["network", "backlight"],
     "modules-center": [],
-    "modules-right": ["battery#internal", "battery#external","temperature#cpu", "cpu", "memory"],
+    "modules-right": ["battery#internal", "battery#external", "cpu", "memory"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -130,7 +130,7 @@
         
         "interval": 1,
         "thermal-zone": 1,
-        "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon5/temp1_input",
+        "hwmon-path": "/sys/devices/virtual/thermal/thermal_zone1/hwmon3/temp1_input",
         "critical-threshold": 90,
         "format-critical": "CPU {icon}{temperatureC}°C",
         "format": "CPU {icon}{temperatureC}°C",
@@ -150,13 +150,13 @@
         "bat": "BAT0",
 	"interval": 1,
 	"format-time": "{H}h{m}m",
-	"format": "  int {capacity}% ({time})",
+	"format": "IN   {capacity}% ({time})",
     },
     "battery#external": {
         "bat": "BAT1",
 	"interval": 1,
 	"format-time": "{H}h{m}m",
-	"format": "  ext {capacity}%, ({time})",
+	"format": "EX   {capacity}%, ({time})",
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface

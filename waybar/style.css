@@ -61,7 +61,7 @@ button:hover {
 }
 
 #workspaces button.focused {
-    color: @saphpire;
+    color: @sapphire;
 }
 
 #workspaces button.urgent {
