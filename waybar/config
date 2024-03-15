@@ -32,7 +32,7 @@
     // },
     "hyprland/workspaces": {
         "persistent_workspaces": {
-            "*": 5,
+            "*": 2,
         },
     },
     "tray": {
@@ -43,7 +43,7 @@
     "clock": {
         "interval": 600,
         // "timezone": "America/New_York",
-        "format": "{: %A, %B %d %Y}",
+        "format": "{:  %A, %B %d %Y}",
     },
     "clock#time": {
         "interval": 1,
@@ -130,7 +130,7 @@
         
         "interval": 1,
         "thermal-zone": 1,
-        "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon5/temp1_input",
+        "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon6/temp1_input",
         "critical-threshold": 90,
         "format-critical": "CPU {icon}{temperatureC}°C",
         "format": "CPU {icon}{temperatureC}°C",

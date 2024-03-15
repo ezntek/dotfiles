@@ -43,7 +43,7 @@
     "clock": {
         "interval": 600,
         // "timezone": "America/New_York",
-        "format": "{: %A, %B %d %Y}",
+        "format": "{:  %A, %B %d %Y}",
     },
     "clock#time": {
         "interval": 1,
@@ -92,7 +92,7 @@
     // Choose the order of the modules
     "modules-left": ["network", "backlight"],
     "modules-center": [],
-    "modules-right": ["battery#internal", "battery#external", "cpu", "memory"],
+    "modules-right": ["battery#internal", "battery#external", "temperature#cpu", "cpu", "memory"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -125,12 +125,12 @@
     "memory": {
         "interval": 1,
         "format": " {}%"
-    },
+    }, 
     "temperature#cpu": {
         
         "interval": 1,
         "thermal-zone": 1,
-        "hwmon-path": "/sys/devices/virtual/thermal/thermal_zone1/hwmon3/temp1_input",
+        "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon5/temp1_input",
         "critical-threshold": 90,
         "format-critical": "CPU {icon}{temperatureC}°C",
         "format": "CPU {icon}{temperatureC}°C",
@@ -228,7 +228,7 @@
     "clock": {
         "interval": 600,
         // "timezone": "America/New_York",
-        "format": "{: %A, %B %d %Y}",
+        "format": "{:  %A, %B %d %Y}",
     },
     "clock#time": {
         "interval": 1,
@@ -263,6 +263,7 @@
         "on-click": "pavucontrol"
     },
 },
+
 {
     "output": "DP-1",
     "layer": "top", // Waybar at top layer
@@ -323,7 +324,7 @@
     "clock": {
         "interval": 600,
         // "timezone": "America/New_York",
-        "format": "{: %A, %B %d %Y}",
+        "format": "{:  %A, %B %d %Y}",
     },
     "clock#time": {
         "interval": 1,
