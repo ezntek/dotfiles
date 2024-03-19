@@ -43,12 +43,12 @@
     "clock": {
         "interval": 600,
         // "timezone": "America/New_York",
-        "format": "{:  %A, %B %d %Y}",
+        "format": " {:%A, %B %d %Y}",
     },
     "clock#time": {
         "interval": 1,
         // "timezone": "America/New_York",
-        "format": "{: %H:%M:%S}",
+        "format": " {:%H:%M:%S}",
     },
     "pulseaudio#out": {
         // "scroll-step": 1, // %, can be a fcoat
@@ -127,17 +127,15 @@
         "format": " {}%"
     },
     "temperature#cpu": {
-        
         "interval": 1,
         "thermal-zone": 1,
-        "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon6/temp1_input",
+        "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon5/temp1_input",
         "critical-threshold": 90,
         "format-critical": "CPU {icon}{temperatureC}°C",
         "format": "CPU {icon}{temperatureC}°C",
         "format-icons": [" ", " ", " "]
     },
     "temperature#gpu": {
-        
         "interval": 1,
         "thermal-zone": 0,
         "hwmon-path": "/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.0/hwmon/hwmon2/temp2_input",
@@ -151,12 +149,20 @@
 	"interval": 1,
 	"format-time": "{H}h{m}m",
 	"format": "  int {capacity}% ({time})",
+        "states": {
+            "warning": 20,
+            "critical": 10,
+        },
     },
     "battery#external": {
         "bat": "BAT1",
 	"interval": 1,
 	"format-time": "{H}h{m}m",
 	"format": "  ext {capacity}%, ({time})",
+        "states": {
+            "warning": 20,
+            "critical": 10,
+        },
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface

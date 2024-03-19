@@ -43,12 +43,12 @@
     "clock": {
         "interval": 600,
         // "timezone": "America/New_York",
-        "format": "{:  %A, %B %d %Y}",
+        "format": " {:%A, %B %d %Y}",
     },
     "clock#time": {
         "interval": 1,
         // "timezone": "America/New_York",
-        "format": "{: %H:%M:%S}",
+        "format": " {:%H:%M:%S}",
     },
     "pulseaudio#out": {
         // "scroll-step": 1, // %, can be a fcoat
@@ -79,7 +79,7 @@
     },
 },
 {
-    "output": "HDMI-A-2",
+    "output": "eDP-1",
     // "layer": "top", // Waybar at top layer
     "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 24, // Waybar height (to be removed for auto height)
@@ -151,12 +151,20 @@
 	"interval": 1,
 	"format-time": "{H}h{m}m",
 	"format": "  int {capacity}% ({time})",
+        "states": {
+            "warning": 20,
+            "critical": 10,
+        },
     },
     "battery#external": {
         "bat": "BAT1",
 	"interval": 1,
 	"format-time": "{H}h{m}m",
 	"format": "  ext {capacity}% ({time})",
+        "states": {
+            "warning": 20,
+            "critical": 10,
+        },
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
@@ -166,197 +174,6 @@
         "format-linked": "  {ifname} (No IP)",
         "format-disconnected": "⚠ Disconnected",
         //"format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
-},
-{
-    "output": "eDP-1",
-    "layer": "top", // Waybar at top layer
-    "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 24, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 5, // Gaps between modules (4px)
-    "margin-left": 5,
-    "margin-right": 5,
-    "margin-top": 5,
-    "margin-bottom": 0,
-    // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-center": [],
-    "modules-right": ["battery#internal", "battery#external", "backlight", "pulseaudio#out" , "clock", "clock#time"],
-    // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "warp-on-scroll": false,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // }, 
-    "backlight": {
-	"format": " {percent}%"
-    },
-    "battery#internal": {
-        "bat": "BAT0",
-	"interval": 1,
-	"format-time": "{H}h{m}m",
-	"format": "  int {capacity}% ({time})",
-    },
-    "battery#external": {
-        "bat": "BAT1",
-	"interval": 1,
-	"format-time": "{H}h{m}m",
-	"format": "  ext {capacity}% ({time})",
-    },
-    "hyprland/workspaces": {
-        "persistent_workspaces": {
-            "*": 5,
-        },
-    },
-    "tray": {
-        "show-passive-items": true,
-        // "icon-size": 21,
-        "spacing": 10
-    },
-    "clock": {
-        "interval": 600,
-        // "timezone": "America/New_York",
-        "format": "{:  %A, %B %d %Y}",
-    },
-    "clock#time": {
-        "interval": 1,
-        // "timezone": "America/New_York",
-        "format": "{: %H:%M:%S}",
-    },
-    "pulseaudio#out": {
-        // "scroll-step": 1, // %, can be a fcoat
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "{volume}% {icon}",
-        "format-bluetooth-muted": "  Muted",
-        "format-muted": "  Muted",
-        "format-icons": {
-            "headphone": " ",
-            "hands-free": "HF  ",
-            "headset": " ",
-            "phone": " ",
-            "portable": " ",
-            "car": "  ",
-            "default": [" ", " ", " "]
-        },
-        "on-click": "pavucontrol"
-    },
-    "pulseaudio#in": {
-        // "scroll-step": 1, // %, can be a fcoat
-        "format": "{format_source}",
-        "format-bluetooth": "{format_source}",
-        "format-bluetooth-muted": "{format_source}",
-        "format-muted": "{format_source}",
-        "format-source": " {volume}%",
-        "format-source-muted": " ",
-        "on-click": "pavucontrol"
-    },
-},
-
-{
-    "output": "DP-1",
-    "layer": "top", // Waybar at top layer
-    "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 24, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 5, // Gaps between modules (4px)
-    "margin-left": 5,
-    "margin-right": 5,
-    "margin-top": 5,
-    "margin-bottom": 0,
-    // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-center": [],
-    "modules-right": ["battery#internal", "battery#external", "backlight", "pulseaudio#out" , "clock", "clock#time"],
-    // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "warp-on-scroll": false,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // }, 
-    "backlight": {
-	"format": " {percent}%"
-    },
-    "battery#internal": {
-        "bat": "BAT0",
-	"interval": 1,
-	"format-time": "{H}h{m}m",
-	"format": "  int {capacity}% ({time})",
-    },
-    "battery#external": {
-        "bat": "BAT1",
-	"interval": 1,
-	"format-time": "{H}h{m}m",
-	"format": "  ext {capacity}% ({time})",
-    },
-    "hyprland/workspaces": {
-        "persistent_workspaces": {
-            "*": 5,
-        },
-    },
-    "tray": {
-        "show-passive-items": true,
-        // "icon-size": 21,
-        "spacing": 10
-    },
-    "clock": {
-        "interval": 600,
-        // "timezone": "America/New_York",
-        "format": "{:  %A, %B %d %Y}",
-    },
-    "clock#time": {
-        "interval": 1,
-        // "timezone": "America/New_York",
-        "format": "{: %H:%M:%S}",
-    },
-    "pulseaudio#out": {
-        // "scroll-step": 1, // %, can be a fcoat
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "{volume}% {icon}",
-        "format-bluetooth-muted": "  Muted",
-        "format-muted": "  Muted",
-        "format-icons": {
-            "headphone": " ",
-            "hands-free": "HF  ",
-            "headset": " ",
-            "phone": " ",
-            "portable": " ",
-            "car": "  ",
-            "default": [" ", " ", " "]
-        },
-        "on-click": "pavucontrol"
-    },
-    "pulseaudio#in": {
-        // "scroll-step": 1, // %, can be a fcoat
-        "format": "{format_source}",
-        "format-bluetooth": "{format_source}",
-        "format-bluetooth-muted": "{format_source}",
-        "format-muted": "{format_source}",
-        "format-source": " {volume}%",
-        "format-source-muted": " ",
-        "on-click": "pavucontrol"
     },
 },
 
