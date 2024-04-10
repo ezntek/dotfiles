@@ -1,14 +1,14 @@
 [global]
 monitor = 0
 offset = 8x38
-frame_color = "#8bd5ca"
+frame_color = "#7dc4e4"
 separator_color= frame
-font = "Apple Color Emoji 10, JetBrainsMono Nerd Font 15"
-corner_radius =20 
+font = "CaskaydiaCove Nerd Font 13"
+corner_radius = 20 
 
 [urgency_low]
 background = "#1e2030"
-foreground = "#cad3p5"
+foreground = "#cad3f5"
 
 [urgency_normal]
 background = "#1e2030"
