@@ -21,14 +21,12 @@ ln -s $SCRIPTPATH/down /tmp/leftwm-theme-down
 leftwm-command "LoadTheme $SCRIPTPATH/theme.ron"
 
 #set background
-if [ -x "$(command -v nitrogen)" ]; then
-    nitrogen --restore
-fi
-
+nitrogen --restore
+xfce4-screensaver &
 ~/.config/polybar/start.sh
-
-picom &
-
+nm-applet &
+/home/ezntek/Sources/apps/picom/result/bin/picom -b
+ 
 #index=0
 #monitors="$(polybar -m | sed s/:.*//)"
 #leftwm-state -q -n -t $SCRIPTPATH/sizes.liquid | sed -r '/^\s*$/d' | while read -r width x y
