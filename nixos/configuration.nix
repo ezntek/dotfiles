@@ -1,36 +1,42 @@
 # Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running `nixos-help`).
+# your system. Help is available in the configuration.nix(5) man page, on
+# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
-  # allow nonfree shit
-  nixpkgs.config.allowUnfree = true;
-
-  # flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = false;
+  nixpkgs.config.allowUnfree = true;
 
-  boot.loader.grub = {
-    device = "nodev";
-    efiSupport = true;
-    
-    gfxmodeEfi = "1920x1080"; 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
+    grub = {
+      efiSupport = true;
+      device = "nodev";
+    };
   };
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.extraModprobeConfig = ''
+    options thinkpad_acpi fan_control=1
+  '';
+  boot.kernelParams = [
+    "quiet" "splash" "loglevel=3"
+  ];
 
-  networking.hostName = "NixBox"; # Define your hostname.
+  networking.hostName = "ThunkVegetablePeeler"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  programs.nm-applet.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Singapore";
@@ -42,164 +48,115 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
-    packages = with pkgs; [ terminus_font ];
     earlySetup = true;
-    font = "ter-v28n";     
-    keyMap = "colemak";
-    useXkbConfig = false; # use xkbOptions in tty.
+    font = "ter-v32n";
+    packages = with pkgs; [ terminus_font ];
+    useXkbConfig = true; # use xkb.options in tty.
   };
+
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Configure keymap in X11
-  services.xserver.layout = "us";
-  services.xserver.xkbVariant = "colemak";
-  services.xserver.xkbOptions = "compose:caps";
-
-  # other x11 shit
-  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;  
+  hardware.opengl.extraPackages = with pkgs; [
+    intel-vaapi-driver
+    libvdpau-va-gl
+  ];
 
-  services.xserver.windowManager = {
-    qtile = {
+  services.xserver.dpi = 120;
+  services.libinput = {
+    touchpad.tapping = false;
+  };
+
+  xdg.portal.enable = true;
+  xdg.portal.config.common.default = "*";
+  xdg.portal.extraPortals = with pkgs; [
+    xdg-desktop-portal-gtk
+  ];
+  services.xserver.desktopManager = {
+    xterm.enable = false;
+    xfce = {
       enable = true;
-      extraPackages = python3Packages: with python3Packages; [
-        qtile-extras
-        psutil
-        pyxdg
-      ];
+      noDesktop = true;
+      enableXfwm = false;
     };
   };
 
-  services.xserver.displayManager.lightdm = {
-      background = /home/ezntek/Downloads/nix-snowflake-dark.png;
-      greeters.gtk = {
-        theme = {
-	  name = "Catppuccin-Mocha-Compact-Sapphire-Dark";
-	};
-	iconTheme = {
-	  name = "Papirus-dark";
-	};
-	cursorTheme = {
-	  name = "Qogir";
-	};
-      };
-  };
-  # shell
-  programs.zsh.enable = true;
-  # fonts
-  fonts.fonts = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    fira-code
-    fira-code-symbols
-  ];
+  services.displayManager.defaultSession = "none+leftwm";
+  services.xserver.windowManager.leftwm.enable = true;
 
-  # Disable Sudo because doas > sudo
-  security.sudo.enable = false;
-
-  # Doas
-  security.doas.enable = true;
-  security.doas.extraRules = [
-    {
-      groups = [ "wheel" ];
-      persist = true;
-      keepEnv = true;
-    }
-  ];  
+  # Configure keymap in X11
+  services.xserver.xkb.layout = "us";
+  services.xserver.xkb.variant = "colemak";
+  services.xserver.xkb.options = "compose:caps";
+  services.picom.enable = false;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = false;
-
+  #sound.enable = true;
+  #hardware.pulseaudio.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
+    audio.enable = true;
     alsa.enable = true;
-    pulse.enable = true;  
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
   };
 
-  # flatpak
-  xdg.portal = {
-    enable = true;
-    xdgOpenUsePortal = true;
-    extraPortals = [ pkgs.xdg-desktop-portal pkgs.xdg-desktop-portal-gtk ];
-  };
-
-  services.flatpak.enable = true;
-
+  services.pipewire.wireplumber.configPackages = [
+    (pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
+      bluez_monitor.properties = {
+        ["bluez5.enable-sbc-xq"] = true,
+        ["bluez5.enable-msbc"] = true,
+	["bluez5.enable-hw-volume"] = true,
+	["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+      }
+    '')
+  ];
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.ezntek = {
+  programs.zsh.enable = true;
+  users.users.ezntek = { 
     isNormalUser = true;
-    extraGroups = [ "wheel" "audio" "video" "cdrom" "lp" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      vim
-      libyaml
-    ];
+    extraGroups = [ "wheel" "video" "tty" "lp" ]; # Enable ‘sudo’ for the user.
+    packages = with pkgs; [ firefox mate.atril xfce.thunar xfce.ristretto xfce.mousepad mupdf ];
+    initialPassword = "etr#2398";
     shell = pkgs.zsh;
-};
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    neofetch
-    doas
-    nushell
-    zsh
-    home-manager
-    terminus_font
-    wireplumber
-    pipewire
-    python311Full
-    python312
-    xorg.xinit
-    (pkgs.catppuccin-gtk.override {
-      accents = [ "mauve" "sapphire" "pink" ];
-      size = "compact";
-      tweaks = [ "rimless" "normal" ];
-      variant = "mocha";
-    })
-    gcc
-    meson
-    gnumake
-    autoconf
-    automake
-    binutils
-    bison
-    debugedit
-    findutils
-    gawk
-    libtool
-    papirus-icon-theme
-    qogir-icon-theme
+    btop
+    htop
+    zip
+    unzip
+    p7zip
+    xz papirus-icon-theme qogir-icon-theme cloudflare-warp 
+    fastfetch xclip xsel networkmanagerapplet xfce.xfce4-screensaver kwalletmanager
+    (rofi.override { plugins = [ rofi-emoji ]; })
+    sysfsutils pciutils
   ];
 
-  # bluetooth
-  hardware.bluetooth.enable = true;
+  systemd.packages = [pkgs.cloudflare-warp];
 
-  environment.etc = {
-    "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
-      bluez_monitor.properties = {
-	  ["bluez5.enable-sbc-xq"] = true,
-	  ["bluez5.enable-msbc"] = true,
-	  ["bluez5.enable-hw-volume"] = true,
-	  ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
-	}
-    '';
+  environment.variables = {
+    QT_QPA_PLATFORMTHEME = "qt5ct";
+    SSH_ASKPASS = lib.mkForce "";
   };
-
-  programs.ssh.askPassword = "";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -209,39 +166,72 @@
   #   enableSSHSupport = true;
   # };
 
+  security.sudo.enable = false;
+  security.doas.enable = true;
+  security.doas.extraRules = [
+    {
+      groups = ["wheel"];
+      keepEnv = true;
+      persist = true;
+    }
+    {
+      users = ["root"];
+      noPass = true;
+      keepEnv = true;
+    }
+  ];
+
   # List services that you want to enable:
+  security.pam.services.lightdm.enableKwallet = true;
+  security.pam.services.kwallet.enableKwallet = true;
+  services.warp-svc.enable = true;
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
+  services.flatpak.enable = true;
+  services.dbus.enable = true;
+  services.touchegg.enable = true;
 
-  services.blueman.enable = true;
-  
+  powerManagement.enable = true;
+  powerManagement.powertop.enable = true;
+  services.thermald.enable = true;
+  services.auto-cpufreq.settings = {
+    battery = {
+      governor = "powersave";
+      turbo = "never";
+    };
+    charger = {
+      governor = "performance";
+      turbo = "auto";
+    };
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-  networking.firewall = { 
-    enable = true;
-    allowedTCPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
-    ];  
-    allowedUDPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
-    ];  
-  };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
+  system.copySystemConfiguration = true;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It's perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  # This option defines the first version of NixOS you have installed on this particular machine,
+  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
+  #
+  # Most users should NEVER change this value after the initial install, for any reason,
+  # even if you've upgraded your system to a new NixOS release.
+  #
+  # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
+  # so changing it will NOT upgrade your system.
+  #
+  # This value being lower than the current NixOS release does NOT mean your system is
+  # out of date, out of support, or vulnerable.
+  #
+  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
+  # and migrated your data accordingly.
+  #
+  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
+  system.stateVersion = "24.05"; # Did you read the comment?
 }
 
