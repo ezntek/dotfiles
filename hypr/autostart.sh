@@ -1,9 +1,8 @@
 #!/bin/sh
 
-dinit &
 hyprpm reload &
 nextcloud &
+dunst &
 #/usr/local/libexec/xdg-desktop-portal -v -r &
 #/usr/local/libexec/xdg-desktop-portal-hyprland -l DEBUG &
-
-/home/ezntek/.local/bin/waypaper --restore
+waypaper --restore &

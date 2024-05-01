@@ -37,11 +37,13 @@
     zip xz unzip p7zip
 
     # programming
-    python3Full rustc cargo go llvm clang
+    python3Full rustc cargo go llvm clang ninja meson cmake clang-tools temurin-bin
     
     # utilities
-    ripgrep jq eza fzf bat exfatprogs
-    iperf3 aria2 
+    usbutils ripgrep jq eza fzf bat exfatprogs
+    wtype wl-clipboard xclip xsel networkmanagerapplet
+    kwalletmanager iperf3 aria2 geekbench_6 woeusb
+    sysfsutils pciutils usbutils acpi swww waypaper
 
     # misc
     tree file which cowsay zstd lm_sensors gtklock
@@ -56,12 +58,12 @@
     })
 
     # wm
-    nitrogen nwg-look qt5ct lxappearance
-    dunst libnotify powertop pamixer pavucontrol xfce.xfce4-screenshooter qogir-icon-theme papirus-icon-theme 
+    nitrogen nwg-look qt5ct
+    dunst libnotify powertop pamixer pavucontrol grim slurp 
 
-    (polybar.override {
-      pulseSupport = true;
-    })
+    #(polybar.override {
+    #  pulseSupport = true;
+    #})
 
     (writeScriptBin "fan" "echo level $1 > /proc/acpi/ibm/fan")
   ];

@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+
+with open("/proc/acpi/ibm/fan", "r") as f:
+    data = f.read()
+    data = data.split('\n')
+    line = data[1]
+    num = line.split(':')[1].strip()
+    print(num)
