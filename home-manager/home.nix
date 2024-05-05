@@ -28,22 +28,26 @@
     obsidian inkscape armcord signal-desktop beeper
     libreoffice-fresh kdenlive thunderbird gimp
     obs-studio prismlauncher vlc nextcloud-client
-    kitty
+    kitty brasero
 
     # LSPs
     pyright
 
     # archives
-    zip xz unzip p7zip
+    zip xz unzip p7zip mate.engrampa
 
     # programming
     python3Full rustc cargo go llvm clang ninja meson cmake clang-tools temurin-bin
+    ncurses zlib coreboot-toolchain.i386 gnumake gnum4 bison flex
+
+    # libraries (systemwide)
+    gtk4
     
     # utilities
-    usbutils ripgrep jq eza fzf bat exfatprogs
-    wtype wl-clipboard xclip xsel networkmanagerapplet
+    usbutils ripgrep jq eza fzf bat wtype wl-clipboard xclip xsel networkmanagerapplet
     kwalletmanager iperf3 aria2 geekbench_6 woeusb
-    sysfsutils pciutils usbutils acpi swww waypaper
+    sysfsutils pciutils usbutils acpi swww waypaper hyprlock
+    hypridle exfat
 
     # misc
     tree file which cowsay zstd lm_sensors gtklock
@@ -58,7 +62,7 @@
     })
 
     # wm
-    nitrogen nwg-look qt5ct
+    nitrogen nwg-look qt5ct lxappearance polybar
     dunst libnotify powertop pamixer pavucontrol grim slurp 
 
     #(polybar.override {
@@ -108,6 +112,7 @@
     extraConfig = {
       credential.helper = "store";
       credential.guiPrompt = false;
+      init.defaultBranch = "main";
     };
   };
 
@@ -115,7 +120,9 @@
     enable = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-
+    initExtra = ''
+      fastfetch
+    '';
     shellAliases = {
       ls = "eza --icons --group-directories-first";
       la = "ls -la";
