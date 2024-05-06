@@ -28,7 +28,7 @@
     obsidian inkscape armcord signal-desktop beeper
     libreoffice-fresh kdenlive thunderbird gimp
     obs-studio prismlauncher vlc nextcloud-client
-    kitty brasero
+    kitty brasero chromium
 
     # LSPs
     pyright
