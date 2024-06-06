@@ -73,7 +73,10 @@ lsp.format_on_save({
     }
 })
 
-lsp_config.clangd.setup({ server = { on_attatch = lsp_on_attatch } })
+local cfg = { server = { on_attatch = lsp_on_attatch } }
+
+lsp_config.clangd.setup(cfg)
+lsp_config.pyright.setup(cfg)
 
 -- rust..?
 lsp.skip_server_setup({ 'rust-analyzer' })

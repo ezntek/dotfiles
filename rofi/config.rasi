@@ -1,5 +1,5 @@
 configuration{
-    modi: "run,drun,emoji,window";
+    modi: "run,drun,window";
     icon-theme: "Papirus-dark";
     show-icons: true;
     terminal: "qterminal";

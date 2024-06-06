@@ -1,3 +1,0 @@
-type = process
-restart = true
-command = /usr/bin/hyprpaper
