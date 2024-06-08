@@ -92,7 +92,7 @@
     // Choose the order of the modules
     "modules-left": ["network", "backlight"],
     "modules-center": [],
-    "modules-right": ["battery#external","temperature#cpu", "cpu", "memory", "power-profiles-daemon"],
+    "modules-right": ["battery#internal", "battery#external","temperature#cpu", "cpu", "memory", "power-profiles-daemon"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -134,7 +134,7 @@
     "temperature#cpu": {
         "interval": 1,
         "thermal-zone": 1,
-        "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon3/temp1_input",
+        "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon6/temp1_input",
         "critical-threshold": 90,
         "format-critical": "CPU {icon}{temperatureC}°C",
         "format": "CPU {icon}{temperatureC}°C",
@@ -143,7 +143,7 @@
     "temperature#gpu": {
         "interval": 1,
         "thermal-zone": 0,
-        "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon3/temp2_input",
+        "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon6/temp2_input",
         "critical-threshold": 75,
         "format": "GPU {icon}{temperatureC}°C",
         "format-critical": "GPU {icon}{temperatureC}°C",
@@ -153,7 +153,7 @@
         "bat": "BAT0",
 	"interval": 1,
 	"format-time": "{H}h{m}m",
-	"format": "  {capacity}% ({time})",
+	"format": "  int {capacity}% ({time})",
         "states": {
             "warning": 20,
             "critical": 10,

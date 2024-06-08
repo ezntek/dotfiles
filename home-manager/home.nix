@@ -21,14 +21,15 @@
   home.packages = with pkgs; [
     # fonts
     nerdfonts source-sans source-han-serif source-han-sans
-    source-serif inter noto-fonts noto-fonts-color-emoji
-    jetbrains-mono cascadia-code recursive font-awesome
+    source-serif noto-fonts noto-fonts-color-emoji
+    ibm-plex jetbrains-mono cascadia-code recursive font-awesome
 
     # GUI utilities
     obsidian inkscape armcord signal-desktop beeper
     libreoffice-fresh kdenlive thunderbird gimp
     obs-studio prismlauncher vlc nextcloud-client
-    kitty brasero chromium
+    kitty brasero chromium kdeconnect system-config-printer
+    brave famistudio
 
     # LSPs
     pyright
@@ -37,17 +38,33 @@
     zip xz unzip p7zip mate.engrampa
 
     # programming
-    python3Full rustc cargo go llvm clang ninja meson cmake clang-tools temurin-bin
-    ncurses zlib coreboot-toolchain.i386 gnumake gnum4 bison flex
+    python3Full rustc cargo go llvm clang ninja meson
+    cmake clang-tools temurin-bin ncurses zlib
+     gnumake gnum4 bison flex hugo
+    rust-analyzer clippy rustfmt
+
+    (vscode-with-extensions.override {
+      vscode = vscodium;
+      vscodeExtensions = with vscode-extensions; [
+        catppuccin.catppuccin-vsc-icons
+        catppuccin.catppuccin-vsc
+        rust-lang.rust-analyzer
+        vadimcn.vscode-lldb
+        vscodevim.vim
+        ms-vsliveshare.vsliveshare
+        llvm-vs-code-extensions.vscode-clangd
+      ];
+    })
 
     # libraries (systemwide)
     gtk4
     
     # utilities
     usbutils ripgrep jq eza fzf bat wtype wl-clipboard xclip xsel networkmanagerapplet
-    kwalletmanager iperf3 aria2 geekbench_6 woeusb
+    ffmpeg-full kwalletmanager iperf3 aria2 geekbench_6 woeusb
     sysfsutils pciutils usbutils acpi swww waypaper hyprlock
-    hypridle exfat
+    hypridle exfat ventoy cdrtools dvdplusrwtools
+    qpwgraph dust
 
     # misc
     tree file which cowsay zstd lm_sensors gtklock
@@ -122,6 +139,7 @@
     syntaxHighlighting.enable = true;
     initExtra = ''
       fastfetch
+      export COLUMNS LINES
     '';
     shellAliases = {
       ls = "eza --icons --group-directories-first";
@@ -170,7 +188,7 @@
       };
       python = {
         style = "blue bold";
-        format = ''[\[](bold white)[$\{symbol}$\{pyenv_prefix}($\{version})(\($virtualenv\))]($style)[\]](bold white)'';
+        format = ''[\[](bold white)[$symbol$pyenv_prefix($version)($virtualenv)]($style)[\]](bold white)'';
       };
       c = {
         style = "blue bold";

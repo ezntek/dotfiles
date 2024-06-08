@@ -61,7 +61,7 @@ local function plugins(use)
             { 'L3MON4D3/LuaSnip' },     -- Required
 
             -- inlay hints
-            { "simrat39/rust-tools.nvim" },
+            'simrat39/rust-tools.nvim',
         }
     }
 
