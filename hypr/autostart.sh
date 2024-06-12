@@ -1,12 +1,11 @@
 #!/bin/sh
 
-waybar &
+dinit &
 hyprpm reload &
 nextcloud &
-dunst &
 #/usr/local/libexec/xdg-desktop-portal -v -r &
 #/usr/local/libexec/xdg-desktop-portal-hyprland -l DEBUG &
-hypridle &
+#hypridle &
 waypaper --restore &
 nm-applet &
-ibus-daemon -rxRd &
+#ibus-daemon -rxRd &
