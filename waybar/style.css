@@ -1,11 +1,12 @@
-@import "mocha.css";
+@import "macchiato.css";
 
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: JetBrainsMono Nerd Font, "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 6 Solid";
-    font-size: 14px;
+    font-family: CaskaydiaCove Nerd Font, "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 6 Solid";
+    font-size: 13px;
     background-color: transparent;
-    border-radius: 15px;
+    border-radius: 15;
+
 }
 
 window#waybar {
@@ -50,7 +51,7 @@ button:hover {
 #workspaces button {
     padding: 0 2px;
 
-    border-radius: 15px;
+    border-radius: 15;
     background-color: @mantle;
     color: @text;
 }
@@ -60,7 +61,7 @@ button:hover {
 }
 
 #workspaces button.focused {
-    color: @mauve;
+    color: @sapphire;
 }
 
 #workspaces button.urgent {
@@ -90,54 +91,67 @@ button:hover {
 #scratchpad,
 
 #window {
-    padding: 0px 12px;
+    padding: 0 12;
     background-color: @mantle;
     color: @text
 }
-#workspaces {
-    padding: 0px 6px;
+
+#power-profiles-daemon {
+    padding: 0 12;
+    color: @text;
     background-color: @mantle;
-    border-radius: 15px;
+}
+
+#custom-fanspeed {
+    padding: 0 12;
+    color: @text;
+    background-color: @mantle;
+}
+
+#workspaces {
+    padding: 0 6;
+    background-color: @mantle;
+    border-radius: 15;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
-    margin-left: 0px;
+    margin-left: 0;
 }
 
 /* If workspaces is the rightmost module, omit right margin */
 .modules-right > widget:last-child > #workspaces {
-    margin-right: 0px;
+    margin-right: 0;
 }
 
 #clock {
-    padding: 0px 12px;
+    padding: 0 12;
     background-color: @mantle;
     color: @text;
 }
 
 #battery {
     background-color: @mantle;
-    color: #000000;
+    color: @text;
 }
 
 #battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
+    color: @mantle;
+    background-color: #a6da95;
 }
 
 @keyframes blink {
     to {
-        background-color: #ffffff;
-        color: #000000;
+        background-color: @mantle;
+        color: #ed8796;
     }
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
+    background-color: #ed8796;
+    color: @mantle;
     animation-name: blink;
-    animation-duration: 0.5s;
+    animation-duration: 1s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -178,7 +192,7 @@ label:focus {
 }
 
 #pulseaudio.muted {
-    background-color: #90b1b1;
+    background-color: #8bd5ca;
     color: #2a5c45;
 }
 
@@ -228,7 +242,7 @@ label:focus {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+    background-color: #ed8796;
 }
 
 #idle_inhibitor {

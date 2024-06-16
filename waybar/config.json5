@@ -1,14 +1,14 @@
 [{
     "output": "DP-1",
-    "layer": "top", // Waybar at top layer
-    "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
+     "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 20, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 8, // Gaps between modules (4px)
-    "margin-left": 8,
-    "margin-right": 8,
+    "spacing": 5, // Gaps between modules (4px)
+    "margin-left": 5,
+    "margin-right": 5,
     "margin-bottom": 0,
-    "margin-top": 8,
+    "margin-top": 5,
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces","hyprland/window"],
     "modules-center": [],
@@ -43,12 +43,12 @@
     "clock": {
         "interval": 600,
         // "timezone": "America/New_York",
-        "format": "{: %A, %B %d %Y}",
+        "format": "  {:%A, %B %d %Y}",
     },
     "clock#time": {
         "interval": 1,
         // "timezone": "America/New_York",
-        "format": "{: %H:%M:%S}",
+        "format": "  {:%H:%M:%S}",
     },
     "pulseaudio#out": {
         // "scroll-step": 1, // %, can be a fcoat
@@ -82,17 +82,17 @@
     "output": "DP-1",
     // "layer": "top", // Waybar at top layer
     "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
+    "height": 20, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 8, // Gaps between modules (4px)
-    "margin-left": 8,
-    "margin-right": 8,
+    "spacing": 5, // Gaps between modules (4px)
+    "margin-left": 5,
+    "margin-right": 5,
     "margin-top": 0,
-    "margin-bottom": 8,
+    "margin-bottom": 5,
     // Choose the order of the modules
-    "modules-left": ["network"],
+    "modules-left": ["network", "backlight"],
     "modules-center": [],
-    "modules-right": ["cpu", "memory", "temperature#cpu", "temperature#gpu"],
+    "modules-right": ["temperature#cpu", "cpu", "memory"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -110,69 +110,102 @@
     //         "default": ""
     //     }
     // },
+    "backlight": {
+	"format": " {percent}%"
+    },
+    "custom/fanspeed": {
+        "exec": "/home/ezntek/.config/waybar/fanspeed",
+        "interval": "1",
+        "format": " {} RPM"
+    },
     "tray": {
         // "icon-size": 21,
         "spacing": 10
     },
     "cpu": {
         "interval": 1,
-        "format": "  {usage}%",
+        "format": "  {usage}% ({avg_frequency} GHz)",
         "tooltip": false
     },
     "memory": {
-
         "interval": 1,
-        "format": "  {}%"
+        "format": " {}%"
     },
     "temperature#cpu": {
-        
         "interval": 1,
         "thermal-zone": 1,
         "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon6/temp1_input",
+
         "critical-threshold": 90,
         "format-critical": "CPU {icon}{temperatureC}°C",
         "format": "CPU {icon}{temperatureC}°C",
         "format-icons": [" ", " ", " "]
     },
     "temperature#gpu": {
-        
         "interval": 1,
         "thermal-zone": 0,
-        "hwmon-path": "/sys/devices/pci0000:00/0000:00:1b.4/0000:04:00.0/0000:05:00.0/0000:06:00.0/hwmon/hwmon2/temp1_input",
+        "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon6/temp2_input",
         "critical-threshold": 75,
         "format": "GPU {icon}{temperatureC}°C",
         "format-critical": "GPU {icon}{temperatureC}°C",
         "format-icons": [" ", " ", " "]
     },
-    "battery#bat2": {
-        "bat": "BAT2"
+    "battery#external": {
+        "bat": "BAT0",
+	"interval": 1,
+	"format-time": "{H}h{m}m",
+	"format": "  int {capacity}% ({time})",
+        "states": {
+            "warning": 20,
+            "critical": 10,
+        },
+    },
+    "battery#internal": {
+        "bat": "BAT1",
+	"interval": 1,
+	"format-time": "{H}h{m}m",
+	"format": "  ext {capacity}% ({time})",
+        "states": {
+            "warning": 20,
+            "critical": 10,
+        },
     },
     "network": {
-        "interface": "eth*", // (Optional) To force the use of this interface
-        "format-wifi": "  {essid} ({signalStrength}%) ",
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "  {essid} ({signalStrength}%)",
         "format-ethernet": "  {ipaddr}/{cidr}",
         "tooltip-format": "  {ifname} via {gwaddr}",
         "format-linked": "  {ifname} (No IP)",
         "format-disconnected": "⚠ Disconnected",
         //"format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
+    "power-profiles-daemon": {
+        "format": "{icon}  {profile}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": "true",
+        "format-icons": {
+          "default": "",
+          "performance": "",
+          "balanced": "",
+          "power-saver": ""
+        }
+    },
 },
 {
     "output": "HDMI-A-1",
-    // "layer": "top", // Waybar at top layer
+     "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
+    "height": 20, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 8, // Gaps between modules (4px)
-    "margin-left": 8,
-    "margin-right": 8,
+    "spacing": 5, // Gaps between modules (4px)
+    "margin-left": 5,
+    "margin-right": 5,
     "margin-bottom": 0,
-    "margin-top": 8,
+    "margin-top": 5,
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces","hyprland/window"],
-
     "modules-center": [],
-    "modules-right": ["pulseaudio#out","clock#time"],
+    "modules-right": ["pulseaudio#out", "pulseaudio#in", "clock", "clock#time"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -192,13 +225,23 @@
     // },
     "hyprland/workspaces": {
         "persistent_workspaces": {
-            "*": 4,
-        }
+            "*": 5,
+        },
+    },
+    "tray": {
+        "show-passive-items": true,
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        "interval": 600,
+        // "timezone": "America/New_York",
+        "format": "  {:%A, %B %d %Y}",
     },
     "clock#time": {
         "interval": 1,
         // "timezone": "America/New_York",
-        "format": "{: %H:%M:%S}",
+        "format": "  {:%H:%M:%S}",
     },
     "pulseaudio#out": {
         // "scroll-step": 1, // %, can be a fcoat
@@ -215,6 +258,16 @@
             "car": "  ",
             "default": [" ", " ", " "]
         },
+        "on-click": "pavucontrol"
+    },
+    "pulseaudio#in": {
+        // "scroll-step": 1, // %, can be a fcoat
+        "format": "{format_source}",
+        "format-bluetooth": "{format_source}",
+        "format-bluetooth-muted": "{format_source}",
+        "format-muted": "{format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": " ",
         "on-click": "pavucontrol"
     },
 }]

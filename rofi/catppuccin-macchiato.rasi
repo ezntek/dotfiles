@@ -8,8 +8,8 @@
     fg-col2: #7dc4e4;
     grey: #6e738d;
 
-    width: 550;
-    font: "monospace 12";
+    width: 600;
+    font: "CaskaydiaCove Nerd Font 13";
 }
 
 element-text, element-icon , mode-switcher {
@@ -18,7 +18,7 @@ element-text, element-icon , mode-switcher {
 }
 
 window {
-    height: 375px;
+    height: 400px;
     border: 4px;
     border-color: @border-col;
     background-color: @bg-col;

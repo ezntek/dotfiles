@@ -1,9 +1,9 @@
 [global]
-monitor = 0
+monitor = 1
 offset = 8x38
 frame_color = "#7dc4e4"
 separator_color= frame
-font = "CaskaydiaCove Nerd Font 10"
+font = "CaskaydiaCove Nerd Font 11"
 corner_radius = 20 
 
 [urgency_low]

@@ -1,3 +1,0 @@
-type = process
-command = /usr/bin/pipewire
-restart = true
