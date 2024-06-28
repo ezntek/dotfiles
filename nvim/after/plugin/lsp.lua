@@ -1,39 +1,30 @@
 local lsp_config = require 'lspconfig'
 local rust_tools = require 'rust-tools'
-
-local lsp = require("lsp-zero").preset {
-    suggest_lsp_servers = false,
-    sign_icons = {
-        error = '',
-        warn = '',
-        hint = '',
-        info = ''
-    }
-}
-
-lsp.ensure_installed {
-    --    'rust_analyzer',
-    --    'pyright',
---    'lua_ls',
-    --    'clangd',
-    --    'tsserver',
-    --    'zls',
-}
-
 local cmp = require 'cmp'
+local lsp = require("lsp-zero").preset {
+    suggest_lsp_servers = false, 
+}
+
+
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<Up>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<Down>'] = cmp.mapping.select_next_item(cmp_select),
     ['<Return>'] = cmp.mapping.confirm({ select = true }),
     ["<S-Tab>"] = cmp.mapping.complete(),
+    ["<Tab"] = cmp.mapping.complete(),
 })
 
-cmp_mappings['<Tab>'] = nil
---cmp_mappings['<S-Tab>'] = nil
-
-lsp.setup_nvim_cmp {
-    mapping = cmp_mappings
+cmp.setup {
+    sources = {
+        { name = "nvim_lsp" },
+    },
+    mapping = cmp_mappings,
+    snippet = {
+        expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+        end,
+    },
 }
 
 -- lua neovim config fixes
@@ -56,6 +47,16 @@ end
 
 lsp.on_attach(lsp_on_attatch)
 
+lsp.set_sign_icons({
+        error = '',
+        warn = '',
+        hint = '',
+        info = ''
+})
+vim.diagnostic.config({
+    signs = false
+})
+
 -- format on save
 lsp.format_on_save({
     format_opts = {
@@ -77,8 +78,6 @@ lsp_config.clangd.setup({ server = { on_attatch = lsp_on_attatch } })
 lsp_config.pyright.setup({ server = { on_attach = lsp_on_attach }})
 
 -- rust..?
-lsp.skip_server_setup({ 'rust-analyzer' })
-
 lsp.setup()
 
 rust_tools.setup({
