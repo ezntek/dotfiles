@@ -104,10 +104,15 @@ plugins = {
 		dependencies = {
 			"folke/trouble.nvim",
 		},
+        lazy = false,
 		config = function()
 			require("todo-comments").setup()
 		end,
 	},
+        {
+            "folke/trouble.nvim",
+                lazy = false,
+    }           
 }
 
 require("lazy").setup(plugins, optso)
