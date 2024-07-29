@@ -60,9 +60,8 @@ keys = [
     Key(["control", alt], "e", lazy.function(window_to_prev_screen)),
 
     # Screenshots
-    Key([mod, "shift"], "s", lazy.spawn("xfce4-screenshooter -r -s Nextcloud/Pictures/screenshots")),
-    Key([mod, "control"], "s", lazy.spawn("xfce4-screenshooter -f -s Nextcloud/Pictures/screenshots")),
-    
+    Key([mod, "shift"], "s", lazy.spawn("/home/ezntek/.local/bin/screenshot")) ,
+    Key([mod, "control"], "s", lazy.spawn("/home/ezntek/.local/bin/screenshot fs")),
     # Power Menu
     Key([mod, "control"], "q", lazy.spawn("rofi -show p -modi p:'~/.local/bin/rofi-power-menu --symbols-font \"Font Awesome 6 Free\"' -font \"JetBrainsMono Nerd Font 14\" -theme catppuccin-mocha")),
 

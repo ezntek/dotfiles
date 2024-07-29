@@ -34,8 +34,8 @@ from keys import *        # (GROUPS ARE IN HERE); utils, libqtile.lazy, libqtile
 from bars import *        # libqtile.bar, qtile_extras.*
 
 widget_defaults = {
-        "font": "JetBrainsMono Nerd Font",
-        "fontsize": 13,
+        "font": "CaskaydiaCove Nerd Font",
+        "fontsize": 12,
         "padding": 3,
 }
 
@@ -45,14 +45,8 @@ screens = [
     Screen(
         top=top_bar_main_screen,
         bottom=bottom_bar_main_screen,
-        wallpaper='~/Pictures/artix-iceberg-dark.png',
         wallpaper_mode="fill"
     ),
-    Screen(
-        top=top_bar_other_screen,
-        wallpaper="~/Pictures/artix-iceberg-dark.png",
-        wallpaper_mode="fill"
-    )
 ]
 
 # Drag floating layouts.
