@@ -1,0 +1,192 @@
+[{
+    "output": "eDP-1",
+     "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 20, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 5, // Gaps between modules (4px)
+    "margin-left": 5,
+    "margin-right": 5,
+    "margin-bottom": 0,
+    "margin-top": 5,
+    // Choose the order of the modules
+    "modules-left": ["hyprland/workspaces","hyprland/window"],
+    "modules-center": [],
+    "modules-right": ["tray", "pulseaudio#out", "pulseaudio#in", "clock", "clock#time"],
+    // Modules configuration
+    // "sway/workspaces": {
+    //     "disable-scroll": true,
+    //     "all-outputs": true,
+    //     "warp-on-scroll": false,
+    //     "format": "{name}: {icon}",
+    //     "format-icons": {
+    //         "1": "",
+    //         "2": "",
+    //         "3": "",
+    //         "4": "",
+    //         "5": "",
+    //         "urgent": "",
+    //         "focused": "",
+    //         "default": ""
+    //     }
+    // },
+    "hyprland/workspaces": {
+        "persistent_workspaces": {
+            "*": 2,
+        },
+    },
+    "tray": {
+        "show-passive-items": true,
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        "interval": 600,
+        // "timezone": "America/New_York",
+        "format": "  {:%A, %B %d %Y}",
+    },
+    "clock#time": {
+        "interval": 1,
+        // "timezone": "America/New_York",
+        "format": "  {:%H:%M:%S}",
+    },
+    "pulseaudio#out": {
+        // "scroll-step": 1, // %, can be a fcoat
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth-muted": "  Muted",
+        "format-muted": "  Muted",
+        "format-icons": {
+            "headphone": " ",
+            "hands-free": "HF  ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": "  ",
+            "default": [" ", " ", " "]
+        },
+        "on-click": "pavucontrol"
+    },
+    "pulseaudio#in": {
+        // "scroll-step": 1, // %, can be a fcoat
+        "format": "{format_source}",
+        "format-bluetooth": "{format_source}",
+        "format-bluetooth-muted": "{format_source}",
+        "format-muted": "{format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": " ",
+        "on-click": "pavucontrol"
+    },
+},
+{
+    "output": "eDP-1",
+    // "layer": "top", // Waybar at top layer
+    "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 20, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 5, // Gaps between modules (4px)
+    "margin-left": 5,
+    "margin-right": 5,
+    "margin-top": 0,
+    "margin-bottom": 5,
+    // Choose the order of the modules
+    "modules-left": ["network", "backlight"],
+    "modules-center": [],
+    "modules-right": ["battery#internal", "battery#external","temperature#cpu", "cpu", "memory", "power-profiles-daemon"],
+    // Modules configuration
+    // "sway/workspaces": {
+    //     "disable-scroll": true,
+    //     "all-outputs": true,
+    //     "warp-on-scroll": false,
+    //     "format": "{name}: {icon}",
+    //     "format-icons": {
+    //         "1": "",
+    //         "2": "",
+    //         "3": "",
+    //         "4": "",
+    //         "5": "",
+    //         "urgent": "",
+    //         "focused": "",
+    //         "default": ""
+    //     }
+    // },
+    "backlight": {
+	"format": " {percent}%"
+    },
+    "custom/fanspeed": {
+        "exec": "/home/ezntek/.config/waybar/fanspeed",
+        "interval": "1",
+        "format": " {} RPM"
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "cpu": {
+        "interval": 1,
+        "format": "  {usage}% ({avg_frequency} GHz)",
+        "tooltip": false
+    },
+    "memory": {
+        "interval": 1,
+        "format": " {}%"
+    },
+    "temperature#cpu": {
+        "interval": 1,
+        "thermal-zone": 1,
+        "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon4/temp1_input",
+        "critical-threshold": 90,
+        "format-critical": "CPU {icon}{temperatureC}°C",
+        "format": "CPU {icon}{temperatureC}°C",
+        "format-icons": [" ", " ", " "]
+    },
+    "temperature#gpu": {
+        "interval": 1,
+        "thermal-zone": 0,
+        "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon4/temp2_input",
+        "critical-threshold": 75,
+        "format": "GPU {icon}{temperatureC}°C",
+        "format-critical": "GPU {icon}{temperatureC}°C",
+        "format-icons": [" ", " ", " "]
+    },
+    "battery#external": {
+        "bat": "BAT0",
+	"interval": 1,
+	"format-time": "{H}h{m}m",
+	"format": "  int {capacity}% ({time})",
+        "states": {
+            "warning": 20,
+            "critical": 10,
+        },
+    },
+    "battery#internal": {
+        "bat": "BAT1",
+	"interval": 1,
+	"format-time": "{H}h{m}m",
+	"format": "  ext {capacity}% ({time})",
+        "states": {
+            "warning": 20,
+            "critical": 10,
+        },
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "  {essid} ({signalStrength}%)",
+        "format-ethernet": "  {ipaddr}/{cidr}",
+        "tooltip-format": "  {ifname} via {gwaddr}",
+        "format-linked": "  {ifname} (No IP)",
+        "format-disconnected": "⚠ Disconnected",
+        //"format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "power-profiles-daemon": {
+        "format": "{icon}  {profile}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": "true",
+        "format-icons": {
+          "default": "",
+          "performance": "",
+          "balanced": "",
+          "power-saver": ""
+        }
+    },
+}]
