@@ -2,8 +2,12 @@ local lsp_config = require 'lspconfig'
 local rust_tools = require 'rust-tools'
 local cmp = require 'cmp'
 local lsp = require("lsp-zero").preset {
-    suggest_lsp_servers = false, 
+    suggest_lsp_servers = false,
 }
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+
 
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -30,7 +34,7 @@ cmp.setup {
 -- lua neovim config fixes
 lsp_config.lua_ls.setup(lsp.nvim_lua_ls())
 
-local lsp_on_attatch = function(_, bufnr)
+function lsp_on_attach(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
@@ -45,13 +49,13 @@ local lsp_on_attatch = function(_, bufnr)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end
 
-lsp.on_attach(lsp_on_attatch)
+lsp.on_attach(lsp_on_attach)
 
 lsp.set_sign_icons({
-        error = '',
-        warn = '',
-        hint = '',
-        info = ''
+    error = '',
+    warn = '',
+    hint = '',
+    info = ''
 })
 vim.diagnostic.config({
     signs = false
@@ -74,14 +78,17 @@ lsp.format_on_save({
     }
 })
 
-lsp_config.clangd.setup({ server = { on_attatch = lsp_on_attatch } })
-lsp_config.pyright.setup({ server = { on_attach = lsp_on_attach }})
+lsp_config.pyright.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
+lsp_config.clangd.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
+lsp_config.tsserver.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
+lsp_config.ols.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
+
 
 -- rust..?
 lsp.setup()
 
 rust_tools.setup({
     server = {
-        on_attatch = lsp_on_attatch
+        on_attatch = lsp_on_attach
     }
 })

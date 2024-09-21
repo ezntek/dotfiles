@@ -5,7 +5,7 @@
     font-family: CaskaydiaCove Nerd Font, "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 6 Solid";
     font-size: 13px;
     background-color: transparent;
-    border-radius: 15;
+    border-radius: 12;
 
 }
 
@@ -51,7 +51,7 @@ button:hover {
 #workspaces button {
     padding: 0 2px;
 
-    border-radius: 15;
+    border-radius: 12;
     background-color: @mantle;
     color: @text;
 }
@@ -111,7 +111,7 @@ button:hover {
 #workspaces {
     padding: 0 6;
     background-color: @mantle;
-    border-radius: 15;
+    border-radius: 12;
 }
 
 /* If workspaces is the leftmost module, omit left margin */

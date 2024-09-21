@@ -4,7 +4,7 @@
     "type": "small"
   },
   "display": {
-    "keyWidth": 10,
+    "key": {"width": 10},
     "separator": ""
   },
   "modules": [
