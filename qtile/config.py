@@ -34,7 +34,7 @@ from keys import *        # (GROUPS ARE IN HERE); utils, libqtile.lazy, libqtile
 from bars import *        # libqtile.bar, qtile_extras.*
 
 widget_defaults = {
-        "font": "CaskaydiaCove Nerd Font",
+        "font": "Cascadia Code",
         "fontsize": 12,
         "padding": 3,
 }

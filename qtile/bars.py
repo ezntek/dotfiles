@@ -36,7 +36,6 @@ top_bar_main_screen = bar.Bar(
         ),
         widget.PulseVolume(
             fmt="   {} ",
-            device='Built-in Audio Analog Stereo',
             margin=0,
             background="#24273a"            
         ), 

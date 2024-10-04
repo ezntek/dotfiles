@@ -30,6 +30,6 @@ layouts = [
     # layout.Tile(),
     # layout.TreeTab(),
     # layout.VerticalTile(),
-    layout.Zoomy(margin=6, columnwidth=250),
+    #layout.Zoomy(margin=6, columnwidth=250),
     floating_layout,
 ]

@@ -5,7 +5,7 @@ from libqtile.config import Group, Key
 
 mod = "mod4"
 alt = "mod1"
-terminal = "kitty"
+terminal = "alacritty"
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -67,16 +67,24 @@ keys = [
 
     # fullscreen
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle Fullscreen"),
-    Key([mod, "control"], "f", lazy.window.toggle_floating(), desc="Toggle Floating"),
+    Key([mod, "shift"], "f", lazy.window.toggle_floating(), desc="Toggle Floating"),
     
     # some apps
+    Key([mod], "l", lazy.spawn("xfce4-screensaver-command -l")),
     Key([mod, "control"], "Return", lazy.spawn("caja")),
     Key([mod, "shift"], "Return", lazy.spawn("firefox")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")),
+    Key([], "XF86AudioMute", lazy.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set 5%+")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5%-")),
+    Key([mod], "c", lazy.spawn("/home/ezntek/.local/bin/cloudflare on")),
+    Key([mod, "shift"], "c", lazy.spawn("/home/ezntek/.local/bin/cloudflare off")),
 ]
 
 # groups becasue keys
 groups = [
-    Group(i) for i in "12345"]
+    Group(i) for i in "123456789"]
 
 for i in groups:
     keys.extend(

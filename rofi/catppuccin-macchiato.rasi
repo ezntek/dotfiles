@@ -9,7 +9,7 @@
     grey: #6e738d;
 
     width: 600;
-    font: "CaskaydiaCove Nerd Font 13";
+    font: "Cascadia Code 13";
 }
 
 element-text, element-icon , mode-switcher {

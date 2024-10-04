@@ -74,13 +74,13 @@ lsp.format_on_save({
         ['black'] = { 'python' },
         ['clangd'] = { 'c', 'cpp' },
         ['zls'] = { 'zig' },
-        ['tsserver'] = { 'js', 'jsx', 'ts', 'tsx' },
+        ['ts_ls'] = { 'js', 'jsx', 'ts', 'tsx' },
     }
 })
 
 lsp_config.pyright.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
 lsp_config.clangd.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
-lsp_config.tsserver.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
+lsp_config.ts_ls.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
 lsp_config.ols.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
 
 
