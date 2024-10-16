@@ -8,6 +8,12 @@ export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 
 nextcloud &
-/home/ezntek/.local/bin/volctl &
-systemctl --user import-environment PATH
-systemctl --user restart xdg-desktop-portal
+picom -b &
+nitrogen --restore
+pipewire &
+nm-applet &
+~/.screenlayout/layout.sh &
+xfce4-screensaver &
+#/home/ezntek/.local/bin/volctl &
+#systemctl --user import-environment PATH
+#systemctl --user restart xdg-desktop-portal

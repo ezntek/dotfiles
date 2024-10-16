@@ -14,7 +14,7 @@ floating_layout = layout.Floating(
     ],
     border_focus = "#7dc4e4",
     border_normal="#313244",
-    border_width=3
+    border_width=0,
 )
 
 layouts = [

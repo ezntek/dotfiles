@@ -1,5 +1,7 @@
+import libqtile
 from decorations import * 
 
+import subprocess
 from libqtile import bar
 from qtile_extras import widget
 
@@ -54,6 +56,61 @@ top_bar_main_screen = bar.Bar(
     # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
 )
 
+class PowerProfilesDaemon(libqtile.widget.base.ThreadPoolText):
+    """A widget to display the current power setting of power-profiles-daemon"""
+
+    def __init__(self, **config):
+        base.ThreadPoolText.__init__(self, "", **config)
+        self.func = None
+        self.current_state = "balanced"
+        self.update_interval = 1
+        self.mouse_callbacks = {
+            "Button1": self.next_state,
+            "Button2": self.prev_state
+        }
+
+    def next_state(self):
+        match self.current_state:
+            case "performance":
+                self.current_state = "power-saver"
+            case "balanced":
+                self.current_state = "performance"
+            case "power-saver":
+                self.current_state = "balanced"
+
+        subprocess.run(f"powerprofilesctl set {self.current_state}", shell=True)
+
+    def prev_state(self):
+        match self.current_state:
+            case "performance":
+                self.current_state = "balanced"
+            case "balanced":
+                self.current_state = "power-saver"
+            case "power-saver":
+                self.current_state = "performance"
+
+        subprocess.run(f"powerprofilesctl set {self.current_state}", shell=True)
+
+    def poll(self) -> str:
+        process = subprocess.run(
+            "powerprofilesctl get",
+            capture_output=True,
+            text=True,
+            shell=True,
+        )
+        setting = process.stdout.strip()
+        ch = ''
+
+        if "performance" in setting:
+            ch = ''
+        elif "balanced" in setting:
+            ch = ''
+        elif "power-saver" in setting:
+            ch = ''
+
+        self.current_state = setting
+        return f"{ch} {setting}"
+
 bottom_bar_main_screen = bar.Bar(
     [
         widget.CurrentLayout(
@@ -61,7 +118,16 @@ bottom_bar_main_screen = bar.Bar(
             background="#24273a",
         ),
         widget.Spacer(),
+        PowerProfilesDaemon(
+            background="#24273a",
+            fmt=" {} ",
+        ),
+        widget.Backlight(
+            backlight_name="intel_backlight",
+            format="  {percent:2.0%} ",
+        ),
         widget.Battery(
+            update_interval=5,
             charge_char=" +",
             discharge_char=" -",
             empty_char=" ",
@@ -70,11 +136,10 @@ bottom_bar_main_screen = bar.Bar(
             background="#24273a",
         ),
         widget.Memory(
-            format="   {MemUsed:.0f}{mm} ",
-        
+            format="  {MemUsed:.0f}{mm} ",
         ),
         widget.CPU(
-            format="   {load_percent}% ",
+            format="  {load_percent}% ",
             threshold=80,
             foreground_alert="#ed8796",
             background="#24273a",

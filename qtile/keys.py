@@ -70,8 +70,9 @@ keys = [
     Key([mod, "shift"], "f", lazy.window.toggle_floating(), desc="Toggle Floating"),
     
     # some apps
+    Key([mod], "a", lazy.spawn("/home/ezntek/.local/bin/sendacpi")),
     Key([mod], "l", lazy.spawn("xfce4-screensaver-command -l")),
-    Key([mod, "control"], "Return", lazy.spawn("caja")),
+    Key([mod, "control"], "Return", lazy.spawn("nemo")),
     Key([mod, "shift"], "Return", lazy.spawn("firefox")),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")),
