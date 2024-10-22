@@ -7,9 +7,6 @@ local lsp = require("lsp-zero").preset {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-
-
-
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<Up>'] = cmp.mapping.select_prev_item(cmp_select),
@@ -77,6 +74,16 @@ lsp.format_on_save({
         ['ts_ls'] = { 'js', 'jsx', 'ts', 'tsx' },
     }
 })
+
+-- lbnf
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.lbnf = {
+  install_info = {
+    url = "~/Sources/apps/tree-sitter-lbnf", -- local path or git repo
+    files = {"src/parser.c"}, -- note that some parsers also require src/scanner.c or src/scanner.cc
+    },
+  filetype = "bnf", -- if filetype does not match the parser name
+}
 
 lsp_config.pyright.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
 lsp_config.clangd.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })

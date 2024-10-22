@@ -2,28 +2,25 @@
 
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: CaskaydiaCove Nerd Font, "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 6 Solid";
+    font-family: "Cascadia Code NF", "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 6 Solid";
     font-size: 13px;
-    background-color: transparent;
-    border-radius: 12;
-
 }
 
 window#waybar {
+    background-color: @mantle;
     color: @text;
-    transition-property: background-color;
-    transition-duration: .3s;
 }
 
 window#waybar.hidden {
+    background-color: @mantle;
     opacity: 1.0;
 }
 
 window#waybar.empty {
-    background-color: transparent;
+    background-color: @mantle;
 }
 window#waybar.solo {
-    background-color: transparent;
+    background-color: @mantle;
 }
 
 /*window#waybar.termite {
@@ -51,7 +48,6 @@ button:hover {
 #workspaces button {
     padding: 0 2px;
 
-    border-radius: 12;
     background-color: @mantle;
     color: @text;
 }
@@ -92,7 +88,7 @@ button:hover {
 
 #window {
     padding: 0 12;
-    background-color: @mantle;
+    background-color: @base;
     color: @text
 }
 
@@ -105,13 +101,12 @@ button:hover {
 #custom-fanspeed {
     padding: 0 12;
     color: @text;
-    background-color: @mantle;
+    background-color: @base;
 }
 
 #workspaces {
     padding: 0 6;
     background-color: @mantle;
-    border-radius: 12;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -126,12 +121,18 @@ button:hover {
 
 #clock {
     padding: 0 12;
+    background-color: @base;
+    color: @text;
+}
+
+#clock.time {
+    padding: 0 12;
     background-color: @mantle;
     color: @text;
 }
 
 #battery {
-    background-color: @mantle;
+    background-color: @base;
     color: @text;
 }
 
@@ -162,7 +163,7 @@ label:focus {
 }
 
 #cpu {
-    background-color: @mantle;
+    background-color: @base;
 }
 
 #memory {
@@ -174,7 +175,7 @@ label:focus {
 }
 
 #backlight {
-    background-color: @mantle;
+    background-color: @base;
 }
 
 #network {
@@ -187,6 +188,12 @@ label:focus {
 
 #pulseaudio {
     background-color: @mantle;
+    padding: 0 12;
+    color: @text;
+}
+
+#pulseaudio.out {
+    background-color: @base;
     padding: 0 12;
     color: @text;
 }

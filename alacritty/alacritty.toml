@@ -4,7 +4,7 @@ shell = "zsh"
 WINIT_X11_SCALE_FACTOR = "1.0"
 
 [window]
-opacity = 0.98
+opacity = 0.9
 padding = { x = 3, y = 3 }
 
 [font]

@@ -2,13 +2,13 @@
     "output": "eDP-1",
      "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 20, // Waybar height (to be removed for auto height)
+    "height": 24, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 5, // Gaps between modules (4px)
-    "margin-left": 5,
-    "margin-right": 5,
+    "spacing": 0, // Gaps between modules (4px)
+    "margin-left": 0,
+    "margin-right": 0,
     "margin-bottom": 0,
-    "margin-top": 5,
+    "margin-top": 0,
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces","hyprland/window"],
     "modules-center": [],
@@ -82,13 +82,13 @@
     "output": "eDP-1",
     // "layer": "top", // Waybar at top layer
     "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 20, // Waybar height (to be removed for auto height)
+    "height": 24, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 5, // Gaps between modules (4px)
-    "margin-left": 5,
-    "margin-right": 5,
+    "spacing": 0, // Gaps between modules (4px)
+    "margin-left": 0,
+    "margin-right": 0,
     "margin-top": 0,
-    "margin-bottom": 5,
+    "margin-bottom": 0,
     // Choose the order of the modules
     "modules-left": ["network", "backlight"],
     "modules-center": [],
