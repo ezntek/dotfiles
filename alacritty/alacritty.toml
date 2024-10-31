@@ -1,4 +1,3 @@
-shell = "zsh"
 
 [env]
 WINIT_X11_SCALE_FACTOR = "1.0"
@@ -86,5 +85,8 @@ color = "#f5a97f"
 [[colors.indexed_colors]]
 index = 17
 color = "#f4dbd6"
+
+[terminal]
+shell = "zsh"
 
 
