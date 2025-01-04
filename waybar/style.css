@@ -131,8 +131,13 @@ button:hover {
     color: @text;
 }
 
-#battery {
+#battery.external {
     background-color: @base;
+    color: @text;
+}
+
+#battery.internal {
+    background-color: @mantle;
     color: @text;
 }
 

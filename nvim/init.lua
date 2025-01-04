@@ -126,6 +126,9 @@ plugins = {
         config = true,
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         lazy = false, -- `ft = "cie"` won't work since the filetype is registered in the plugin
+    },
+    {
+        "ziglang/zig.vim",
     }
 }
 

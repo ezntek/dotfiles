@@ -89,6 +89,7 @@ lsp_config.pyright.setup({ server = { on_attach = lsp_on_attach }, capabilities 
 lsp_config.clangd.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
 lsp_config.ts_ls.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
 lsp_config.ols.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
+lsp_config.zls.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
 
 
 -- rust..?
