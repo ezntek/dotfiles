@@ -14,11 +14,11 @@ floating_layout = layout.Floating(
     ],
     border_focus = "#7dc4e4",
     border_normal="#313244",
-    border_width=0,
+    border_width=3,
 )
 
 layouts = [
-    layout.Columns(border_focus = "#7dc4e4", border_normal="#363a4f",margin=6, border_width=3),
+    layout.Columns(border_focus = "#7dc4e4", border_normal="#363a4f",margin=4, border_width=3),
     #layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),

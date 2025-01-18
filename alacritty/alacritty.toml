@@ -1,4 +1,3 @@
-
 [env]
 WINIT_X11_SCALE_FACTOR = "1.0"
 
@@ -7,7 +6,8 @@ opacity = 0.9
 padding = { x = 3, y = 3 }
 
 [font]
-size = 14
+normal = { family = "Cascadia Code NF", style = "Regular" }
+size = 10
 
 # colors
 [colors.primary]

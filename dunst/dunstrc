@@ -3,8 +3,8 @@ monitor = 1
 offset = 8x38
 frame_color = "#7dc4e4"
 separator_color= frame
-font = "Cascadia Code 11"
-corner_radius = 20 
+font = "Cascadia Code 10"
+corner_radius = 10 
 
 [urgency_low]
 background = "#1e2030"
