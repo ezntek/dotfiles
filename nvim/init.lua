@@ -32,9 +32,6 @@ plugins = {
     {
         "catppuccin/nvim",
         lazy = false,
-        config = function()
-            vim.cmd [[colorscheme catppuccin-macchiato]]
-        end,
     },
     {
         "nvim-telescope/telescope.nvim",
@@ -129,6 +126,16 @@ plugins = {
     },
     {
         "ziglang/zig.vim",
+    },
+    {
+        "sainnhe/sonokai",
+        lazy = false,
+        config = function()
+            vim.g.sonokai_enable_italic = true
+            vim.g.sonokai_style = 'atlantis'
+            vim.g.airline_theme = 'sonokai'
+            vim.cmd.colorscheme "sonokai"
+        end,
     }
 }
 
