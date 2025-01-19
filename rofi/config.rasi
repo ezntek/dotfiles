@@ -15,5 +15,5 @@ configuration{
     sidebar-mode: true;
 }
 
-@theme "catppuccin-macchiato"
+@theme "sonokai-atlantis"
 

@@ -35,7 +35,7 @@ from bars import *        # libqtile.bar, qtile_extras.*
 
 widget_defaults = {
         "font": "Cascadia Code NF",
-        "fontsize": 13,
+        "fontsize": 12,
         "padding": 3,
 }
 

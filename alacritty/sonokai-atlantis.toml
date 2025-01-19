@@ -1,17 +1,3 @@
-
-[env]
-WINIT_X11_SCALE_FACTOR = "1.0"
-
-[window]
-opacity = 0.95
-padding = { x = 3, y = 3 }
-
-[font]
-size = 10
-
-[terminal]
-shell = "zsh"
-
 [colors.primary]
 background = "0x2a2f38"
 foreground = "0xe1e3e4"
@@ -23,7 +9,7 @@ green = "0x9dd274"
 yellow = "0xeacb64"
 blue = "0x72cce8"
 magenta = "0xba9cf3"
-cyan = "0x7ad5f1"
+cyan = "0xf69c5e"
 white = "0xe1e3e4"
 
 [colors.bright]
@@ -33,6 +19,6 @@ green = "0x9dd274"
 yellow = "0xeacb64"
 blue = "0x72cce8"
 magenta = "0xba9cf3"
-cyan = "0x7ad5f1"
+cyan = "0xf69c5e"
 white = "0xe1e3e4"
 
