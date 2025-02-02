@@ -12,6 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = ' '
 vim.cmd.set "number"
 vim.cmd.set "tabstop=8"
 vim.cmd.set "softtabstop=0"
@@ -129,6 +130,27 @@ plugins = {
     },
     {
         "ziglang/zig.vim",
+    },
+    {
+        "mfussenegger/nvim-jdtls"
+    },
+    {
+        "lervag/vimtex",
+        lazy = false,     -- we don't want to lazy load VimTeX
+        -- tag = "v2.15", -- uncomment to pin to a specific release
+        init = function()
+            -- VimTeX configuration goes here, e.g.
+            vim.g.vimtex_view_method = "general"
+            vim.g.vimtex_compiler_method = "latexmk"
+            vim.g.vimtex_compiler_clean_paths = { '_minted*' }
+            vim.g.vimtex_compiler_latexmk = {
+                options = {
+                    '-verbose', '-file-line-error', '-synctex=1', '-interaction=nonstopmode', '-shell-escape'
+                }
+            }
+            vim.g.vimtex_compiler_latexmk_engines = { ["_"] = '-lualatex' }
+            
+        end
     }
 }
 

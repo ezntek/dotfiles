@@ -38,6 +38,10 @@ require 'nvim-treesitter.configs'.setup {
             if ok and stats and stats.size > max_filesize then
                 return true
             end
+
+            if lang == "latex" then
+                return true
+            end
         end,
 
         -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
