@@ -71,3 +71,10 @@ auto_minimize = True
 wmname="qtile"
 # When using the Wayland backend, this can be used to configure input device.
 wl_input_rules = None
+
+
+@hook.subscribe.startup_once
+def autostart():
+    import os
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.call(home)

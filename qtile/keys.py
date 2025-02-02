@@ -56,8 +56,8 @@ keys = [
     # Multiple Monitors
     Key(["control", "shift"], "n", lazy.next_screen()),
     Key(["control", "shift"], "e", lazy.prev_screen()),
-    Key(["control", alt], "n", lazy.function(window_to_next_screen)),
-    Key(["control", alt], "e", lazy.function(window_to_prev_screen)),
+    Key([mod, alt], "i", lazy.function(window_to_next_screen)),
+    Key([mod, alt], "n", lazy.function(window_to_prev_screen)),
 
     # Screenshots
     Key([mod, "shift"], "s", lazy.spawn("/home/ezntek/.local/bin/screenshot")) ,
@@ -69,7 +69,6 @@ keys = [
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle Fullscreen"),
     Key([mod, "shift"], "f", lazy.window.toggle_floating(), desc="Toggle Floating"),
     
-    # some apps
     Key([mod], "a", lazy.spawn("/home/ezntek/.local/bin/sendacpi")),
     Key([mod], "l", lazy.spawn("xfce4-screensaver-command -l")),
     Key([mod, "control"], "Return", lazy.spawn("nemo")),

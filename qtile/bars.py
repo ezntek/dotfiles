@@ -30,7 +30,7 @@ top_bar_main_screen = bar.Bar(
         widget.StatusNotifier(
             icon_theme="Papirus-dark",
             padding=0,
-            menu_font="Inter",
+            menu_font="IBM Plex Sans",
             menu_fontsize=12,
             menu_background="181a1c",
             highlight_colour="cba6f7",
@@ -139,7 +139,7 @@ bottom_bar_main_screen = bar.Bar(
             format="  {MemUsed:.0f}{mm} ",
         ),
         widget.CPU(
-            format="  {load_percent}% ",
+            format="  {load_percent}% ({freq_current} GHz)",
             threshold=80,
             foreground_alert="#ff6578",
             background="#24272e",
