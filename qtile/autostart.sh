@@ -21,4 +21,5 @@ xfce4-screensaver &
 #systemctl --user restart xdg-desktop-portal
 sleep 1
 nm-applet &
+gnome-keyring-daemon
 nextcloud & 

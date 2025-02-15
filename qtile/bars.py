@@ -123,7 +123,7 @@ bottom_bar_main_screen = bar.Bar(
             fmt=" {} ",
         ),
         widget.Backlight(
-            backlight_name="acpi_video0",
+            backlight_name="intel_backlight",
             format="  {percent:2.0%} ",
         ),
         widget.Battery(
