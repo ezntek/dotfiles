@@ -72,6 +72,7 @@ lsp.format_on_save({
         ['clangd'] = { 'c', 'cpp' },
         ['zls'] = { 'zig' },
         ['ts_ls'] = { 'js', 'jsx', 'ts', 'tsx' },
+        ['texlab'] = {'tex'},
     }
 })
 
@@ -90,7 +91,7 @@ lsp_config.clangd.setup({ server = { on_attach = lsp_on_attach }, capabilities =
 lsp_config.ts_ls.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
 lsp_config.ols.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
 lsp_config.zls.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
-
+lsp_config.texlab.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
 
 -- rust..?
 lsp.setup()
