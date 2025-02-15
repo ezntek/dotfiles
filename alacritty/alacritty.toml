@@ -3,7 +3,7 @@
 WINIT_X11_SCALE_FACTOR = "1.0"
 
 [window]
-opacity = 0.95
+opacity = 0.98
 padding = { x = 3, y = 3 }
 
 [font]
