@@ -1,13 +1,17 @@
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -73,7 +77,7 @@ plugins = {
         branch = "v3.x",
         dependencies = {
             "neovim/nvim-lspconfig",
-            "simrat39/rust-tools.nvim",
+            "mrcjkb/rustaceanvim",
             {
                 "hrsh7th/nvim-cmp",
                 dependencies = {
@@ -100,13 +104,11 @@ plugins = {
         },
     },
     {
-        "saecki/crates.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim"
-        },
+        'saecki/crates.nvim',
+        tag = 'stable',
         config = function()
-            require("crates").setup()
-        end
+            require('crates').setup()
+        end,
     },
     {
         "folke/todo-comments.nvim",

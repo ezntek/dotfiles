@@ -12,4 +12,5 @@ hypridle &
 pipewire &
 nm-applet &
 hyprpaper &
+gnome-keyring-daemon&
 #ibus-daemon -rxRd &

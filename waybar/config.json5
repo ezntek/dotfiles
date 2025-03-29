@@ -129,7 +129,7 @@
     "temperature#cpu": {
         "interval": 1,
         "thermal-zone": 1,
-        "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon5/temp1_input",
+        "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon9/temp1_input",
         "critical-threshold": 90,
         "format-critical": "CPU {icon}{temperatureC}°C",
         "format": "CPU {icon}{temperatureC}°C",
