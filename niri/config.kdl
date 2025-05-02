@@ -77,10 +77,10 @@ output "LVDS-1" {
     // for the resolution.
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1280x800@60.030"
+    mode "1920x1080@59.999"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 1
+    scale 1.0
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
@@ -98,12 +98,17 @@ output "LVDS-1" {
     position x=0 y=0
 }
 
+output "HDMI-A-1" {
+    mode "1920x1080@74.973"
+    position x=1920 y=-300
+}
+
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 5 
+    gaps 6
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -250,14 +255,14 @@ hotkey-overlay {
 }
 
 environment {
-    QT_QPA_PLATFORM "qt5ct"
+    QT_QPA_PLATFORM "wayland"
 }
 
 // Add lines like this to spawn processes at startup.
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
-spawn-at-startup "/home/ezntek/.config/niri/autostart.sh"
+spawn-at-startup "luajit" "/home/ezntek/.config/niri/autostart.lua"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -346,7 +351,7 @@ binds {
     Mod+Return { spawn "alacritty"; }
     Mod+space { spawn "rofi" "-show" "drun"; }
     Mod+Ctrl+space { spawn "rofimoji"; }
-    Super+L { spawn "swaylock"; }
+    Super+L { spawn "hyprlock"; }
     Mod+B { spawn "pkill" "--signal" "SIGUSR1" "waybar"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
