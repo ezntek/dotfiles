@@ -92,7 +92,7 @@
     // Choose the order of the modules
     "modules-left": ["network", "backlight"],
     "modules-center": [],
-    "modules-right": ["battery#internal", "battery#external", "temperature#cpu", "cpu", "memory", "custom/fanspeed", "power-profiles-daemon"],
+    "modules-right": ["battery#external", "temperature#cpu", "cpu", "memory", "custom/fanspeed", "power-profiles-daemon"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -111,7 +111,8 @@
     //     }
     // },
     "backlight": {
-	"format": " {percent}%"
+        "device": "/sys/class/backlight/acpi_video0",
+        "format": " {percent}%"
     },
     "tray": {
         // "icon-size": 21,
@@ -155,7 +156,7 @@
         },
     },
     "battery#external": {
-        "bat": "BAT1",
+        "bat": "BAT0",
 	"interval": 1,
 	"format-time": "{H}h{m}m",
 	"format": " ext {capacity}% ({time})",
@@ -191,7 +192,7 @@
     }
 },
 {
-    "output": "HDMI-A-2",
+    "output": "HDMI-A-1",
      "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 24, // Waybar height (to be removed for auto height)
@@ -269,4 +270,85 @@
         "format-source-muted": " ",
         "on-click": "pavucontrol"
     },
+    
+},
+{
+    "output": "VGA-1",
+    "layer": "top", // Waybar at top layer
+    "position" : "bottom", // Waybar position (top|bottom|left|right)
+    "height": 24, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 0, // Gaps between modules (4px)
+    "margin-left": 0,
+    "margin-right": 0,
+    "margin-bottom": 0,
+    "margin-top": 0,
+    // Choose the order of the modules
+    "modules-left": ["hyprland/workspaces","hyprland/window"],
+    "modules-center": [],
+    "modules-right": ["tray", "pulseaudio#out", "pulseaudio#in", "clock", "clock#time"],
+    // Modules configuration
+    // "sway/workspaces": {
+    //     "disable-scroll": true,
+    //     "all-outputs": true,
+    //     "warp-on-scroll": false,
+    //     "format": "{name}: {icon}",
+    //     "format-icons": {
+    //         "1": "",
+    //         "2": "",
+    //         "3": "",
+    //         "4": "",
+    //         "5": "",
+    //         "urgent": "",
+    //         "focused": "",
+    //         "default": ""
+    //     }
+    // },
+    "hyprland/workspaces": {
+        "persistent_workspaces": {
+            "*": 2,
+        },
+    },
+    "tray": {
+        "show-passive-items": true,
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        "interval": 600,
+        "timezone": "Asia/Singapore",
+        "format": "  {:%A, %B %d %Y}",
+    },
+    "clock#time": {
+        "interval": 1,
+        "timezone": "Asia/Singapore",
+        "format": "  {:%H:%M:%S}",
+    },
+    "pulseaudio#out": {
+        // "scroll-step": 1, // %, can be a fcoat
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth-muted": "  Muted",
+        "format-muted": "  Muted",
+        "format-icons": {
+            "headphone": " ",
+            "hands-free": "HF  ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": "  ",
+            "default": [" ", " ", " "]
+        },
+        "on-click": "pavucontrol"
+    },
+    "pulseaudio#in": {
+        // "scroll-step": 1, // %, can be a fcoat
+        "format": "{format_source}",
+        "format-bluetooth": "{format_source}",
+        "format-bluetooth-muted": "{format_source}",
+        "format-muted": "{format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": " ",
+        "on-click": "pavucontrol"
+    }
 }]
