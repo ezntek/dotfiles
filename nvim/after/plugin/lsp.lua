@@ -30,8 +30,10 @@ cmp.setup {
 -- lua neovim config fixes
 lsp_config.lua_ls.setup(lsp.nvim_lua_ls())
 
-function lsp_on_attach(_, bufnr)
+local function lsp_on_attach(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
+
+    vim.diagnostic.config({ virtual_text = true })
 
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
@@ -54,7 +56,7 @@ lsp.set_sign_icons({
     info = ''
 })
 vim.diagnostic.config({
-    signs = false
+    signs = true
 })
 
 -- format on save
@@ -76,37 +78,29 @@ lsp.format_on_save({
     }
 })
 
--- lbnf
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.lbnf = {
-  install_info = {
-    url = "~/Sources/apps/tree-sitter-lbnf", -- local path or git repo
-    files = {"src/parser.c"}, -- note that some parsers also require src/scanner.c or src/scanner.cc
-    },
-  filetype = "bnf", -- if filetype does not match the parser name
-}
+local cfg = { server = { on_attach = lsp_on_attach }, capabilities = capabilities }
 
-lsp_config.pyright.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
-lsp_config.clangd.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
-lsp_config.ts_ls.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
-lsp_config.ols.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
-lsp_config.zls.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
-lsp_config.texlab.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
+lsp_config.pyright.setup(cfg)
+lsp_config.clangd.setup(cfg)
+lsp_config.ts_ls.setup(cfg)
+lsp_config.ols.setup(cfg)
+lsp_config.zls.setup(cfg)
+lsp_config.texlab.setup(cfg)
 
 vim.g.rustaceanvim = {
-  -- Plugin configuration
-  tools = {
-  },
-  -- LSP configuration
-  server = {
-    on_attach = lsp_on_attach,
-    default_settings = {
-      -- rust-analyzer language server configuration
-      ['rust-analyzer'] = {
-      },
+    -- Plugin configuration
+    tools = {
     },
-  },
-  -- DAP configuration
-  dap = {
-  },
+    -- LSP configuration
+    server = {
+        on_attach = lsp_on_attach,
+        default_settings = {
+            -- rust-analyzer language server configuration
+            ['rust-analyzer'] = {
+            },
+        },
+    },
+    -- DAP configuration
+    dap = {
+    },
 }

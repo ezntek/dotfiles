@@ -7,10 +7,12 @@ nextcloud &
 #/usr/local/libexec/xdg-desktop-portal-hyprland -l DEBUG &
 #hypridle &
 #waypaper --restore &
-waybar &
 hypridle &
-pipewire &
 nm-applet &
 hyprpaper &
 gnome-keyring-daemon&
+
+sleep 1
+waybar &
+
 #ibus-daemon -rxRd &
