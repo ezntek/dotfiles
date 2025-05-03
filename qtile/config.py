@@ -36,7 +36,7 @@ from bars import *        # libqtile.bar, qtile_extras.*
 widget_defaults = {
         "font": "Cascadia Code NF",
         "fontsize": 12,
-        "padding": 3,
+        "padding": 1,
 }
 
 extension_defaults = widget_defaults.copy()
@@ -44,7 +44,7 @@ extension_defaults = widget_defaults.copy()
 screens = [
     Screen(
         top=top_bar_main_screen,
-        bottom=bottom_bar_main_screen,
+        #bottom=bottom_bar_main_screen,
         wallpaper_mode="fill"
     ),
 ]
@@ -71,10 +71,3 @@ auto_minimize = True
 wmname="qtile"
 # When using the Wayland backend, this can be used to configure input device.
 wl_input_rules = None
-
-
-@hook.subscribe.startup_once
-def autostart():
-    import os
-    home = os.path.expanduser('~/.config/qtile/autostart.sh')
-    subprocess.call(home)

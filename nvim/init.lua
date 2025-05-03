@@ -1,13 +1,17 @@
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    if vim.v.shell_error ~= 0 then
+        vim.api.nvim_echo({
+            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+            { out,                            "WarningMsg" },
+            { "\nPress any key to exit..." },
+        }, true, {})
+        vim.fn.getchar()
+        os.exit(1)
+    end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -31,8 +35,20 @@ vim.filetype.add({
 
 plugins = {
     {
+        "sainnhe/sonokai",
+        lazy = false,
+        config = function()
+            vim.g.sonokai_enable_italic = true
+            vim.g.sonokai_style = 'andromeda'
+            vim.cmd.colorscheme("sonokai")
+        end
+    },
+    {
         "catppuccin/nvim",
         lazy = false,
+        config = function()
+            -- vim.cmd [[colorscheme catppuccin-macchiato]]
+        end,
     },
     {
         "nvim-telescope/telescope.nvim",
@@ -70,7 +86,7 @@ plugins = {
         branch = "v3.x",
         dependencies = {
             "neovim/nvim-lspconfig",
-            "simrat39/rust-tools.nvim",
+            "mrcjkb/rustaceanvim",
             {
                 "hrsh7th/nvim-cmp",
                 dependencies = {
@@ -86,7 +102,7 @@ plugins = {
             "vim-airline/vim-airline-themes",
         },
         config = function()
-            vim.g["airline_theme"] = "sonokai"
+            vim.g.airline_theme = "sonokai"
         end,
     },
     {
@@ -97,13 +113,11 @@ plugins = {
         },
     },
     {
-        "saecki/crates.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim"
-        },
+        'saecki/crates.nvim',
+        tag = 'stable',
         config = function()
-            require("crates").setup()
-        end
+            require('crates').setup()
+        end,
     },
     {
         "folke/todo-comments.nvim",
@@ -117,7 +131,40 @@ plugins = {
     },
     {
         "folke/trouble.nvim",
-        lazy = false,
+        opts = {}, -- for default options, refer to the configuration section for custom setup.
+        cmd = "Trouble",
+        keys = {
+            {
+                "<leader>xx",
+                "<cmd>Trouble diagnostics toggle<cr>",
+                desc = "Diagnostics (Trouble)",
+            },
+            {
+                "<leader>xX",
+                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+                desc = "Buffer Diagnostics (Trouble)",
+            },
+            {
+                "<leader>cs",
+                "<cmd>Trouble symbols toggle focus=false<cr>",
+                desc = "Symbols (Trouble)",
+            },
+            {
+                "<leader>cl",
+                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+                desc = "LSP Definitions / references / ... (Trouble)",
+            },
+            {
+                "<leader>xL",
+                "<cmd>Trouble loclist toggle<cr>",
+                desc = "Location List (Trouble)",
+            },
+            {
+                "<leader>xQ",
+                "<cmd>Trouble qflist toggle<cr>",
+                desc = "Quickfix List (Trouble)",
+            },
+        },
     },
     {
         "sportshead/cie.nvim",
@@ -129,18 +176,11 @@ plugins = {
         "ziglang/zig.vim",
     },
     {
-        "sainnhe/sonokai",
-        lazy = false,
-        config = function()
-            vim.g.sonokai_enable_italic = true
-            vim.g.sonokai_style = 'atlantis'
-            vim.g.airline_theme = 'sonokai'
-            vim.cmd.colorscheme "sonokai"
-        end,
+        "mfussenegger/nvim-jdtls"
     },
     {
         "lervag/vimtex",
-        lazy = false,     -- we don't want to lazy load VimTeX
+        lazy = false, -- we don't want to lazy load VimTeX
         -- tag = "v2.15", -- uncomment to pin to a specific release
         init = function()
             -- VimTeX configuration goes here, e.g.
@@ -153,7 +193,6 @@ plugins = {
                 }
             }
             vim.g.vimtex_compiler_latexmk_engines = { ["_"] = '-lualatex' }
-            
         end
     }
 }

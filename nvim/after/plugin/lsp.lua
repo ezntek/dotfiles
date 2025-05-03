@@ -1,5 +1,4 @@
 local lsp_config = require 'lspconfig'
-local rust_tools = require 'rust-tools'
 local cmp = require 'cmp'
 local lsp = require("lsp-zero").preset {
     suggest_lsp_servers = false,
@@ -72,7 +71,8 @@ lsp.format_on_save({
         ['clangd'] = { 'c', 'cpp' },
         ['zls'] = { 'zig' },
         ['ts_ls'] = { 'js', 'jsx', 'ts', 'tsx' },
-        ['texlab'] = {'tex'},
+        ['jdtls'] = { 'java' },
+        ['texlab'] = { 'tex' }
     }
 })
 
@@ -93,11 +93,20 @@ lsp_config.ols.setup({ server = { on_attach = lsp_on_attach }, capabilities = ca
 lsp_config.zls.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
 lsp_config.texlab.setup({ server = { on_attach = lsp_on_attach }, capabilities = capabilities })
 
--- rust..?
-lsp.setup()
-
-rust_tools.setup({
-    server = {
-        on_attatch = lsp_on_attach
-    }
-})
+vim.g.rustaceanvim = {
+  -- Plugin configuration
+  tools = {
+  },
+  -- LSP configuration
+  server = {
+    on_attach = lsp_on_attach,
+    default_settings = {
+      -- rust-analyzer language server configuration
+      ['rust-analyzer'] = {
+      },
+    },
+  },
+  -- DAP configuration
+  dap = {
+  },
+}

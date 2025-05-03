@@ -5,57 +5,6 @@ import subprocess
 from libqtile import bar
 from qtile_extras import widget
 
-top_bar_main_screen = bar.Bar(
-    [
-        widget.GroupBox(
-            urgent_border="#ff6578",
-            inactive="#5a6477",
-            padding=0,
-            margin_x=5,
-            margin_y=3,
-            this_screen_border="#72cce8",
-            this_current_screen_border="#72cce8",
-            other_screen_border="#3d4455",
-            other_current_screen_border="#3d4455",
-            disable_drag=True,
-            background="#24272e"
-        ),
-        widget.WindowName(
-            padding=10,
-            #theme_path="/usr/share/icons/Papirus-dark",
-            txt_floating="🗗",
-            txt_maximized="🗖",
-            txt_minimized="🗕", 
-        ),
-        widget.StatusNotifier(
-            icon_theme="Papirus-dark",
-            padding=0,
-            menu_font="IBM Plex Sans",
-            menu_fontsize=12,
-            menu_background="181a1c",
-            highlight_colour="cba6f7",
-            background="#24272e"
-        ),
-        widget.PulseVolume(
-            fmt="   {} ",
-            margin=0,
-            background="#24272e"            
-        ), 
-        widget.Clock(
-            format="   %a %d %B, %Y ",
-            background="#24272e"            
-        ),
-        widget.Clock(
-            format="   %H:%M:%S ",
-            background="#24272e"            
-        ),
-    ],
-    20, # height
-    background="#24272e",
-    # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-    # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
-)
-
 class PowerProfilesDaemon(libqtile.widget.base.ThreadPoolText):
     """A widget to display the current power setting of power-profiles-daemon"""
 
@@ -111,20 +60,55 @@ class PowerProfilesDaemon(libqtile.widget.base.ThreadPoolText):
         self.current_state = setting
         return f"{ch} {setting}"
 
-bottom_bar_main_screen = bar.Bar(
+
+
+top_bar_main_screen = bar.Bar(
     [
-        widget.CurrentLayout(
-            fmt=" {} ",
-            background="#24272e",
+        widget.GroupBox(
+            urgent_border="#ed8796",
+            inactive="#6e738d",
+            padding=0,
+            margin_x=5,
+            margin_y=3,
+            this_screen_border="#7dc4e4",
+            this_current_screen_border="#7dc4e4",
+            other_screen_border="#45475a",
+            other_current_screen_border="#45475a",
+            disable_drag=True,
+            background="#24273a"
         ),
-        widget.Spacer(),
-        PowerProfilesDaemon(
-            background="#24272e",
-            fmt=" {} ",
+        widget.WindowName(
+            padding=10,
+            #theme_path="/usr/share/icons/Papirus-dark",
+            txt_floating="🗗",
+            txt_maximized="🗖",
+            txt_minimized="🗕", 
         ),
-        widget.Backlight(
-            backlight_name="intel_backlight",
-            format="  {percent:2.0%} ",
+        widget.StatusNotifier(
+            icon_theme="Papirus-dark",
+            padding=0,
+            menu_font="Cascadia Code NF",
+            menu_fontsize=12,
+            menu_background="1e2030",
+            highlight_colour="cba6f7",
+            background="#24273a"
+        ),
+        widget.PulseVolume(
+            fmt="   {} ",
+            margin=0,
+            background="#24273a"            
+        ),
+        widget.Memory(
+            format="  {MemUsed:.0f}{mm} ",
+        ),
+        widget.CPU(
+            format="  {load_percent}% ",
+            threshold=80,
+            foreground_alert="#ed8796",
+            background="#24273a",
+        ),
+        widget.ThermalSensor(
+            format='  {temp}{unit} ',
         ),
         widget.Battery(
             update_interval=5,
@@ -133,23 +117,39 @@ bottom_bar_main_screen = bar.Bar(
             empty_char=" ",
             full_char=" ",
             format=" {char} {percent:2.0%} ({hour:d}:{min:02d} left) ",
-            background="#24272e",
+            background="#24273a",
         ),
-        widget.Memory(
-            format="  {MemUsed:.0f}{mm} ",
+
+        widget.Clock(
+            format="  %a %d %B, %Y ",
+            background="#363a4f"            
         ),
-        widget.CPU(
-            format="  {load_percent}% ({freq_current} GHz)",
-            threshold=80,
-            foreground_alert="#ff6578",
-            background="#24272e",
-        ),
-        widget.ThermalSensor(
-            format='  {temp}{unit} ',
+        widget.Clock(
+            format="  %H:%M:%S ",
+            background="#24273a"            
         ),
     ],
+    20, # height
+    background="#1e2030",
+    # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+    # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+)
+
+bottom_bar_main_screen = bar.Bar(
+    [
+        widget.CurrentLayout(
+            fmt=" {} ",
+            background="#24273a",
+        ),
+        widget.Spacer(),
+        PowerProfilesDaemon(
+            background="#24273a",
+            fmt=" {} ",
+        ),
+        
+    ],
     20,
-    background="#24272e"
+    background="#1e2030"
 )
 
 top_bar_other_screen = bar.Bar(
@@ -160,8 +160,8 @@ top_bar_other_screen = bar.Bar(
         ),
         widget.TaskList(
             highlight_method="block",
-            border="#333846",
-            urgent_border="ff6578",
+            border="#313284",
+            urgent_border="f38ba8",
             margin_x=12,
             margin_y=7,
             padding=3,

@@ -50,14 +50,14 @@ keys = [
     # Rofi
     Key([mod], "tab", lazy.spawn("rofi -show window")),
     Key([mod], "space", lazy.spawn("rofi -show drun")),
-    Key([mod, "control"], "space", lazy.spawn("rofi -show emoji")),
+    Key([mod, "control"], "space", lazy.spawn("rofimoji")),
     Key([mod, "control"], "r", lazy.spawn("rofi -show run")), 
 
     # Multiple Monitors
     Key(["control", "shift"], "n", lazy.next_screen()),
     Key(["control", "shift"], "e", lazy.prev_screen()),
-    Key([mod, alt], "i", lazy.function(window_to_next_screen)),
-    Key([mod, alt], "n", lazy.function(window_to_prev_screen)),
+    Key(["control", alt], "n", lazy.function(window_to_next_screen)),
+    Key(["control", alt], "e", lazy.function(window_to_prev_screen)),
 
     # Screenshots
     Key([mod, "shift"], "s", lazy.spawn("/home/ezntek/.local/bin/screenshot")) ,
@@ -69,10 +69,11 @@ keys = [
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle Fullscreen"),
     Key([mod, "shift"], "f", lazy.window.toggle_floating(), desc="Toggle Floating"),
     
+    # some apps
     Key([mod], "a", lazy.spawn("/home/ezntek/.local/bin/sendacpi")),
-    Key([mod], "l", lazy.spawn("xfce4-screensaver-command -l")),
-    Key([mod, "control"], "Return", lazy.spawn("nemo")),
-    Key([mod, "shift"], "Return", lazy.spawn("firefox")),
+    Key([mod], "l", lazy.spawn("xsecurelock")),
+    Key([mod, "control"], "Return", lazy.spawn("thunar")),
+    Key([mod, "shift"], "Return", lazy.spawn("chromium")),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")),
     Key([], "XF86AudioMute", lazy.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")),
@@ -84,7 +85,7 @@ keys = [
 
 # groups becasue keys
 groups = [
-    Group(i) for i in "123456789"]
+    Group(i) for i in ('1', '2', '3', '4', '5')]
 
 for i in groups:
     keys.extend(
