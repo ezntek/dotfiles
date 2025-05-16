@@ -39,8 +39,8 @@ local function lsp_on_attach(_, bufnr)
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
     vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
     vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+    --vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
+    --vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
     vim.keymap.set("n", "<leader>lca", function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set("n", "<leader>lrr", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>lrn", function() vim.lsp.buf.rename() end, opts)
@@ -55,6 +55,7 @@ lsp.set_sign_icons({
     hint = '',
     info = ''
 })
+
 vim.diagnostic.config({
     signs = true
 })
@@ -74,11 +75,25 @@ lsp.format_on_save({
         ['zls'] = { 'zig' },
         ['ts_ls'] = { 'js', 'jsx', 'ts', 'tsx' },
         ['jdtls'] = { 'java' },
-        ['texlab'] = { 'tex' }
+        ['texlab'] = { 'tex' },
+        ['harper_ls'] = { 'tex', 'markdown' },
     }
 })
 
+
 local cfg = { server = { on_attach = lsp_on_attach }, capabilities = capabilities }
+
+vim.lsp.config("harper_ls", {
+    settings = {
+        ["harper-ls"] = {
+            userDictPath = "",
+            dialect = "American",
+            diagnosticSeverity = "info",
+        },
+        --filetypes = { "tex", "markdown" },
+    },
+    filetypes = { "tex", "markdown" },
+})
 
 lsp_config.pyright.setup(cfg)
 lsp_config.clangd.setup(cfg)
@@ -86,6 +101,8 @@ lsp_config.ts_ls.setup(cfg)
 lsp_config.ols.setup(cfg)
 lsp_config.zls.setup(cfg)
 lsp_config.texlab.setup(cfg)
+--cfg.filetypes = { "tex", "markdown" }
+lsp_config.harper_ls.setup(cfg)
 
 vim.g.rustaceanvim = {
     -- Plugin configuration

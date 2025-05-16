@@ -29,9 +29,14 @@ vim.keymap.set("n", "<A-up>", function() vim.cmd.wincmd "-" end)
 vim.keymap.set("n", "<A-down>", function() vim.cmd.wincmd "+" end)
 vim.keymap.set("n", "<leader>f", vim.cmd.NvimTreeOpen)
 
+vim.api.nvim_create_user_command('Q', 'q', {})
+vim.api.nvim_create_user_command('W', 'w', {})
+
 vim.filetype.add({
     pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
 })
+
+require("run") -- our magical run script
 
 local plugins = {
     {
@@ -45,6 +50,8 @@ local plugins = {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
+            "sharkdp/fd",
+            "nvim-treesitter/nvim-treesitter",
         },
     },
     {
@@ -86,6 +93,24 @@ local plugins = {
             },
             "L3MON4D3/LuaSnip",
         },
+    },
+    {
+        "L3MON4D3/LuaSnip",
+        lazy = false,
+        config = function()
+            local ls = require("luasnip")
+
+            vim.keymap.set({ "i" }, "<C-space>", function() ls.expand() end, { silent = true })
+            vim.keymap.set({ "i", "s" }, "<C-L>", function() ls.jump(1) end, { silent = true })
+            vim.keymap.set({ "i", "s" }, "<C-P>", function() ls.jump(-1) end, { silent = true })
+            vim.keymap.set({ "i", "s" }, "<C-E>", function()
+                if ls.choice_active() then
+                    ls.change_choice(1)
+                end
+            end, { silent = true })
+
+            require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/LuaSnip/" })
+        end
     },
     {
         'nvim-lualine/lualine.nvim',
@@ -212,4 +237,4 @@ local plugins = {
     }
 }
 
-require("lazy").setup(plugins, optso)
+require("lazy").setup(plugins, {})

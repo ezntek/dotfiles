@@ -27,7 +27,7 @@ input {
         // dwt
         // dwtp
         // drag-lock6
-        natural-scroll
+        //natural-scroll
         // accel-speed 0.2
         // accel-profile "flat"
         // scroll-method "two-finger"
@@ -52,6 +52,13 @@ input {
         scroll-button 274
         middle-emulation
     }
+    tablet {
+        // off
+        map-to-output "HDMI-A-1"
+        // left-handed
+        // calibration-matrix 1.0 0.0 0.0 0.0 1.0 0.0
+    }
+
 
     // Uncomment this to make the mouse warp to the center of newly focused windows.
      warp-mouse-to-focus
@@ -67,7 +74,7 @@ input {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-output "LVDS-1" {
+output "eDP-1" {
     // Uncomment this line to disable this output.
     // off
 
@@ -274,7 +281,7 @@ prefer-no-csd
 // You can change the path where screenshots are saved.
 // A ~ at the front will be expanded to the home directory.
 // The path is formatted with strftime(3) to give you the screenshot date and time.
-screenshot-path "~/Pictures/screenthots/screenshot-%Y-%m-%d-%H-%M-%S.png"
+screenshot-path "~/Pictures/screenshots/screenshot-%Y-%m-%d-%H-%M-%S.png"
 
 // You can also set this to null to disable saving screenshots to disk.
 // screenshot-path null
@@ -287,7 +294,7 @@ animations {
     // off
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
-    slowdown 1.5
+    slowdown 0.8
 }
 
 // Window rules let you adjust behavior for individual windows.
@@ -353,6 +360,8 @@ binds {
     Mod+Ctrl+space { spawn "rofimoji"; }
     Super+L { spawn "hyprlock"; }
     Mod+B { spawn "pkill" "--signal" "SIGUSR1" "waybar"; }
+    Mod+C { spawn "/home/ezntek/.local/bin/cloudflare" "on"; }
+    Mod+Shift+C { spawn "/home/ezntek/.local/bin/cloudflare" "off"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -499,14 +508,14 @@ binds {
     Mod+R { switch-preset-column-width; }
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
-    Mod+F { maximize-column; }
-    Mod+Alt+F { fullscreen-window; }
+    Mod+Alt+F { maximize-column; }
+    Mod+F { fullscreen-window; }
 
     // Expand the focused column to space not taken up by other fully visible columns.
     // Makes the column "fill the rest of the space".
     Mod+Ctrl+F { expand-column-to-available-width; }
 
-    Mod+C { center-column; }
+    Mod+Alt+C { center-column; }
 
     // Finer width adjustments.
     // This command can also:
@@ -520,8 +529,8 @@ binds {
     Mod+Ctrl+I { set-column-width "+5%"; }
 
     // Finer height adjustments when in column with other windows.
-    Mod+Ctrl+E { set-window-height "-5%"; }
-    Mod+Ctrl+U { set-window-height "+5%"; }
+    Mod+Ctrl+U { set-window-height "-5%"; }
+    Mod+Ctrl+E { set-window-height "+5%"; }
 
     // Move the focused window between the floating and the tiling layout.
     Mod+Shift+F       { toggle-window-floating; }

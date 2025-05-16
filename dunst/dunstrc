@@ -1,6 +1,6 @@
 [global]
 monitor = 1
-offset = 8x38
+offset = (8, 38)
 frame_color = "#7dc4e4"
 separator_color= frame
 font = "Cascadia Code 10"

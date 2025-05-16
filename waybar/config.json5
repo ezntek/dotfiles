@@ -1,8 +1,8 @@
 [{
-    "output": "LVDS-1",
+    "output": "eDP-1",
      "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 20, // Waybar height (to be removed for auto height)
+    "height": 24, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 0, // Gaps between modules (4px)
     "margin-left": 0,
@@ -79,7 +79,7 @@
     },
 },
 {
-    "output": "LVDS-1",
+    "output": "eDP-1",
     // "layer": "top", // Waybar at top layer
     "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 20, // Waybar height (to be removed for auto height)
@@ -130,7 +130,8 @@
     "temperature#cpu": {
         "interval": 1,
         "thermal-zone": 1,
-        "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon3/temp1_input",
+        //"hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon3/temp1_input",
+        "hwmon-path":"/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input",
         "critical-threshold": 90,
         "format-critical": "CPU {icon}{temperatureC}°C",
         "format": "CPU {icon}{temperatureC}°C",
@@ -203,7 +204,7 @@
     "margin-bottom": 0,
     "margin-top": 0,
     // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces","hyprland/window"],
+    "modules-left": ["niri/workspaces","niri/window"],
     "modules-center": [],
     "modules-right": ["tray", "pulseaudio#out", "pulseaudio#in", "clock", "clock#time"],
     // Modules configuration
