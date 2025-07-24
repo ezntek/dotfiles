@@ -22,15 +22,16 @@ input {
     // Next sections include libinput settings.
     // Omitting settings disables them, or leaves them at their default values.
     touchpad {
-        // off/
+        //off
         tap
-        // dwt
+        //drag
+        //dwt
         // dwtp
         // drag-lock6
         //natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
-        // scroll-method "two-finger"
+        accel-speed 0.2
+        //accel-profile "flat"
+        scroll-method "two-finger"
         // disabled-on-external-mouse
     }
 
@@ -54,7 +55,7 @@ input {
     }
     tablet {
         // off
-        map-to-output "HDMI-A-1"
+        map-to-output "DP-1"
         // left-handed
         // calibration-matrix 1.0 0.0 0.0 0.0 1.0 0.0
     }
@@ -66,6 +67,12 @@ input {
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
     focus-follows-mouse max-scroll-amount="0%"
+}
+
+gestures {
+    hot-corners {
+        off
+    }
 }
 
 // You can configure outputs by their name, which you can find
@@ -105,9 +112,15 @@ output "eDP-1" {
     position x=0 y=0
 }
 
+
 output "HDMI-A-1" {
+    mode "1920x1080@75"
+    position x=1920 y=300
+}
+
+output "DP-1" {
     mode "1920x1080@74.973"
-    position x=1920 y=-300
+    position x=0 y=0
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -143,7 +156,7 @@ layout {
     // preset-window-heights { }
 
     // You can change the default width of the new windows.
-    default-column-width { proportion 0.66667; }
+    default-column-width { proportion 0.5; }
     // If you leave the brackets empty, the windows themselves will decide their initial width.
     // default-column-width {}
 
@@ -263,6 +276,8 @@ hotkey-overlay {
 
 environment {
     QT_QPA_PLATFORM "wayland"
+    DISPLAY ":0"
+    QT_QPA_PLATFORMTHEME "qt6ct"
 }
 
 // Add lines like this to spawn processes at startup.
@@ -357,6 +372,8 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return { spawn "alacritty"; }
     Mod+space { spawn "rofi" "-show" "drun"; }
+    Mod+Shift+Return { spawn "firefox" ; }
+    Mod+Ctrl+Return { spawn "nautilus" ; }
     Mod+Ctrl+space { spawn "rofimoji"; }
     Super+L { spawn "hyprlock"; }
     Mod+B { spawn "pkill" "--signal" "SIGUSR1" "waybar"; }
@@ -378,6 +395,13 @@ binds {
     XF86AudioNext         allow-when-locked=true { spawn "playerctl" "next" ; }
     XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "set" "5%+"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "5%-"; }
+
+    ISO_Level3_Shift+bracketleft allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"; }
+    ISO_Level3_Shift+y  allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+    ISO_Level3_Shift+semicolon         allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    ISO_Level3_Shift+bracketright allow-when-locked=true { spawn "playerctl" "previous" ; }
+    ISO_Level3_Shift+backslash         allow-when-locked=true { spawn "playerctl" "play-pause" ; }
+    ISO_Level3_Shift+Delete allow-when-locked=true { spawn "playerctl" "next" ; }
 
     Mod+W { close-window; }
 

@@ -68,7 +68,7 @@ lsp.format_on_save({
     },
     servers = {
         ['lua_ls'] = { 'lua' },
-        ['rust_analyzer'] = { 'rust' },
+        ['rust-analyzer'] = { 'rust' },
         ['pyright'] = { 'python' },
         ['black'] = { 'python' },
         ['clangd'] = { 'c', 'cpp' },
@@ -102,7 +102,7 @@ lsp_config.ols.setup(cfg)
 lsp_config.zls.setup(cfg)
 lsp_config.texlab.setup(cfg)
 --cfg.filetypes = { "tex", "markdown" }
-lsp_config.harper_ls.setup(cfg)
+--lsp_config.harper_ls.setup(cfg)
 
 vim.g.rustaceanvim = {
     -- Plugin configuration
@@ -114,6 +114,7 @@ vim.g.rustaceanvim = {
         default_settings = {
             -- rust-analyzer language server configuration
             ['rust-analyzer'] = {
+
             },
         },
     },

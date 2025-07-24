@@ -13,6 +13,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
         os.exit(1)
     end
 end
+
+-- remap hjkl
+
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
@@ -47,19 +50,20 @@ local plugins = {
         end,
     },
     {
+
+        "nvim-treesitter/nvim-treesitter",
+        branch = 'main',
+        config = function()
+            vim.cmd [[TSUpdate]]
+        end,
+    },
+    {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "sharkdp/fd",
             "nvim-treesitter/nvim-treesitter",
         },
-    },
-    {
-
-        "nvim-treesitter/nvim-treesitter",
-        config = function()
-            vim.cmd [[TSUpdate]]
-        end,
     },
     {
         "mbbill/undotree",
@@ -214,6 +218,7 @@ local plugins = {
 
     {
         "ziglang/zig.vim",
+        lazy = false,
     },
     {
         "mfussenegger/nvim-jdtls"
@@ -234,7 +239,12 @@ local plugins = {
             }
             vim.g.vimtex_compiler_latexmk_engines = { ["_"] = '-lualatex' }
         end
-    }
+    },
+    {
+        "vyfor/cord.nvim",
+        build = ":Cord update",
+
+    },
 }
 
 require("lazy").setup(plugins, {})

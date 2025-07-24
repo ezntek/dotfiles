@@ -22,11 +22,11 @@ end
 
 local function wallpaper()
     local prefix = "/home/ezntek/Nextcloud/Pictures/wallpapers"
-    local wp = prefix .. "/debtemple.png"
-    local outputs = { "LVDS-1" }
+    local wp = prefix .. "/cathedralbridgesunset.png"
+    local outputs = { "DP-1", "HDMI-A-1" }
 
-    for _, v in ipairs(outputs) do
-        local s = string.format("swaybg -i %s -o %s", wp, v)
+    for _, output in ipairs(outputs) do
+        local s = string.format("swaybg --output %s -i %s --mode center", output, wp)
         _launch_one_bg(s)
     end
 end
@@ -45,8 +45,9 @@ end
 wallpaper()
 setup_sleep_and_lock()
 launch_bg {
-    "waybar"
+    "waybar",
+    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 }
 launch {
-
+    "xwayland-satellite"
 }
