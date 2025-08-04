@@ -102,7 +102,7 @@ lsp_config.ols.setup(cfg)
 lsp_config.zls.setup(cfg)
 lsp_config.texlab.setup(cfg)
 --cfg.filetypes = { "tex", "markdown" }
-lsp_config.harper_ls.setup(cfg)
+--lsp_config.harper_ls.setup(cfg)
 
 vim.g.rustaceanvim = {
     -- Plugin configuration
