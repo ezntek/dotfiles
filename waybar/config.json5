@@ -92,7 +92,7 @@
     // Choose the order of the modules
     "modules-left": ["network", "backlight"],
     "modules-center": [],
-    "modules-right": ["battery#external", "battery#internal", "temperature#cpu", "cpu", "memory", "power-profiles-daemon"],
+    "modules-right": ["battery#external", "temperature#cpu", "cpu", "memory", "custom/fanspeed"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,

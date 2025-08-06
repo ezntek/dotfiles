@@ -22,8 +22,8 @@ end
 
 local function wallpaper()
     local prefix = "/home/ezntek/Nextcloud/Pictures/wallpapers"
-    local wp = prefix .. "/cathedralbridgesunset.png"
-    local outputs = { "DP-1", "HDMI-A-1" }
+    local wp = prefix .. "/cathedralbridgeday.png"
+    local outputs = { "eDP-1" }
 
     for _, output in ipairs(outputs) do
         local s = string.format("swaybg --output %s -i %s --mode center", output, wp)
