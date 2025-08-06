@@ -13,9 +13,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
         os.exit(1)
     end
 end
-
--- remap hjkl
-
 vim.opt.rtp:prepend(lazypath)
 
 -- hjkl remaps
@@ -47,12 +44,13 @@ vim.keymap.set('i', '<M-i>', '<Right>')
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = ' '
-vim.cmd.set "number"
-vim.cmd.set "tabstop=8"
-vim.cmd.set "softtabstop=0"
-vim.cmd.set "expandtab"
-vim.cmd.set "shiftwidth=4"
-vim.cmd.set "smarttab"
+vim.o.number = true
+vim.o.tabstop = 4
+vim.o.softtabstop = 0
+vim.o.expandtab = true
+vim.o.shiftwidth = 4
+vim.o.smarttab = true
+
 vim.keymap.set("n", "<A-left>", function() vim.cmd.wincmd "<" end)
 vim.keymap.set("n", "<A-right>", function() vim.cmd.wincmd ">" end)
 vim.keymap.set("n", "<A-up>", function() vim.cmd.wincmd "-" end)
@@ -77,9 +75,9 @@ local plugins = {
         end,
     },
     {
-
-        "nvim-treesitter/nvim-treesitter",
-        branch = 'main',
+        'nvim-treesitter/nvim-treesitter',
+        lazy = false,
+        branch = 'master',
         config = function()
             vim.cmd [[TSUpdate]]
         end,
@@ -270,8 +268,18 @@ local plugins = {
     {
         "vyfor/cord.nvim",
         build = ":Cord update",
-
     },
+    {
+        'nvim-orgmode/orgmode',
+        event = 'VeryLazy',
+        config = function()
+            -- Setup orgmode
+            require('orgmode').setup({
+                org_agenda_files = '~/orgfiles/**/*',
+                org_default_notes_file = '~/orgfiles/refile.org',
+            })
+        end,
+    }
 }
 
 require("lazy").setup(plugins, {})

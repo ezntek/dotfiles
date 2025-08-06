@@ -55,20 +55,18 @@ require 'nvim-treesitter.configs'.setup {
     indent = { enable = true, disable = { "zig", "html", "nix" } },
 }
 
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-
-parser_config.nu = {
-    install_info = {
-        url = "https://github.com/nushell/tree-sitter-nu",
-        files = { "src/parser.c" },
-        branch = "main",
-    },
-    filetype = "nu",
-}
-
-vim.filetype.add({
+vim.filetype.add {
     extension = {
         inc = "nasm",
         s = "nasm",
     },
-})
+}
+
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.c3 = {
+    install_info = {
+        url = "https://github.com/c3lang/tree-sitter-c3",
+        files = { "src/parser.c", "src/scanner.c" },
+        branch = "main",
+    },
+}

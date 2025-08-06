@@ -380,6 +380,9 @@ binds {
     Mod+B { spawn "pkill" "--signal" "SIGUSR1" "waybar"; }
     Mod+C { spawn "/home/ezntek/.local/bin/cloudflare" "on"; }
     Mod+Shift+C { spawn "/home/ezntek/.local/bin/cloudflare" "off"; }
+    Mod+Shift+D { spawn "/home/ezntek/.local/bin/disdunst"; }
+    Mod+D { spawn "/home/ezntek/.local/bin/endunst"; }
+
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
