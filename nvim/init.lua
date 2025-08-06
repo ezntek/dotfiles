@@ -18,6 +18,33 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+-- hjkl remaps
+vim.keymap.set('n', 'h', 'h')
+vim.keymap.set('n', 'n', 'j')
+vim.keymap.set('n', 'e', 'k')
+vim.keymap.set('n', 'i', 'l')
+
+vim.keymap.set('v', 'h', 'h')
+vim.keymap.set('v', 'n', 'j')
+vim.keymap.set('v', 'e', 'k')
+vim.keymap.set('v', 'i', 'l')
+
+vim.keymap.set('o', 'h', 'h')
+vim.keymap.set('o', 'n', 'j')
+vim.keymap.set('o', 'e', 'k')
+vim.keymap.set('o', 'i', 'l')
+
+vim.keymap.set('n', '<M-i>', 'i')
+vim.keymap.set('n', '<M-e>', 'e')
+vim.keymap.set('v', '<M-e>', 'e')
+vim.keymap.set('o', '<M-e>', 'e')
+
+vim.keymap.set('i', '<M-h>', '<Left>')
+vim.keymap.set('i', '<M-n>', '<Down>')
+vim.keymap.set('i', '<M-e>', '<Up>')
+vim.keymap.set('i', '<M-i>', '<Right>')
+
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = ' '
 vim.cmd.set "number"
