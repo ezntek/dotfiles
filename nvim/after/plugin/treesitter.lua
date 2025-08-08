@@ -9,6 +9,8 @@ require 'nvim-treesitter.configs'.setup {
         -- user added
         "rust",
         "python",
+        "zig",
+        "nasm",
     },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -50,16 +52,21 @@ require 'nvim-treesitter.configs'.setup {
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
     },
-    indent = { enable = true },
+    indent = { enable = true, disable = { "zig", "html", "nix" } },
 }
 
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+vim.filetype.add {
+    extension = {
+        inc = "nasm",
+        s = "nasm",
+    },
+}
 
-parser_config.nu = {
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.c3 = {
     install_info = {
-        url = "https://github.com/nushell/tree-sitter-nu",
-        files = { "src/parser.c" },
+        url = "https://github.com/c3lang/tree-sitter-c3",
+        files = { "src/parser.c", "src/scanner.c" },
         branch = "main",
     },
-    filetype = "nu",
 }

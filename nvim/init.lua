@@ -15,14 +15,42 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- hjkl remaps
+vim.keymap.set('n', 'h', 'h')
+vim.keymap.set('n', 'n', 'j')
+vim.keymap.set('n', 'e', 'k')
+vim.keymap.set('n', 'i', 'l')
+
+vim.keymap.set('v', 'h', 'h')
+vim.keymap.set('v', 'n', 'j')
+vim.keymap.set('v', 'e', 'k')
+vim.keymap.set('v', 'i', 'l')
+
+vim.keymap.set('o', 'h', 'h')
+vim.keymap.set('o', 'n', 'j')
+vim.keymap.set('o', 'e', 'k')
+vim.keymap.set('o', 'i', 'l')
+
+vim.keymap.set('n', '<M-i>', 'i')
+vim.keymap.set('n', '<M-e>', 'e')
+vim.keymap.set('v', '<M-e>', 'e')
+vim.keymap.set('o', '<M-e>', 'e')
+
+vim.keymap.set('i', '<M-h>', '<Left>')
+vim.keymap.set('i', '<M-n>', '<Down>')
+vim.keymap.set('i', '<M-e>', '<Up>')
+vim.keymap.set('i', '<M-i>', '<Right>')
+
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = ' '
-vim.cmd.set "number"
-vim.cmd.set "tabstop=8"
-vim.cmd.set "softtabstop=0"
-vim.cmd.set "expandtab"
-vim.cmd.set "shiftwidth=4"
-vim.cmd.set "smarttab"
+vim.o.number = true
+vim.o.tabstop = 4
+vim.o.softtabstop = 0
+vim.o.expandtab = true
+vim.o.shiftwidth = 4
+vim.o.smarttab = true
+
 vim.keymap.set("n", "<A-left>", function() vim.cmd.wincmd "<" end)
 vim.keymap.set("n", "<A-right>", function() vim.cmd.wincmd ">" end)
 vim.keymap.set("n", "<A-up>", function() vim.cmd.wincmd "-" end)
@@ -47,19 +75,20 @@ local plugins = {
         end,
     },
     {
+        'nvim-treesitter/nvim-treesitter',
+        lazy = false,
+        branch = 'master',
+        config = function()
+            vim.cmd [[TSUpdate]]
+        end,
+    },
+    {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "sharkdp/fd",
             "nvim-treesitter/nvim-treesitter",
         },
-    },
-    {
-
-        "nvim-treesitter/nvim-treesitter",
-        config = function()
-            vim.cmd [[TSUpdate]]
-        end,
     },
     {
         "mbbill/undotree",
@@ -214,6 +243,7 @@ local plugins = {
 
     {
         "ziglang/zig.vim",
+        lazy = false,
     },
     {
         "mfussenegger/nvim-jdtls"
@@ -234,6 +264,21 @@ local plugins = {
             }
             vim.g.vimtex_compiler_latexmk_engines = { ["_"] = '-lualatex' }
         end
+    },
+    {
+        "vyfor/cord.nvim",
+        build = ":Cord update",
+    },
+    {
+        'nvim-orgmode/orgmode',
+        event = 'VeryLazy',
+        config = function()
+            -- Setup orgmode
+            require('orgmode').setup({
+                org_agenda_files = '~/Documents/orgfiles/**/*',
+                org_default_notes_file = '~/Documents/orgfiles/refile.org',
+            })
+        end,
     }
 }
 

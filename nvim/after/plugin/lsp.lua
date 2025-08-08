@@ -68,7 +68,7 @@ lsp.format_on_save({
     },
     servers = {
         ['lua_ls'] = { 'lua' },
-        ['rust_analyzer'] = { 'rust' },
+        ['rust-analyzer'] = { 'rust' },
         ['pyright'] = { 'python' },
         ['black'] = { 'python' },
         ['clangd'] = { 'c', 'cpp' },
@@ -114,6 +114,7 @@ vim.g.rustaceanvim = {
         default_settings = {
             -- rust-analyzer language server configuration
             ['rust-analyzer'] = {
+
             },
         },
     },

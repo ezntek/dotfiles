@@ -57,3 +57,10 @@ vim.api.nvim_create_user_command("Run", function(opts)
 
     vim.api.nvim_win_set_buf(curwin, curbuf)
 end, { nargs = "+", desc = "run a command in a terminal buffer", complete = 'shellcmd' })
+
+vim.keymap.set('n', "<leader>r", function()
+    local args = vim.fn.input({ prompt = "run: " })
+    if args ~= "" then
+        vim.cmd("Run " .. args)
+    end
+end, { desc = "prompt for args and :Run it" })
