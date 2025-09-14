@@ -376,7 +376,7 @@ binds {
     Mod+Shift+Return { spawn "firefox" ; }
     Mod+Ctrl+Return { spawn "nautilus" ; }
     Mod+Ctrl+space { spawn "rofimoji"; }
-    Super+L { spawn "hyprlock"; }
+    Super+L { spawn "swaylock"; }
     Mod+B { spawn "pkill" "--signal" "SIGUSR1" "waybar"; }
     Mod+C { spawn "/home/ezntek/.local/bin/cloudflare" "on"; }
     Mod+Shift+C { spawn "/home/ezntek/.local/bin/cloudflare" "off"; }

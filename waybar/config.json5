@@ -1,5 +1,5 @@
 [{
-    "output": "DP-1",
+    "output": "eDP-1",
      "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 24, // Waybar height (to be removed for auto height)
@@ -12,7 +12,7 @@
     // Choose the order of the modules
     "modules-left": ["niri/workspaces","niri/window"],
     "modules-center": [],
-    "modules-right": ["tray", "pulseaudio#out", "pulseaudio#in", "clock", "clock#time"],
+    "modules-right": ["tray", "wireplumber#out", "wireplumber#in", "clock", "clock#time"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -50,7 +50,7 @@
         "timezone": "Asia/Singapore",
         "format": "  {:%H:%M:%S}",
     },
-    "pulseaudio#out": {
+    "wireplumber#out": {
         // "scroll-step": 1, // %, can be a fcoat
         "format": "{icon} {volume}%",
         "format-bluetooth": "{volume}% {icon}",
@@ -67,7 +67,7 @@
         },
         "on-click": "pavucontrol"
     },
-    "pulseaudio#in": {
+    "wireplumber#in": {
         // "scroll-step": 1, // %, can be a fcoat
         "format": "{format_source}",
         "format-bluetooth": "{format_source}",
@@ -79,7 +79,7 @@
     },
 },
 {
-    "output": "DP-1",
+    "output": "eDP-1",
     // "layer": "top", // Waybar at top layer
     "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 20, // Waybar height (to be removed for auto height)
@@ -147,21 +147,12 @@
         "format-critical": "GPU {icon}{temperatureC}°C",
         "format-icons": [" ", " ", " "]
     },
-    "battery#internal": {
-        "bat": "BAT0",
-	"interval": 1,
-	"format-time": "{H}h{m}m",
-	"format": " int {capacity}% ({time})",
-        "states": {
-            "warning": 20,
-            "critical": 10,
-        },
-    },
     "battery#external": {
-        "bat": "BAT1",
-	"interval": 1,
-	"format-time": "{H}h{m}m",
-	"format": " ext {capacity}% ({time})",
+        "bat": "BAT0",
+        "interval": 1,
+        "format-time": "{H}h{m}m",
+        "format": "{icon}ext {capacity}% ({time} {power:.1f}W)",
+        "format-icons": ["", "", "", "", ""],
         "states": {
             "warning": 20,
             "critical": 10,

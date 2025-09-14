@@ -2,7 +2,7 @@
 
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: "Cascadia Code NF", "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 6 Solid";
+    font-family: "IBM Plex Mono", "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 6 Solid";
     font-size: 13px;
 }
 
@@ -215,6 +215,17 @@ label:focus {
 
 #wireplumber.muted {
     background-color: #f53c3c;
+}
+
+#wireplumber.out {
+    background-color: @base;
+    padding: 0 12;
+    color: @text;
+}
+
+#wireplumber.muted {
+    background-color: #8bd5ca;
+    color: #2a5c45;
 }
 
 #custom-media {
