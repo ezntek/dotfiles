@@ -16,7 +16,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- hjkl remaps
-vim.keymap.set({"n", 'v', 'o'}, '<C-n>', 'n')
+vim.keymap.set({ "n", 'v', 'o' }, '<C-n>', 'n')
 vim.keymap.set('n', 'h', 'h')
 vim.keymap.set('n', 'n', 'j')
 vim.keymap.set('n', 'e', 'k')
@@ -280,6 +280,10 @@ local plugins = {
                 org_default_notes_file = '~/orgfiles/refile.org',
             })
         end,
+    },
+    {
+        'fedorenchik/fasm.vim',
+        lazy = false,
     }
 }
 

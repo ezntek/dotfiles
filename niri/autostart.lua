@@ -22,22 +22,22 @@ end
 
 local function wallpaper()
     local prefix = "/home/ezntek/Nextcloud/Pictures/wallpapers"
-    local wp = prefix .. "/udon_light.png"
-    local outputs = { "eDP-1" }
+    local wp = prefix .. "/korihasiph_park_light.png"
+    local outputs = { "eDP-1", "HDMI-A-1" }
 
     for _, output in ipairs(outputs) do
-        local s = string.format("swaybg --output %s -i %s --mode center", output, wp)
+        local s = string.format("swaybg --output %s -i %s --mode fill", output, wp)
         _launch_one_bg(s)
     end
 end
 
 local function setup_sleep_and_lock()
     local timeout = 300
-    local locker = "swaylock"
+    local locker = "swaylock -f"
     local s = string.format(
-        "swayidle -w timeout %d \"%s\" before-sleep \"%s\"",
+        "swayidle -w timeout %d \"%s\" timeout %d \"niri msg action power-off-monitors\" before-sleep \"%s\"",
         timeout,
-        locker, locker)
+        locker, timeout, locker)
     _launch_one_bg(s)
 end
 
@@ -45,8 +45,11 @@ wallpaper()
 setup_sleep_and_lock()
 launch_bg {
     "waybar",
-    "/usr/lib/polkit-gnome/polkit-mate-authentication-agent-1",
+    "/usr/libexec/polkit-gnome-authentication-agent-1",
+    "/usr/lib/xdg-desktop-portal-gtk",
     "gnome-keyring-daemon",
+    "pipewire",
+    "dunst",
 }
 launch {
     "xwayland-satellite",
