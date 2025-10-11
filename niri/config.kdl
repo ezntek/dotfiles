@@ -114,12 +114,12 @@ output "eDP-1" {
 
 
 output "HDMI-A-1" {
-    mode "1920x1080@75"
+    mode "1920x1080@60"
     position x=1920 y=300
 }
 
 output "DP-1" {
-    mode "1920x1080@74.973"
+    mode "1920x1080@60"
     position x=0 y=0
 }
 
@@ -310,7 +310,7 @@ animations {
     // off
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
-    slowdown 0.8
+    slowdown 0.2
 }
 
 // Window rules let you adjust behavior for individual windows.
@@ -382,7 +382,7 @@ binds {
     Mod+Shift+C { spawn "/home/ezntek/.local/bin/cloudflare" "off"; }
     Mod+Shift+D { spawn "/home/ezntek/.local/bin/disdunst"; }
     Mod+D { spawn "/home/ezntek/.local/bin/endunst"; }
-
+    Mod+Z { spawn "wooz" ; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.

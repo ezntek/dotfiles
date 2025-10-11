@@ -16,6 +16,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- hjkl remaps
+vim.keymap.set({ 'n', 'x', 'o' }, '<C-n>', 'n')
+vim.keymap.set({ 'n', 'x', 'o' }, '<C-S-n>', 'N')
+
 vim.keymap.set('n', 'h', 'h')
 vim.keymap.set('n', 'n', 'j')
 vim.keymap.set('n', 'e', 'k')
@@ -32,7 +35,6 @@ vim.keymap.set('o', 'e', 'k')
 vim.keymap.set('o', 'i', 'l')
 
 vim.keymap.set('n', '<M-i>', 'i')
-vim.keymap.set('n', '<M-e>', 'e')
 vim.keymap.set('v', '<M-e>', 'e')
 vim.keymap.set('o', '<M-e>', 'e')
 

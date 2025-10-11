@@ -1,4 +1,3 @@
-local lsp_config = require 'lspconfig'
 local cmp = require 'cmp'
 local lsp = require("lsp-zero").preset {
     suggest_lsp_servers = false,
@@ -28,7 +27,7 @@ cmp.setup {
 }
 
 -- lua neovim config fixes
-lsp_config.lua_ls.setup(lsp.nvim_lua_ls())
+--lsp_config.lua_ls.setup(lsp.nvim_lua_ls())
 
 local function lsp_on_attach(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
@@ -76,6 +75,7 @@ lsp.format_on_save({
         ['ts_ls'] = { 'js', 'jsx', 'ts', 'tsx' },
         ['jdtls'] = { 'java' },
         ['texlab'] = { 'tex' },
+        ['serve-d'] = { 'd' },
         ['harper_ls'] = { 'tex', 'markdown' },
     }
 })
@@ -95,12 +95,20 @@ vim.lsp.config("harper_ls", {
     filetypes = { "tex", "markdown" },
 })
 
-lsp_config.pyright.setup(cfg)
-lsp_config.clangd.setup(cfg)
-lsp_config.ts_ls.setup(cfg)
-lsp_config.ols.setup(cfg)
-lsp_config.zls.setup(cfg)
-lsp_config.texlab.setup(cfg)
+local lsps = {
+    "pyright",
+    "clangd",
+    "ts_ls",
+    "ols",
+    "zls",
+    "serve_d",
+}
+
+for _, l in ipairs(lsps) do
+    vim.lsp.enable(l)
+    vim.lsp.config(l, cfg)
+end
+
 --cfg.filetypes = { "tex", "markdown" }
 --lsp_config.harper_ls.setup(cfg)
 
