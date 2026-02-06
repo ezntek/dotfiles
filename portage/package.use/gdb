@@ -1,0 +1,2 @@
+dev-libs/elfutils debuginfod
+dev-debug/gdb source-highlight debuginfod

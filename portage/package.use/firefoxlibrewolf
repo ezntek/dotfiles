@@ -1,0 +1,2 @@
+www-client/firefox clang jumbo-build pulseaudio -telemetry -sndio
+www-client/librewolf clang jumbo-build pulseaudio -telemetry -sndio

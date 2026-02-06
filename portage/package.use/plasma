@@ -1,0 +1,6 @@
+kde-plasma/plasma-meta browser-integration crash-handler display-manager elogind firewall kwallet networkmanager sddm smart wallpapers bluetooth crypt cups discover -oxygen-theme -plymouth thunderbolt 
+dev-qt/qtpositioning geoclue
+media-plugins/gst-plugins-meta theora v4l
+media-libs/gst-plugins-base theora
+x11-base/xorg-server xvfb
+*/* -webengine

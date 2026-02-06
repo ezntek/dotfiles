@@ -1,0 +1,3 @@
+app-office/libreoffice googledrive gstreamer java kde odk qt6 -base
+app-office/libreoffice-bin python jvaa
+sys-libs/zlib minizip

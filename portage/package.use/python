@@ -1,0 +1,4 @@
+>=dev-lang/python-3.14.0:* libedit jit tail-call-interp
+>=dev-lang/python-3.14.0:*  LLVM_SLOT: 21
+#dev-python/pipx  PYTHON_TARGETS: pypy3_11 python3_13
+#*/*  PYTHON_TARGETS: pypy3_11 python3_13

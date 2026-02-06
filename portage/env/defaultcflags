@@ -1,0 +1,6 @@
+COMMON_FLAGS="-O2 -pipe -march=arrowlake -mabm -mno-kl -mno-pconfig -mno-sgx -mno-widekl -mshstk -mwbnoinvd --param=l1-cache-line-size=64 --param=l1-cache-size=32 --param=l2-cache-size=24576"
+CFLAGS="${COMMON_FLAGS}"
+CXXFLAGS="${COMMON_FLAGS}"
+FCFLAGS="${COMMON_FLAGS}"
+FFLAGS="${COMMON_FLAGS}"
+#MAKEOPTS="-j4 -l1"

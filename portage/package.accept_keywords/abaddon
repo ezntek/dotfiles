@@ -1,0 +1,3 @@
+dev-libs/miniaudio ~amd64
+net-libs/ixwebsocket ~amd64
+net-im/abaddon ~amd64

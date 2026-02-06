@@ -1,0 +1,3 @@
+dev-util/dlang-tools ~amd64
+app-eselect/eselect-dlang ~amd64
+dev-lang/dmd ~amd64

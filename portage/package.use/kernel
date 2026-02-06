@@ -1,0 +1,8 @@
+# required by sys-boot/os-prober-1.82::gentoo
+# required by os-prober (argument)
+>=sys-boot/grub-2.12-r7 mount
+# required by sys-kernel/gentoo-kernel-bin-6.12.58::gentoo[-generic-uki,initramfs]
+# required by virtual/dist-kernel-6.12.58::gentoo
+>=sys-kernel/installkernel-60 dracut
+
+
