@@ -77,12 +77,14 @@ local plugins = {
         end,
     },
     {
+        "azratul/live-share.nvim",
+    },
+    {
         'nvim-treesitter/nvim-treesitter',
+        --branch = "master",
+        --branch = "main",
         lazy = false,
-        branch = 'master',
-        config = function()
-            vim.cmd [[TSUpdate]]
-        end,
+        build = ":TSUpdate"
     },
     {
         "nvim-telescope/telescope.nvim",
@@ -96,12 +98,6 @@ local plugins = {
         "mbbill/undotree",
         config = function()
             vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
-        end,
-    },
-    {
-        "tpope/vim-fugitive",
-        config = function()
-            vim.keymap.set("n", "<leader>g", vim.cmd.Git)
         end,
     },
     {
@@ -242,20 +238,11 @@ local plugins = {
             },
         },
     },
-
-    {
-        "ziglang/zig.vim",
-        lazy = false,
-    },
-    {
-        "mfussenegger/nvim-jdtls"
-    },
     {
         "lervag/vimtex",
-        lazy = false, -- we don't want to lazy load VimTeX
-        -- tag = "v2.15", -- uncomment to pin to a specific release
+        lazy = false,
         init = function()
-            -- VimTeX configuration goes here, e.g.
+            vim.g.vimtex_syntax_enabled = 0
             vim.g.vimtex_view_method = "general"
             vim.g.vimtex_compiler_method = "latexmk"
             vim.g.vimtex_compiler_clean_paths = { '_minted*' }
@@ -265,22 +252,21 @@ local plugins = {
                 }
             }
             vim.g.vimtex_compiler_latexmk_engines = { ["_"] = '-lualatex' }
-        end
+        end,
+    },
+    {
+        "ziglang/zig.vim",
+        lazy = false,
+    },
+    {
+        "mfussenegger/nvim-jdtls"
     },
     {
         "vyfor/cord.nvim",
         build = ":Cord update",
     },
     {
-        'nvim-orgmode/orgmode',
-        event = 'VeryLazy',
-        config = function()
-            -- Setup orgmode
-            require('orgmode').setup({
-                org_agenda_files = '~/orgfiles/**/*',
-                org_default_notes_file = '~/orgfiles/refile.org',
-            })
-        end,
+        "marekmaskarinec/vim-umka",
     }
 }
 
