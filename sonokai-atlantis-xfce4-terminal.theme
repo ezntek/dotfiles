@@ -1,0 +1,12 @@
+[Scheme]
+Name=Sonokai-Atlantis
+ColorCursor=#181a1c
+ColorCursorForeground=#e1e3e4
+ColorCursorUseDefault=FALSE
+ColorForeground=#e1e3e4
+ColorBackground=#2a2f38
+ColorSelectionBackground=#5a6477
+ColorSelection=#e1e3e4
+ColorSelectionUseDefault=FALSE
+TabActivityColor=#55393d
+ColorPalette=#333846;#55393d;#394634;#4e432f;#354157;#434058;#354157;#828a9a;#2a2f38;#ff6578;#9dd274;#eacb64;#72cce8;#ba9cf3;#7ad5f1;#e1e3e4

@@ -72,8 +72,17 @@ local plugins = {
     {
         "catppuccin/nvim",
         lazy = false,
+        ---config = function()
+        ---    vim.cmd [[colorscheme catppuccin-macchiato]]
+        ---end,
+    },
+    {
+        "sainnhe/sonokai",
+        lazy = false,
         config = function()
-            vim.cmd [[colorscheme catppuccin-macchiato]]
+            vim.g["sonokai_style"] = "andromeda"
+            vim.g["sonokai_better_performance"] = 1
+            vim.cmd [[colorscheme sonokai]]
         end,
     },
     {
