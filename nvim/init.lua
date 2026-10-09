@@ -72,17 +72,17 @@ local plugins = {
     {
         "catppuccin/nvim",
         lazy = false,
-        ---config = function()
-        ---    vim.cmd [[colorscheme catppuccin-macchiato]]
-        ---end,
+        config = function()
+            vim.cmd [[colorscheme catppuccin-macchiato]]
+        end,
     },
     {
         "sainnhe/sonokai",
         lazy = false,
         config = function()
-            vim.g["sonokai_style"] = "andromeda"
-            vim.g["sonokai_better_performance"] = 1
-            vim.cmd [[colorscheme sonokai]]
+        --- vim.g["sonokai_style"] = "andromeda"
+        --- vim.g["sonokai_better_performance"] = 1
+        --- vim.cmd [[colorscheme sonokai]]
         end,
     },
     {
@@ -91,7 +91,8 @@ local plugins = {
     {
         'nvim-treesitter/nvim-treesitter',
         --branch = "master",
-        --branch = "main",
+        branch = "main",
+        commit = "544320a",
         lazy = false,
         build = ":TSUpdate"
     },

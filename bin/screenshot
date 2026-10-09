@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+import subprocess
+import datetime
+
+PREFIX = "/home/ezntek/Nextcloud/Pictures/screenshots"
+
+tm = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
+filepath = os.path.join(PREFIX, f"Screenshot-{tm}.png")
+fullscreen = False
+if len(sys.argv) > 1:
+    if sys.argv[1] == "fs":
+        fullscreen = True
+cmd = ["xfce4-screenshooter", "-f" if fullscreen else "-r", "-s"]
+
+cmd.append(filepath)
+
+subprocess.run(cmd)
+subprocess.run(["xclip", "-selection", "clipboard", "-target", "image/png", "-i", filepath])
+subprocess.run(["notify-send", "screenshot", ("took screenshot" if not fullscreen else "took fullscreen screenshot")])

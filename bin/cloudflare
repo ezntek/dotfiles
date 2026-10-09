@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+
+import sys
+import subprocess
+
+def main():
+    if len(sys.argv) == 1:
+        print("not enough args")
+        sys.exit(1)
+
+    enable = sys.argv[1].lower() == "on"
+    newstate = "disconnect" if not enable else "connect"
+
+    subprocess.run(f"warp-cli {newstate}", shell=True)
+    subprocess.run(f"notify-send \"cloudflare\" \"turned cloudflare {sys.argv[1].lower()}\"", shell=True)
+
+if __name__ == "__main__":
+    main()

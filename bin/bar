@@ -1,0 +1,216 @@
+#!/usr/bin/env python3
+
+import subprocess
+import time
+
+from io import TextIOWrapper
+from datetime import datetime
+
+TEMP_HWMON = "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon3/temp1_input"
+PREFIX = "["
+POSTFIX = "]"
+
+class Widget:    
+    def __init__(self):
+        self.internal_prefix = ""
+        self.internal_postfix = ""
+
+    def __del__(self):
+        pass
+
+    def update(self):
+        pass
+
+    def display(self) -> str:
+        return f"{PREFIX}{self.internal_prefix}{self.__repr__()}{self.internal_postfix}{POSTFIX}"    
+    
+    def __repr__(self) -> str:
+        return ""
+
+class CpuTemp(Widget):
+    file: TextIOWrapper
+
+    def __init__(self):
+        super().__init__()
+        self.file = open(TEMP_HWMON, "r")
+        self.internal_prefix = "T "
+        self.internal_postfix = "°C"
+
+    def __del__(self):
+        self.file.close()
+
+    def __repr__(self) -> str:
+        temp_f = self.file.read()
+        self.file.seek(0)
+        temp = int(temp_f) // 1000
+        return str(temp)
+
+class BsdCpuTemp(Widget):
+    def __init__(self):
+        super().__init__()
+        self.internal_prefix = "T "
+        self.internal_postfix = "°C"
+
+    def __repr__(self) -> str:
+        output = subprocess.check_output("sysctl hw.sensors.cpu0.temp0", shell=True, text=True)
+        return output[22:-9]
+        
+class Memory(Widget):
+    file: TextIOWrapper
+
+    def __init__(self):
+        super().__init__()
+        self.file = open("/proc/meminfo", "r")
+        self.internal_prefix = "M "
+        self.internal_postfix = "%"
+
+    def __del__(self):
+        self.file.close()
+
+    def decode(self) -> dict[str, int]:
+        file = self.file.read()
+        self.file.seek(0)
+        file_split = file.split('\n')
+
+        res: dict[str, int] = {}
+        for s in file_split:
+            s_split = s.split(':')
+            if s_split[0] == '':
+                break   
+
+            key = s_split[0].strip()
+            value = s_split[1].strip()
+            res[str(key)] = int(value[:-3]) if value[:-3] != '' else int(value)
+        return res
+    
+    def __repr__(self) -> str:
+        mem_info = self.decode()
+        total = mem_info["MemTotal"]
+        used = total - mem_info["MemAvailable"]
+        percent = int(used*100/total)
+        return str(percent)
+
+class BsdMemory(Widget):
+    def __init__(self):
+        super().__init__()
+        self.internal_prefix = "M "
+        self.internal_postfix = "%"
+
+    def __repr__(self) -> str:
+        vmstat_out = subprocess.check_output("vmstat | sed 1d | sed 1d", shell=True, text=True).strip().split(' ')
+        vmstat_split = []
+        for itm in vmstat_out:
+            if itm != '':
+                vmstat_split.append(itm)
+        usedmem = int(vmstat_split[2][:-1])
+        freemem = int(vmstat_split[3][:-1])
+        return str(usedmem*100//(usedmem+freemem))
+
+class Volume(Widget):
+    def __init__(self):
+        super().__init__()
+        self.internal_prefix = "V "
+
+    def __repr__(self) -> str:
+        return subprocess.check_output(["pamixer", "--get-volume-human"], text=True).strip()
+
+class BsdVolume(Widget):
+    def __init__(self):
+        super().__init__()
+        self.internal_prefix = "V "
+        self.internal_postfix = "%"
+
+    def __repr__(self) -> str:
+        output_lvl = subprocess.check_output("sndioctl output.level", shell=True, text=True)
+        output_lvl = float(output_lvl[14:])
+        output_lvl = int(output_lvl * 100)
+        return str(output_lvl)
+
+
+class Cpu(Widget):
+    def __init__(self):
+        super().__init__()
+        self.internal_prefix = "C "
+
+    def __repr__(self) -> str:
+        #return subprocess.check_output("top -bn1 | grep Cpu | awk '{print $2}'", shell=True, text=True).strip()
+        return subprocess.check_output("top -bn1 | grep CPUs | awk '{print $3}' | sed 2d", shell=True, text=True).strip()
+
+class Time(Widget):
+    def __init__(self):
+        super().__init__()
+
+    def __repr__(self) -> str:
+        return datetime.now().strftime("%H:%M:%S")
+
+class Date(Widget):
+    def __repr__(self) -> str:
+        return datetime.now().strftime("%A, %d %B")
+
+class BsdBattery(Widget):
+    def __init__(self):
+        super().__init__()
+        self.internal_prefix = "B "
+        self.internal_postfix = "%"
+
+    def __repr__(self) -> str:
+        percent = subprocess.check_output(["apm", "-l"], text=True).strip()
+        batstat = int(subprocess.check_output(["apm", "-b"], text=True).strip())
+        if batstat == 3:
+            self.internal_prefix = "B(+) "
+        elif batstat == 255:
+            self.internal_prefix = "B(?) "
+        else:
+            self.internal_prefix = "B(-) "
+
+        return f"{percent}"
+
+class Battery(Widget):
+    def __init__(self):
+        super().__init__()
+        self.uevent = {}
+        self.parse_uevent()
+        self.internal_prefix = "B "
+
+    def parse_uevent(self):
+        uevent = ""
+        with open("/sys/class/power_supply/BAT0/uevent", "r") as f:
+            uevent = f.read()
+        lines = [line for line in uevent.split('\n')]
+        
+        for line in lines:
+            if '=' not in line:
+                continue
+            split_line = line.split('=')
+            self.uevent[split_line[0][13:].lower()] = split_line[1]
+
+    def __repr__(self) -> str:
+        self.parse_uevent()
+        
+        match self.uevent['status']:
+            case 'Charging':
+                self.internal_prefix = 'B(+)'
+            case 'Discharging':
+                self.internal_prefix = 'B(-)'
+            case 'Not charging':
+                self.internal_prefix = 'B(n)'
+            case _:
+                self.internal_prefix = 'B(?)'
+
+        #time_raw = subprocess.check_output('acpi', shell=True, text=True)
+        #time = time_raw.split(',')[2]
+        #time = time[:-14].strip()
+
+        return f" {self.uevent['capacity']}%"
+        
+
+
+WIDGETS = [BsdVolume(), BsdBattery(), BsdCpuTemp(), BsdMemory(), Date(), Time()]
+while True:
+    buf = ""
+    for i, widget in enumerate(WIDGETS):
+        buf += widget.display()
+        if i != len(WIDGETS)-1:
+            buf += " "
+    subprocess.run(["xsetroot", "-name", buf])
+    time.sleep(1)

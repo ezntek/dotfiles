@@ -1,4 +1,4 @@
-from qtile_extras.widget.decorations import *
+from qtile_extras.widget.decorations import RectDecoration
 
 DECORATIONS_R = {
     "decorations": [
@@ -6,7 +6,7 @@ DECORATIONS_R = {
         #RectDecoration(line_width=3, colour="#cba6f7", padding=3, radius=17),
     ],
     "foreground": "#cdd6f4", 
-    "font": "JetBrainsMono Nerd Font",
+    "font": "Iosevka",
     "fontsize": 13,
 }
 
@@ -16,7 +16,7 @@ DECORATIONS_L = {
         #RectDecoration(line_width=3, colour="#cba6f7", padding=3, radius=17),
     ],
     "foreground": "#cdd4f4",
-    "font": "JetBrainsMono Nerd Font",
+    "font": "Iosevka",
     "fontsize": 13,
 }
 

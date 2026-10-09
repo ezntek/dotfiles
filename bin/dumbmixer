@@ -1,0 +1,84 @@
+#!/usr/bin/env python3
+# Dumbmixer: a really dumb volume mixer (a sndioctl wrapper lol)
+# This source code form is licensed under the MIT license.
+
+import sys
+import subprocess
+
+def sndioctl(argv):
+    return subprocess.check_output(["sndioctl"]+argv, text=True)
+
+def getvol(output="output"):
+    cmdoutput = sndioctl([output+".level"])
+    vol = cmdoutput[len(output)+len(".level="):]
+    return float(vol)
+
+def raisevol(amt=5, output="output"):
+    vol = getvol(output)
+    amt = int(amt)/100
+    newvol = vol+amt
+    if newvol < 0:
+        newvol = 0
+    sndioctl([f"{output}.level={str(newvol)}"])
+
+def lowervol(amt=5, output="output"):
+    raisevol(amt=-1*int(amt))
+
+def togglemute(output="output"):
+    propname = f"{output}.mute"
+    cmdoutput = sndioctl([propname])
+    cmdoutput = cmdoutput[len(propname)+1:].strip()
+    if cmdoutput == '0':
+        sndioctl([f"{propname}=1"])
+    else:
+        sndioctl([f"{propname}=0"])
+
+
+def help():
+    helptxt = """
+    dumbmixer: a very dumb mixer for OpenBSD
+    usage: dumbmixer [action] <key=value>
+    """
+    print(helptxt)
+
+CMDS = {
+    "raisevol": raisevol,
+    "lowervol": lowervol,    
+    "togglemute": togglemute,
+    "help": help,
+}
+
+def main():
+    if len(sys.argv) == 1:
+        print("\033[1m-> no arguments supplied\033[0m", file=sys.stderr)
+        print(sndioctl([]))
+        return
+    
+    action = sys.argv[1].strip().lower()
+    argd = {}
+
+    for option in sys.argv[2:]:
+        option_split = option.split('=')
+
+        if len(option_split) != 2:
+            continue
+
+        [key, value] = option_split
+        key.strip().lower()
+        value.strip().lower()
+        argd[key] = value
+
+    try:
+        cmdf = CMDS[action]
+    except KeyError:
+        print(f"\033[1m-> invalid action {action}\033[0m", file=sys.stderr)
+        sys.exit(1)
+
+    try:
+        cmdf(**argd)
+    except TypeError as e:
+        print(f"\033[1m-> found invalid key in option list\033[0m")
+        raise e
+
+if __name__ == "__main__":
+    main()
