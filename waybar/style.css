@@ -2,8 +2,8 @@
 
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: "Cascadia Code NF", "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 6 Solid";
-    font-size: 13px;
+    font-family: "Iosevka Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 6 Solid";
+    font-size: 15px;
 }
 
 window#waybar {
@@ -56,8 +56,8 @@ button:hover {
     background: @surface0;
 }
 
-#workspaces button.focused {
-    color: @sapphire;
+#workspaces button.active {
+    color: @mauve;
 }
 
 #workspaces button.urgent {
@@ -67,6 +67,7 @@ button:hover {
 #workspaces button.persistent {
     color: @surface2;
 }
+
 #mode {
     background-color: #64727D;
     border-bottom: 2px solid #ffffff;
@@ -87,19 +88,19 @@ button:hover {
 #scratchpad,
 
 #window {
-    padding: 0 12;
+    padding: 0px 12px;
     background-color: @base;
     color: @text
 }
 
 #power-profiles-daemon {
-    padding: 0 12;
+    padding: 0px 12px;
     color: @text;
     background-color: @mantle;
 }
 
 #custom-fanspeed {
-    padding: 0 12;
+    padding: 0px 12px;
     color: @text;
     background-color: @base;
 }
@@ -120,13 +121,13 @@ button:hover {
 }
 
 #clock {
-    padding: 0 12;
+    padding: 0px 12px;
     background-color: @base;
     color: @text;
 }
 
 #clock.time {
-    padding: 0 12;
+    padding: 0px 12px;
     background-color: @mantle;
     color: @text;
 }
@@ -193,13 +194,13 @@ label:focus {
 
 #pulseaudio {
     background-color: @mantle;
-    padding: 0 12;
+    padding: 0px 12px;
     color: @text;
 }
 
 #pulseaudio.out {
     background-color: @base;
-    padding: 0 12;
+    padding: 0px 12px;
     color: @text;
 }
 
@@ -240,7 +241,7 @@ label:focus {
 }
 
 #tray {
-    padding: 0 12;
+    padding: 0px 12px;
     background-color: @mantle;
 }
 

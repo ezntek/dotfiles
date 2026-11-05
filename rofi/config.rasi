@@ -1,7 +1,7 @@
 @theme "catppuccin"
 configuration {
 	modes: "window,drun,run";
-    font: "Iosevka 14";
+    font: "Iosevka 16";
     terminal: "alacritty";
     show-icons: true;
 /*	font: "mono 12";*/

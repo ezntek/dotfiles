@@ -29,6 +29,7 @@ local function new()
         ["toml"] = "toml",
         ["yaml"] = "yaml",
         ["xml"] = "xml",
+        ["meson"] = "meson",
     }
 
     ts.install(items)

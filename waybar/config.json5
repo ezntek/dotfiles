@@ -1,8 +1,8 @@
 [{
-    "output": "DP-1",
+    "output": "eDP-1",
      "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 24, // Waybar height (to be removed for auto height)
+    "height": 25, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 0, // Gaps between modules (4px)
     "margin-left": 0,
@@ -10,7 +10,7 @@
     "margin-bottom": 0,
     "margin-top": 0,
     // Choose the order of the modules
-    "modules-left": ["niri/workspaces","niri/window"],
+    "modules-left": ["hyprland/workspaces","hyprland/window"],
     "modules-center": [],
     "modules-right": ["tray", "pulseaudio#out", "pulseaudio#in", "clock", "clock#time"],
     // Modules configuration
@@ -79,10 +79,10 @@
     },
 },
 {
-    "output": "DP-1",
+    "output": "eDP-1",
     // "layer": "top", // Waybar at top layer
     "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 20, // Waybar height (to be removed for auto height)
+    "height": 25, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 0, // Gaps between modules (4px)
     "margin-left": 0,
@@ -92,24 +92,7 @@
     // Choose the order of the modules
     "modules-left": ["network", "backlight"],
     "modules-center": [],
-    "modules-right": ["battery#external", "temperature#cpu", "cpu", "memory", "custom/fanspeed"],
-    // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "warp-on-scroll": false,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
+    "modules-right": ["battery#internal", "temperature#cpu", "cpu", "memory", "custom/fanspeed"],
     "backlight": {
         "device": "/sys/class/backlight/acpi_video0",
         "format": " {percent}%"
@@ -132,7 +115,7 @@
         "thermal-zone": 1,
         //"hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon3/temp1_input",
         //"hwmon-path":"/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input",
-        "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon9/temp1_input",
+        "hwmon-path": "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon7/temp1_input",
         "critical-threshold": 90,
         "format-critical": "CPU {icon}{temperatureC}°C",
         "format": "CPU {icon}{temperatureC}°C",
@@ -149,9 +132,9 @@
     },
     "battery#internal": {
         "bat": "BAT0",
-	"interval": 1,
-	"format-time": "{H}h{m}m",
-	"format": " int {capacity}% ({time})",
+        "interval": 3,
+        "format-time": "{H}h{m}m",
+        "format": "  {capacity}% ({time})",
         "states": {
             "warning": 20,
             "critical": 10,
@@ -159,9 +142,9 @@
     },
     "battery#external": {
         "bat": "BAT1",
-	"interval": 1,
-	"format-time": "{H}h{m}m",
-	"format": " ext {capacity}% ({time})",
+        "interval": 1,
+        "format-time": "{H}h{m}m",
+        "format": " ext {capacity}% ({time})",
         "states": {
             "warning": 20,
             "critical": 10,
@@ -205,7 +188,7 @@
     "margin-bottom": 0,
     "margin-top": 0,
     // Choose the order of the modules
-    "modules-left": ["niri/workspaces","niri/window"],
+    "modules-left": ["hyprland/workspaces","hyprland/window"],
     "modules-center": [],
     "modules-right": ["tray", "pulseaudio#out", "pulseaudio#in", "clock", "clock#time"],
     // Modules configuration
